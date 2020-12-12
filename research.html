@@ -47,10 +47,9 @@
 								<header class="major">
 									<!--<span class="date">April 25, 2017</span>-->
 									<!--<h1><a href="#">blah blah blah</a></h1>-->
-									<p style="font-style: normal;">I am currently a research assistant at NYU Langone/ The Center for Data Science, applying contrastive self-supervised learning to MRI studies. We hope to make deep neural networks capable of arbitrary objectives in modeling the properties of an MRI image, despite a small number of labels. At the moment, we are exploring how the representations of our classes evolve throughout pre-training, and how we might improve this. The image below shows the TSNE embeddings of our classification labels, made by the representations from SimCLR after several epochs of pre-training. While it is encouraging to see some separation and clustering, the ideal result would be for the reds and blues to be what are separated, not some other latent feature. This is what we want to figure out! Some ideas we are thinking of are new augmentations (such as mixup), or new approaches (such as SwAV). 
+									<p style="font-style: normal;">I am currently a research assistant at NYU Langone + The Center for Data Science. We hope to make deep neural networks capable of arbitrary objectives in modeling the properties of an MRI image, even when only a small number of labeled data exists. At the moment, we are exploring how the representations of our classes evolve throughout pre-training and semi-supervised learning might improve this. The image below shows the TSNE embedding of our classification labels, made by the embedding layer from  a model trained via SimCLR for several epochs. We are encouraged to see some separation and clustering, but of course the ideal result is for the reds and blues to be what are separated, not some other latent feature. I am very interested in how this new representation came to be, and hope to learn from it why and how we can adjust our algorithms to make the reds and blues be what are implicitly learned during pre-training. 
 
-
-									 For more info on this and prior work, please check out the posts below.
+									 For more info on this and my other works, please check out the posts below.
 									</p>
 								</header>
 								<a class="image fit"><img src="images/epoch20.png"/></a>
@@ -59,10 +58,10 @@
 							<section class="posts">
 								<article>
 									<header>
-										<h3>A practical DL-based tool for medical image specifications identification</h3>
+										<h3>A Practical DL-based Tool for Medical Image Specifications</h3>
 									</header>
 									<a class="image fit"><img src="images/autolabel.png" /></a>
-									<p> I developed an automated method to classify brain MRIS based on image specifications like image sequence and plane of imaging. We employed a convolutional neural network to sort radiological imaging studies based on these image specifications. In the image above, you'll see one example of how this labeling works. Rather than examining the complicated metadata normally done by routing systems, our model classifies  what kind of study this is based on nothing more than the individual MRI slice. In some cases, we even found our model corrected the ground truth label suggested by the metadata attributes :-).</p>
+									<p> I developed an automated method to classify brain MRIS based on image specifications like image sequence and plane of imaging. We employed a convolutional neural network to sort radiological imaging studies based on these image specifications. In the image above, you'll see one example of how this labeling works. Rather than examining the complicated metadata normally done by routing systems, our model classifies  what kind of study this is based on nothing more than the individual MRI slice. In some cases, we even found our model corrected the ground truth label extracted from the DICOM metadata.</p>
 								</article>
 								<article>
 									<header>
@@ -72,7 +71,7 @@
 
 									<p>In recent years, there has been significant interest and progress in using deep learning to reconstruct cosmological simulations. While traditional methods take millions of CPU hours, machine learning models are capable of creating near identical simulations in a fraction of the time. In this work, I used a deep learning model to predict stellar mass from nothing except dark matter structure. In the image above, you can see an example of how our model was able to closely resemble what the ground truth density field would look, at a fraction of the compute time. Side by side with this are what inputs we used, and what the current benchmark, known as the halo-occupation-distribution (HOD) came up with. 
 
-									I am proud to announce this work was accepted to the 2020 Machine Learning and Physical Science workshop at NeurIPS 2020!!</p>
+									I am proud to announce this work was accepted to the 2020 Machine Learning and Physical Science workshop at NeurIPS 2020!! You can find this work  <a href="https://ml4physicalsciences.github.io/2020/files/NeurIPS_ML4PS_2020_115.pdf">here</a></p>
 								</article>
 								<article>
 									<header>
