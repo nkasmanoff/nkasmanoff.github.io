@@ -5,6 +5,10 @@
     color: #3e497a;
   }
   
+  .headshot{
+
+    height: calc(50vh - 100px);
+  }
   .about {
     width: 100%;
     height: calc(100vh - 100px);
