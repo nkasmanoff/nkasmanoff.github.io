@@ -16,7 +16,9 @@ function Home() {
                  <LinkedInIcon/>
               </Link>
           <EmailIcon />
-          <GithubIcon />
+          <Link href="https://github.com/nkasmanoff"  target="_blank" >
+                 <GithubIcon/>
+              </Link>
         </div>
         <h2> This page is a work in progress. Please come back soon :-)</h2>
 
