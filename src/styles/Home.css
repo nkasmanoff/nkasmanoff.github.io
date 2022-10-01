@@ -2,7 +2,7 @@
     width: 100%;
     align-items: center;
     font-family: "Arial", sans-serif;
-    color: #3e497a;
+    color: #000106;
   }
   
   .headshot{
@@ -11,13 +11,13 @@
   }
   .about {
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(120vh - 10px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #3e215e;
+    background-color: #2d2b37;
     color: #f0f0f0;
   }
   
@@ -48,7 +48,7 @@
   }
   
   .skills h1 {
-    color: #3e497a;
+    color: #000000;
   }
   
   .skills .list {

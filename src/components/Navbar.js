@@ -4,7 +4,7 @@ import "../styles/Navbar.css";
 import ReorderIcon from "@material-ui/icons/Reorder";
 
 function Navbar() {
-  const [expandNavbar, setExpandNavbar] = useState(false);
+  const [expandNavbar, setExpandNavbar] = useState('relative');
 
   const location = useLocation();
 
