@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.e83a7c8a.css",
-    "main.js": "/static/js/main.47d3b273.js",
+    "main.css": "/static/css/main.43282c29.css",
+    "main.js": "/static/js/main.aa7e4c60.js",
     "static/js/787.a5daee0c.chunk.js": "/static/js/787.a5daee0c.chunk.js",
     "static/media/headshot.png": "/static/media/headshot.974efa1acbc931492ff3.png",
     "static/media/Noah_Kasmanoff_Resume.pdf": "/static/media/Noah_Kasmanoff_Resume.c76f5ace9ac6d04ae21f.pdf",
     "index.html": "/index.html",
-    "main.e83a7c8a.css.map": "/static/css/main.e83a7c8a.css.map",
-    "main.47d3b273.js.map": "/static/js/main.47d3b273.js.map",
+    "main.43282c29.css.map": "/static/css/main.43282c29.css.map",
+    "main.aa7e4c60.js.map": "/static/js/main.aa7e4c60.js.map",
     "787.a5daee0c.chunk.js.map": "/static/js/787.a5daee0c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e83a7c8a.css",
-    "static/js/main.47d3b273.js"
+    "static/css/main.43282c29.css",
+    "static/js/main.aa7e4c60.js"
   ]
 }
