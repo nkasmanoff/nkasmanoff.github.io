@@ -32,9 +32,10 @@ function Home() {
               </Link>              
               <p> Thanks for checking out my website! I'm Noah, an engineer devoted to exploring inter-disciplinary applications of machine learning and data science.
 										 Along the way, the way, I have learned a lot about this field by working on projects in Cosmology, Business Analytics, Healthcare, Earth Science, and more.
-										In my current role, I serve as a Full Stack / Machine Learning Engineer for a leading fintech start-up, <a href="https://dwightfunding.com/">Dwight Funding</a>.
+										In my current role, I serve as a Full Stack / Machine Learning Engineer for a leading fintech start-up, <a href="https://dwightfunding.com/"  color="red">Dwight Funding</a>.
               </p>
         </div>
+
 
       </div>
 

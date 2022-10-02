@@ -2,6 +2,7 @@ import React from "react";
 import Tab from "../components/Tab";
 import nycSentinel from "./blogPosts/nycSentinel";
 import wasteClassifier from "./blogPosts/wasteClassifier";
+import "../styles/Blog.css";
 
 function Blog(){
     const tabContent = [
@@ -14,11 +15,12 @@ function Blog(){
     
       ];
       
-    return <div><h1>Blog</h1>
+    return <div ><h1>Blog</h1>
 
             <br></br>
 
             <p>Below are some examles of recent works I've done</p>
+            <div className = "article">
             <Tab>
               {tabContent.map((tab, idx) => (
                 <Tab.TabPane key={`Tab-${idx}`} tab={tab.title}>
@@ -26,7 +28,7 @@ function Blog(){
                 </Tab.TabPane>
               ))}
             </Tab>
-
+            </div>
 
     </div>
 
