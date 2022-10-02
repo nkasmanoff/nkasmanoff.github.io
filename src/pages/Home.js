@@ -11,12 +11,14 @@ function Home() {
   return (
     <div className="home">
       <div className="about">
-      <img src={Headshot} alt="me!" className="headshot"/>
+
+
+
+
         <div className="prompt">
-          <p>Noah Kasmanoff</p>
-          <p>
-							Engineer, Researcher, ML, etc. <br/>
-						</p>          
+          <h1>Hello World!</h1>
+          <h3>Welcome to my website.</h3>
+         
           <Link href="https://www.linkedin.com/in/noahkasmanoff/"  target="_blank" >
                  <LinkedInIcon/>
               </Link>
@@ -30,7 +32,7 @@ function Home() {
               <Link href="https://twitter.com/noahpunintended"  target="_blank" >
                  <TwitterIcon/>
               </Link>              
-              <p> Thanks for checking out my website! I'm Noah, an engineer devoted to exploring inter-disciplinary applications of machine learning and data science.
+              <p> I'm Noah, an engineer devoted to exploring inter-disciplinary applications of machine learning and data science.
 										 Along the way, the way, I have learned a lot about this field by working on projects in Cosmology, Business Analytics, Healthcare, Earth Science, and more.
 										In my current role, I serve as a Full Stack / Machine Learning Engineer for a leading fintech start-up, <a href="https://dwightfunding.com/"  color="red">Dwight Funding</a>.
               </p>
