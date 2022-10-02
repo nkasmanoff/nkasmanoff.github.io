@@ -15,11 +15,11 @@ function Blog(){
     
       ];
       
-    return <div ><h1>Blog</h1>
+    return <div >
 
             <br></br>
 
-            <p>Below are some examles of recent works I've done</p>
+            <p>Some thoughts / projects that don't fit in any other section of this site.</p>
             <div className = "article">
             <Tab>
               {tabContent.map((tab, idx) => (

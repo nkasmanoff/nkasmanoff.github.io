@@ -17,3 +17,8 @@ a {
   background-color: transparent;
   text-decoration: none;
 }
+
+.projectImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto}
