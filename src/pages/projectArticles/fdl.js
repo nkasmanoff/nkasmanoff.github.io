@@ -7,7 +7,7 @@ function fdl(){
         <center>
             <h1>Automated Reporting of Natural Events using Staellite Imagery and Metadata</h1>
         </center>
-        <img src={ESTR} alt="" className="projectImage" justify="center"/>
+        <img src={ESTR} alt="" className="projectImage" justify="center" width="400"/>
         <p>
 
             To provide a bit more context as to what this work at the Frontier Development Lab involved, the figure above demonstrates the pipeline in which our Earth Science TRansformer (ESTR)
