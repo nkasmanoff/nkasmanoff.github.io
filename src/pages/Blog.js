@@ -6,7 +6,7 @@ import "../styles/Blog.css";
 
 function Blog(){
     const tabContent = [
-      {title: "Detecting NYC Land Cover Change using Sentinel 2",
+      {title: "Detecting NYC Land Cover Change using Sentinel-2",
         content: nycSentinel.call()},
         {
           title: "Sorting Waste with a Jetson Nano",

@@ -4,7 +4,7 @@ import autoLabel from '../../images/autoLabel.png'
 
 function mriContentDetection(){
 
-    return  (	<article>
+    return  (	<article className="researchPost">
         <center>
             <h3>A Practical DL-based Tool for Medical Image Specifications</h3>
         </center>

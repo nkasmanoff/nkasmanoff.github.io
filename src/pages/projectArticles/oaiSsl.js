@@ -3,12 +3,12 @@ import React from "react";
 import oaiCausalModel from '../../images/oaiCausalModel.png'
 function oaiSsl(){
 
-    return  ( 								<article>
+    return  ( 								<article className="researchPost">
 
         <center>
             <h1>OA Progression Prediction using Self-Supervised Representation Learning</h1>
         </center>
-        <img src={oaiCausalModel} alt="" className="projectImage" justify="center"/>
+        <img src={oaiCausalModel} alt="" className="projectImage" justify="center" width="500"/>
 
         <p> As a a research engineer at NYU Langone Health, I worked at the <a href="https://med.nyu.edu/faculty/cem-m-deniz">DenizLab</a> to predict whether or not an individual will develop Osteoarthtitis (OA) based on a given snapshot, aka a knee MRI.
 

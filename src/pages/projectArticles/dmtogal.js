@@ -3,7 +3,7 @@ import React from "react";
 import pFields from '../../images/pFields.png'
 function dmtogal(){
 
-    return  ( 	<article>
+    return  ( 	<article className="researchPost">
                     <center>
                 <h1>dm2gal</h1>
             </center>

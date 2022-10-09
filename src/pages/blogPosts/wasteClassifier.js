@@ -3,7 +3,7 @@ import React from "react";
 
 function wasteClassifier(){
 
-    return  (<article>
+    return  (<article className="blogPost">
         <center>   
             <h1 justify = "center">Sorting Waste with Jetson Nano</h1>
             </center>

@@ -3,7 +3,7 @@ import React from "react";
 import burstcubeLocalization from '../../images/burstcubeLocalization.png'
 function burstCube(){
 
-    return  (   <article>
+    return  (  <article className="researchPost">
         <center>
             <h1>BurstCube</h1>
         </center>

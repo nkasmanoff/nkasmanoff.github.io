@@ -3,7 +3,7 @@ import ESTR from '../../images/ESTR.png'
 
 function fdl(){
 
-    return  (								<article>
+    return  (								<article className="researchPost">
         <center>
             <h1>Automated Reporting of Natural Events using Staellite Imagery and Metadata</h1>
         </center>
