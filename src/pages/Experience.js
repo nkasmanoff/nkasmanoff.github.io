@@ -33,7 +33,7 @@ function Experience(){
 
             <br></br>
 
-            <p>Here's a sample of the work I've done, along with related results + presentations.</p>
+            <p>Here's a sample of the work I've done, along with related results + presentations. For a deeper look at some of my larger research projects, please check out my <a href="https://scholar.google.com/citations?user=pzTcPxEAAAAJ&hl=en">Google Scholar Page</a>.</p>
             <div className = "article">
             <Tab>
               {tabContent.map((tab, idx) => (
