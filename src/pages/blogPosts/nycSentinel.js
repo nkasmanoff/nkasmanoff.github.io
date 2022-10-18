@@ -17,45 +17,43 @@ function nycSentinel(){
             </center>
             <p> 
 
-                Recently, I have become fascinated by geospatial data, and how it's applications are so wide-reaching.
-                Politics, climate change, financial markets, and more. All of these studies can be improved and complemented when there is an 
-                eye in the sky, giving insights otherwise unknown. It was in this mindset did I decide to attempt a pet project with this kind of data.
-                It first started with me wanting to see how easy it is to access satellite imagery, and ended with me learning something new about New Jersey!
-
+                Recently, I have been drawn to geospatial data. From politics, climate change, financial markets, and more, it's applications
+                are wide reaching. It was in this mindset I worked on this pet project, and exploring how easy it is to get started with applying ML to this domain.
                 </p>
 
-                <p>To briefly outline this blog post, I will explaining: 
+                <p>To briefly outline this blog post, I will diving into: 
                      <ul>
-                        <li>How I Accessed this Data</li>
+                        <li>How I Wrangled this Data</li>
                         <li>How I Created a Land Cover Classifier</li>
                         <li>What Insights I Obtained</li>
                         </ul> 
             
             </p>
             <p> 
-                The code for this work can be found at <a href="https://github.com/nkasmanoff/nyc-sentinel">https://github.com/nkasmanoff/nyc-sentinel</a>
+                The code for this work can be found <a href="https://github.com/nkasmanoff/nyc-sentinel">here</a>
             </p>
 
             <center>   
-            <h2 justify = "center">Getting Data</h2>
+            <h2 justify = "center">Getting Started</h2>
             </center>
             <h3> Earth Observation Data</h3>
-            <p> While searching for data, the first thing I learned is how varied Earth observation data is. To start, there are two main types of collection instruments.
-                One kind is sythetic aperture radar  (<a href="https://www.earthdata.nasa.gov/learn/backgrounders/what-is-sar">SAR</a>) which is created by a device which measures the intensity of the signal
+            <p> While searching for data, the first thing I learned is how varied Earth observation data is.</p> 
+             <p> To start, there are two main types of collection instruments.
+                One kind is sythetic aperture radar  (<a href="https://www.earthdata.nasa.gov/learn/backgrounders/what-is-sar">SAR</a>) which is created by a device that measures the intensity of the signal
                 it bounces off of the Earth's surface. The advantage of this kind of system is that we can tell a lot of things about surface characteristics depending on what the returned signal is. 
 
                 Even more importantly, SAR data is not restricted by sunlight or cloud cover. This means that in the event of cloudy conditions (like during a Hurricane) SAR instruments are able to provide data when it may matter most.
             </p>
-            <p> However, as of writing this (2022) SAR data is not so easily accessible. The signals they produce are not easy to interpret, and at least from what I saw, it is less straightforward for the typical user to find 
-                a steady source of. I don't doubt there are good reasons for this, but nonetheless, SAR is not something I used for this work.</p>
+            <p> However, as of writing this (Oct 2022) SAR data is not as easily accessible. The signals they produce are not easy to interpret, and at least from what I saw, it is harder for the casual user to find       
+                 a steady source of. I don't doubt there are good reasons for this, but nonetheless, SAR data is not something I used in this work.</p>
 
-            <p> Alternatively, optical satellite images are a lot easier to work with. While they can lack the level of detail SAR images provide, it is a lot easier to understand photographs. As also alluded to, they are restricted by sunlight + cloud cover, meaning they 
-                are not always the most reliable tool depending on use case. For the purposes of this work, they get the job done.
+            <p> Alternatively, optical satellite images are a lot easier to find and work with. While they can lack the level of detail SAR images provide, it is much easier to understand photographs. But as also alluded to, they are restricted by sunlight + cloud cover, meaning they 
+                are not always the most reliable tool depending on use case. In this case, their straightforward interpret and ease of access made them the preferred choice.
             </p>
             <h3> Sentinel 2</h3>
-                <p>As alluded to above, there is a variety of optical satellite image data out there. All of these resources offer a variety of cadences / resolutions. I wasn't especially picky for this project,
-                    and went with what looked like the most accessible for a starter like me. 
-                    While happy with what I worked with, it's encouraging to see the flavors of EO data to work with are already quite extensive, and growing!                
+                <p>There are a host of optical satellites out there. All of these instruments offer different cadences / resolutions. I wasn't especially picky for this project,
+                    and went with what looked like the most accessible for an amateur like me!
+                    While happy with what I worked with, it's encouraging to see the flavors of EO data to work with are already quite extensive and <a href="https://phys.org/news/2021-10-planet-fleet-earth-satellites.html">growing</a>.
                 </p>
                 <p> <a href="https://sentinel.esa.int/web/sentinel/missions/sentinel-2">Sentinel-2</a> already came with an easy to access <a href="https://github.com/sentinelsat/sentinelsat">API</a>, 
                 which made it easy to download images. All that I needed to prepare beforehand was an outline of the region I wanted to get imagery for, which I accomplished using <a href="http://geojson.io/#map=12/40.7579/-73.9651">this website</a>.   </p>
@@ -71,7 +69,7 @@ function nycSentinel(){
 
                 <img src={landCover} alt="" className="projectImage" justify="center" width ="250"/>
 
-                <p> With this highly detailed dataset, I got to work training models for the job. </p>
+                <p> With this highly detailed dataset, I got to work training models. </p>
 
         <center>   
             <h2 justify = "center">Model Training</h2>
@@ -83,7 +81,7 @@ function nycSentinel(){
             </p>
 
             <p> 
-                To make this work quick, I transferred my code to my Jetson and used it's CUDA acceleration to rapidly run through the dataset. With this hardware, a training epoch lasted about 5 minutes.
+                To make this work quick, I transferred my code to my <a href="https://developer.nvidia.com/embedded/jetson-nano-developer-kit">Jetson</a> and used it's CUDA acceleration to rapidly run through the dataset. With this hardware, a training epoch lasted about 5 minutes.
 
             </p>    
 
