@@ -124,7 +124,7 @@ function nycSentinel(){
 
             <p> In this view, we can see that the model is accurately deticting human activity in both images, but again there is some disparity in the quality of the images.
                 
-                In particular, what I'm seeing in both the upper right and lower left of these images is that the intensity of the pixels is slightly greater in June, 
+                In particular, what I'm seeing in both the upper left and lower right of these images is that the intensity of the pixels is slightly greater in June, 
                 which likely helped the model pick up on those features. However, there are other locations, particularly on the Jersey side of the Hudson river, where it is definitely
                 
                 not clear that the tile corresponds to human activity in April, but is much more obvious in June. While I'm sure this an entirely new construction project, it is encouraging to see
