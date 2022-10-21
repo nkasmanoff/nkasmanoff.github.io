@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import resume from '../images/Noah_Kasmanoff_Resume.pdf'
 
 

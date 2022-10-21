@@ -3,6 +3,8 @@ import titleImage from '../../images/nycTitleImage.png'
 import landCover from '../../images/landCover.png'
 import waterLevels from '../../images/waterLevels.gif'
 import landCoverTrends from '../../images/landCoverTrends.png'
+import humanActivity from '../../images/humanActivity.gif'
+
 function nycSentinel(){
 
     return (<article className="blogPost" justify="center"> 
@@ -110,18 +112,33 @@ function nycSentinel(){
             </p>
 
 
-            <img src={waterLevels} alt="my-gif" justify="center" className="projectImage"  width ="750"/>
+            <img src={waterLevels} alt="my-gif" justify="center" className="projectImage"  width ="500"/>
             <p>  This is grayscale image of both Sentinel-2 images, each of which overlayed with the ResNet's predictions of water cover in each. As we see here, in August, there is a decent amount of cloud cover on the Hudson River, which impacted 
                 the model's ability to properly classify this land type. Instead, it looks like this was predicted to be forest cover.</p>
 
             </p>
 
-            <p>After that, the last quick takeaway from this is that we are seeing consistency in the results. Sentinel-2 is able to re-image the same location approximately once every 5 days, meaning that assuming both of those instances
-                had a cloud cover under 10%, they would show up in this analysis. We see that in this trend graph, there are 2 instances where the interval between images is 5 days, and both exhibit very similar distributions
-                of predicted land type. On it's own this is not an especially insightful result, but does give us a bit of confidence in both the instrument and machine learning model to be consistent when realistically not much would change over a couple of days.  
+            <p> Next, we can repeat the same process for the lowest and highest detected levels of human activity, in April 2022 and June 2022:</p>
+
+            <img src={humanActivity} alt="my-gif" justify="center" className="projectImage"  width ="500"/>
+
+            <p> In this view, we can see that the model is accurately deticting human activity in both images, but again there is some disparity in the quality of the images.
+                
+                In particular, what I'm seeing in both the upper right and lower left of these images is that the intensity of the pixels is slightly greater in June, 
+                which likely helped the model pick up on those features. However, there are other locations, particularly on the Jersey side of the Hudson river, where it is definitely
+                
+                not clear that the tile corresponds to human activity in April, but is much more obvious in June. While I'm sure this an entirely new construction project, it is encouraging to see
+                that this model is capable of picking up on instances where the details from Sentinel-2 are left out.</p>
+
+
+
+            <p>The biggest limitation with this appraoch is it's maximum available granularity. With tiles of 64x64, this is equivalent to 640m x 640m chunks of land, which are likely not as uniform 
+                as this approach suggests. In a follow up to this, I'd love to get my hands on a segmentation dataset, and apply this approach in a more detailed way.
             </p>
 
-            <p>With that I'll end this blog post, but am definitely excited by what else can be accomplished using AI and geospatial data!</p>
+            <p> Furthermore, as great as Python is for setting up this analysis, it is quite limited in providing imaging tools to do these images justice. With that in mind, I'm hoping to find better tools for visualizing geospatial data as well! </p>
+
+            <p>Thank you for reading, please don't hesitate to reach out if you have questions, comments, or suggestions :-) </p>
 
              </article>)
 
