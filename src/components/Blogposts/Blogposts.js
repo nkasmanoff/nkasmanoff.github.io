@@ -7,17 +7,59 @@ import landCover from "../../Assets/landCover.png";
 import waterLevels from "../../Assets/waterLevels.gif";
 import landCoverTrends from "../../Assets/landCoverTrends.png";
 import humanActivity from "../../Assets/humanActivity.gif";
-
+import zindiChallenge from "../../Assets/zindiChallenge.png"
 function Blogposts() {
   return (
     <div className="projectbackground">
       <Container fluid className="project-section">
         <Container>
-          <Row>
-          Pardon the mess. Cleaning this up soon...
-
-          </Row>
+          <Row>A collection of thoughts, personal projects, and/or future ideas.</Row>
           <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+            <Col md={4} className="project-card">
+              <ProjectCard
+                imgPath={zindiChallenge}
+                isBlog={false}
+                title="NASA Harvest Field Boundary Detection Challenge"
+                description="Classifying crop field boundaries using multi-spectral observations collected by PlanetScope."
+                descriptionFull={
+                  <>
+                    <p>
+                      In January to February 2023, I participated in a data
+                      science competition for detecting field boundaries for
+                      Rwandan farms using satellite images. Of around 185
+                      participants, my{" "}
+                      <a href="https://github.com/nkasmanoff/nasa_harvest_challenge">
+                        results
+                      </a>{" "}
+                      came in 21st place.
+                    </p>
+                    <p>
+                      To quickly summarize, this result was achieved through a
+                      variety of tweaks and adjustments to an otherwise
+                      straightforward image segmentation problem. For me to best
+                      demonstrate these changes, I feel it is easiest to instead
+                      link to notebooks which contain this code & explanations,
+                      so I'll do so here.
+                    </p>
+                    <p>
+                      Code for data exploration and model training{" "}
+                      <a href="https://github.com/nkasmanoff/nasa_harvest_challenge/blob/main/Model_Training_and_Evaluation.ipynb">
+                        here
+                      </a>{" "}
+                      .
+                    </p>
+                    <p>
+                      Code for model ensembling, inference, and result
+                      submission{" "}
+                      <a href="https://github.com/nkasmanoff/nasa_harvest_challenge/blob/main/Ensemble_Inference.ipynb">
+                        here
+                      </a>{" "}
+                      .
+                    </p>
+                  </>
+                }
+              />
+            </Col>
             <Col md={4} className="project-card">
               <ProjectCard
                 imgPath={sentinel}
