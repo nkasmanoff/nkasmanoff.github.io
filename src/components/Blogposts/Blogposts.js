@@ -13,6 +13,10 @@ function Blogposts() {
     <div className="projectbackground">
       <Container fluid className="project-section">
         <Container>
+          <Row>
+          Pardon the mess. Cleaning this up soon...
+
+          </Row>
           <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
             <Col md={4} className="project-card">
               <ProjectCard

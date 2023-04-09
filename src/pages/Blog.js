@@ -6,6 +6,7 @@ function Project() {
   return (
     <div>
       <Header />
+
       <Blogposts />
     </div>
   )
