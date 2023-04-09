@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.d183e182.css",
-    "main.js": "/static/js/main.944d99b9.js",
+    "main.js": "/static/js/main.6022dde4.js",
     "static/media/burstcubeLocalization.png": "/static/media/burstcubeLocalization.5e00466154e3c3a67099.png",
     "static/media/waterLevels.gif": "/static/media/waterLevels.b08ef0fcbf8cacc9d67d.gif",
     "static/media/humanActivity.gif": "/static/media/humanActivity.1f379aeb8e479f8e53b6.gif",
@@ -18,10 +18,10 @@
     "static/media/bars.svg": "/static/media/bars.a2e35dd5aede7934d82e.svg",
     "index.html": "/index.html",
     "main.d183e182.css.map": "/static/css/main.d183e182.css.map",
-    "main.944d99b9.js.map": "/static/js/main.944d99b9.js.map"
+    "main.6022dde4.js.map": "/static/js/main.6022dde4.js.map"
   },
   "entrypoints": [
     "static/css/main.d183e182.css",
-    "static/js/main.944d99b9.js"
+    "static/js/main.6022dde4.js"
   ]
 }
