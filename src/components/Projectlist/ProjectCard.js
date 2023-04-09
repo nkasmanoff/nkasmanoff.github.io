@@ -48,8 +48,13 @@ function ProjectCard(props) {
             <Card.Text style={{ textAlign: "justify" }}>
               {props.descriptionFull}
             </Card.Text>
+            <Button className="viewbtn" variant="primary" onClick={handleClose}>
+            Close
+          </Button>
           </Card.Body>
+          
         </Card>
+        
       </Modal>
     </>
   );
