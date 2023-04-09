@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from '../components/Header/Header'
-import Blogposts from '../components/Blogposts/Blogposts'
+import Projectlist from '../components/Projectlist/Projectlist'
 
 function Project() {
   return (
     <div>
       <Header />
-      <Blogposts />
+      <Projectlist />
     </div>
   )
 }

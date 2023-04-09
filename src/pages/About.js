@@ -1,14 +1,15 @@
 import React from 'react'
 import Header from '../components/Header/Header'
-import Blogposts from '../components/Blogposts/Blogposts'
+import Aboutpage from '../components/Aboutpage/Aboutpage'
 
-function Project() {
+
+function About() {
   return (
     <div>
       <Header />
-      <Blogposts />
+      <Aboutpage />
     </div>
   )
 }
 
-export default Project
+export default About

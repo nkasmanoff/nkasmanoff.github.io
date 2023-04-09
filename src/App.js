@@ -1,24 +1,41 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Experience from "./pages/Experience";
-import Blog from "./pages/Blog";
-import Resume from "./pages/Resume";
-import Navbar from "./components/Navbar";
+import './App.css';
+import { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Preloader from '../src/components/Pre'
+import Home from './pages/Home.js'
+import About from './pages/About'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Project from './pages/Project';
 
+import Blog from './pages/Blog';
 
 function App() {
+  const [load, upadateLoad] = useState(true);
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      upadateLoad(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="App">
-      <Router basename="">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/Resume" element={<Resume />} />
-          <Route path="/blog" element={<Blog />} />
 
-        </Routes>
+      <Router>
+        <Preloader load={load} />
+        <div className="App" id={load ? "no-scroll" : "scroll"}>
+          <Routes>
+            <Route path='/' element={<Home />}></Route>
+            <Route path='/about' element={<About />}></Route>
+            <Route path='/experience' element={<Project />}></Route>
+          
+            <Route path='/blog' element={<Blog />}></Route>
+
+          </Routes>
+        </div>
       </Router>
     </div>
   );

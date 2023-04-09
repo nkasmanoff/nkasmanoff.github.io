@@ -1,14 +1,14 @@
 import React from 'react'
+import Contactpage from '../components/Contactpage/Contactpage'
 import Header from '../components/Header/Header'
-import Blogposts from '../components/Blogposts/Blogposts'
 
-function Project() {
+function Contact() {
   return (
     <div>
       <Header />
-      <Blogposts />
+      <Contactpage />
     </div>
   )
 }
 
-export default Project
+export default Contact
