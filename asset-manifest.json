@@ -1,11 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.d183e182.css",
-    "main.js": "/static/js/main.86562fe0.js",
+    "main.js": "/static/js/main.d2bd02da.js",
     "static/media/burstcubeLocalization.png": "/static/media/burstcubeLocalization.5e00466154e3c3a67099.png",
     "static/media/waterLevels.gif": "/static/media/waterLevels.b08ef0fcbf8cacc9d67d.gif",
     "static/media/humanActivity.gif": "/static/media/humanActivity.1f379aeb8e479f8e53b6.gif",
     "static/media/headshot.png": "/static/media/headshot.974efa1acbc931492ff3.png",
+    "static/media/zindiChallenge.png": "/static/media/zindiChallenge.d2adf5808a5081ce477f.png",
     "static/media/ESTR.png": "/static/media/ESTR.25143e40b9c2e63e94e3.png",
     "static/media/landCover.png": "/static/media/landCover.d4791559b82d569dc519.png",
     "static/media/dallemini.webp": "/static/media/dallemini.2d598c880c1406e15bcf.webp",
@@ -17,10 +18,10 @@
     "static/media/bars.svg": "/static/media/bars.a2e35dd5aede7934d82e.svg",
     "index.html": "/index.html",
     "main.d183e182.css.map": "/static/css/main.d183e182.css.map",
-    "main.86562fe0.js.map": "/static/js/main.86562fe0.js.map"
+    "main.d2bd02da.js.map": "/static/js/main.d2bd02da.js.map"
   },
   "entrypoints": [
     "static/css/main.d183e182.css",
-    "static/js/main.86562fe0.js"
+    "static/js/main.d2bd02da.js"
   ]
 }
