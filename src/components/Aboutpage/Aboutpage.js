@@ -18,10 +18,9 @@ function Aboutpage() {
               Cosmology, Business Analytics, Healthcare, Earth Science, and
               more. In my current role, I serve as a Full Stack / Machine
               Learning Engineer for a leading fintech start-up,{" "}
-              <a href="https://dwightfunding.com/">
-                Dwight Funding
-              </a>
-              . In my free time I enjoy running, watching TV, reading, and trying to keep up with the latest trends in tech & AI.
+              <a href="https://dwightfunding.com/">Dwight Funding</a>. In my
+              free time I enjoy running, watching TV, reading, and trying to
+              keep up with the latest trends in tech & AI.
             </p>
             <ul className="skilllist">
               <Row>
@@ -45,7 +44,8 @@ function Aboutpage() {
           </Col>
           <Col md={5}>
             <div className="webimage"></div>
-            Picture generated with <a href="https://www.craiyon.com/" >Craiyon</a>.
+            Picture generated with{" "}
+            <a href="https://www.craiyon.com/">Craiyon</a>.
           </Col>
         </Row>
       </Container>

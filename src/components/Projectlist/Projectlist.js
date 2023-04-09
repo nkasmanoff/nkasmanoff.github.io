@@ -3,7 +3,7 @@ import "../../pages/style.css";
 import ProjectCard from "./ProjectCard";
 import { Container, Row, Col } from "react-bootstrap";
 import estr from "../../Assets/ESTR.png";
-import oaiImage from "../../Assets/oaiCausalModel.png";
+import oaiImage from "../../Assets/oaiSimClr.png";
 
 import dm2gal from "../../Assets/pFields.png";
 import burstcubeLocalization from "../../Assets/burstcubeLocalization.png";
@@ -25,44 +25,33 @@ function Projectlist() {
                   <>
                     {" "}
                     <p>
-                      To provide a bit more context as to what this work at the
-                      Frontier Development Lab involved, the figure above
-                      demonstrates the pipeline in which our Earth Science
-                      TRansformer (ESTR) will be deployed for NASA Earth
-                      Observatory writers. What I would emphasize from this work
-                      is that while like all other ML projects that although the
-                      data collection and model training phases are vitally
-                      important to success, there is a lot more to a project
-                      which is meant for deployment. In this case, that
-                      especially relates to how one can monitor and control a
-                      model.
+                      In and after the Summer of 2021, I was a machine learning
+                      researcher at the Frontier Development Lab. The figure
+                      above is a demo of how our created tool, the Earth Science
+                      TRansformer (ESTR) will operate for NASA Earth Observatory
+                      writers. By prompting this language model with some
+                      details about a natural event, it returns to the user a
+                      short narrative.
                     </p>
                     <p>
-                      This pipeline operates in ~3 stages. First, an input must
-                      be provided. There are two possible methods for getting
-                      such inputs, either through human specification (i.e. this
-                      article is about a hurricane in Florida), or by extracting
-                      a similar sort of prompt based on a collection of
-                      references. These references can be a variety of things,
-                      either an in-house trigger from some NASA instrument, or
-                      from a relevant news article. Once these conditions are
-                      collected, the language model will generate several
-                      paragraphs. This is done using causal langauage modeling +
-                      conditional text generation. The writer can then choose
-                      any number of these output paragraphs to include as part
-                      of the article, and at some point this article is
-                      published. Once that article is final it is now part of
-                      the training set ESTR uses to prime itself for generation,
-                      thus continually improving. I say ~3 because this process
-                      in theory should repeat N times for N articles to be
-                      generated.
-                    </p>
-                    <p>
-                      My team and I at FDL completed this model, packaged it
-                      inside a Docker container, and wrapped it inside a REST
-                      API. There are certainly limitations to this approach
-                      discussed in our presentations, but who knows, maybe even
-                      this article was automatically generated :-).
+                      This pipeline operates in 3 stages. First, an input must
+                      be provided. There are two possible methods, through human
+                      specification (i.e. this article is about a hurricane in
+                      Florida), or by extracting a similar sort of prompt based
+                      on a collection of references. These references can be a
+                      variety of things, either an in-house trigger from some
+                      NASA instrument, or from a relevant news article. Once
+                      these conditions are collected, the language model
+                      generates several paragraphs. This is done using causal
+                      language modeling + conditional text generation. The
+                      writer can then choose any number of these output
+                      paragraphs to include as part of the article, and at some
+                      point this article is published. Once that article is
+                      final it is now part of the training set ESTR uses to
+                      prime itself for generation, thus continually improving.
+                      In light of recent advances of text generation through
+                      RLHF, it would be fascinating to look at this project
+                      again someday!
                     </p>
                     <center>
                       <h2>Presentations</h2>
@@ -94,57 +83,23 @@ function Projectlist() {
                     {" "}
                     <p>
                       {" "}
-                      As a a research engineer at NYU Langone Health, I worked
-                      at the{" "}
+                      As a a researcher at NYU Langone Health, I worked at the{" "}
                       <a href="https://med.nyu.edu/faculty/cem-m-deniz">
                         DenizLab
                       </a>{" "}
                       to predict whether or not an individual will develop
-                      Osteoarthtitis (OA) based on a given snapshot, aka a knee
-                      MRI. While this sounds like a fairly straightforward task,
-                      there are a lot of nuances to pathology prediction which
-                      made this difficult. In particular, medical images are
-                      huge, and the signal which might indicate whether or not a
+                      Osteoarthritis (OA) based on a given snapshot, aka a knee
+                      MRI of that person's health. Medical images are massive,
+                      and the signal which might indicate whether or not a
                       disease is present is sparse.
                     </p>
                     <p>
-                      That is where this headlining image comes into play.
-                      Working with Professor Deniz and Professor Cho, we
-                      anticipated the attach causal model. What this meant is
-                      that to use an MRI to predict OA progression, we needed to
-                      ensure that the lines leaving x truly connected to these
-                      intermediate (latent) factors. Much to our benefit, they
-                      did! How did we figure that out? Using self-supervised
-                      representation learning! By coupling an unlabeled dataset
-                      with our modestly sized labeled one, we found strong
-                      correspondence between the latent representations
-                      extracted via self-supervised learning techniques such as
-                      SimCLR, Barlow Twins, and some domain specific ones and
-                      latent factors like a patients sex, BMI, age, etc. The way
-                      that I think about this is if you've ever watch the TV
-                      show Bones, you know that Dr. Brennan is able to extract
-                      some really specific insights about a person just based on
-                      their skeleton. Our ML model does something similar, but
-                      just for knees.
-                    </p>
-                    <p>
-                      Unfortnately, this was still not enough. Although our
-                      model is now a "bones" expert, it still struggled with the
-                      progression prediction task. Why might that be? Well as
-                      the graph indicates, these latent factors are not the only
-                      property feeding into future status, nor is future status
-                      the only thing such factors affect. As briefly touched on,
-                      medical images are huge and contain sparse signals, and
-                      our representation learning techniques essentially
-                      captured the most abundant detail, the bone structure.
-                      This is not the only thing important to OA, as cartilage
-                      is actually where the disease manifests! So while we have
-                      successfully used SSL to extract a key property from such
-                      images, the remaining work is to figure out how to tease
-                      out the equally (or sizable proportion) important
-                      "current" status of an individual's knee that is
-                      represented by cartilage. Keep an eye on the Deniz Lab to
-                      see this and other amazing research produced!
+                      Working with Professor Cem Deniz and Professor Kyunghyun
+                      Cho, I worked to better predict OA progression, in
+                      particularly aided by the use of self-supervised learning.
+                      Through pre-training techniques like as SimCLR, Barlow
+                      Twins, and domain specific augmentations, our models were
+                      better equipped for this task.
                     </p>
                     <center>
                       {" "}
@@ -174,35 +129,30 @@ function Projectlist() {
                 descriptionFull={
                   <>
                     <p>
-                      As a summer research fellow at the Moore-Sloan Data
-                      Science Environment, I worked with radiologists at NYU
-                      Langone Health to create automated method for classifying
-                      brain MRIS based on image specifications like image
-                      sequence and plane of imaging.
-                    </p>
-                    <p>
-                      An example "autolabel" is shown above. We employed two
-                      complementary machine learning models, a convolutional
-                      neural network and a random forest classifier to sort
-                      radiological studies based on these image specifications.
+                      In Summer 2020, I worked with radiologists at NYU Langone
+                      Health to create automated method for classifying brain
+                      MRIs based on image specifications like image sequence and
+                      plane of imaging. Through the architecture we made, this
+                      model is also easily extendable to future improvements,
+                      such as detecting what body part, detecting noise, or
+                      increasing the number of sequences predicted.
                     </p>
                     <p>
                       At large and growing medical institutions like NYU
-                      Langone, it can be difficult to sort such studies.
-                      Depending the machine and the radiologist at the time, the
-                      written text label and specifcations of the same type of
-                      MRI sequences may have very different names! Although it
-                      is important to note that in the future hopefully such
-                      conflicts do not arise, in the meantime, it would still be
-                      nice to aggregate similar studies from the past, as well
-                      as merge from different institutions for whatever the
-                      reason may be. Prior to tackling the model and evaluation
-                      aspect of this work, an important thing we needed to
-                      figure out early was how to actually label our studies. As
-                      mentioned, things could be the same even if they had
-                      different names. NYU Langone had an untapped data lake for
-                      this, and we went fishing. Once a number of potential
-                      studies were collected, our experts assigned the labels.
+                      Langone, it is difficult to sort such studies. Depending
+                      the machine and the radiologist at the time, the written
+                      text label and specifications of the same type of MRI
+                      sequences may have very different names. So our goal was
+                      to aggregate similar studies from the past, as well as
+                      merge from different institutions for whatever the reason
+                      may be, and make this process streamlined going forward.
+                      Prior to tackling the model and evaluation aspect of this
+                      work, an important thing we needed to figure out early was
+                      how to actually label our studies. As mentioned, things
+                      could be the same even if they had different names. NYU
+                      Langone had an untapped data lake for this, and we went
+                      fishing. Once a number of potential studies were
+                      collected, our experts assigned the labels.
                     </p>
 
                     <p>
@@ -212,14 +162,10 @@ function Projectlist() {
                       relevant metadata found within the DICOM file to predict
                       what sequence class. We found success with both
                       techniques, and even great improvement when combining the
-                      two in an ensemble. I will note that while I am only
-                      referring to the prediction of sequence type, this model
-                      was extended to also predicting what image orientation was
-                      used. We hope to expand the output tasks of such a model
-                      in the future, as more data becomes labeled.
+                      two in an ensemble.
                     </p>
                     <center>
-                      <h2>Presentations</h2>
+                      <h2>Related Material</h2>
 
                       <p>
                         <a href="https://link.springer.com/epdf/10.1007/s00234-022-03023-7?sharing_token=AQiXCwlOaSQYEwJ3CCReQ_e4RwlQNchNByi7wbcMAY5-rU0vauZOXm2Q6Bu9K6UX8HtYmHnr4p31VUGh-_d017Ik_KFiNI1_w0x_nAwfu68Tksi68Ci2a5WSMIc5_bDVHtZu7AJp1moFmu7ckZPaXdkzskEFjvEspah5P8VzTmY=">
@@ -303,7 +249,6 @@ function Projectlist() {
                 description="A cubesat for detecting gravitational wave counterparts."
                 descriptionFull={
                   <>
-                  
                     <p>
                       The discovery of gravitational waves has ushered in a new
                       era of astronomy. Tied to this discovery is the potential

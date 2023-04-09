@@ -12,7 +12,12 @@ function ProjectCard(props) {
   return (
     <>
       <Card className="project-card-view">
-        <Card.Img variant="top" src={props.imgPath} alt="card-img" className='card-img'/>
+        <Card.Img
+          variant="top"
+          src={props.imgPath}
+          alt="card-img"
+          className="card-img"
+        />
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
           <Card.Text style={{ textAlign: "justify" }}>
@@ -37,7 +42,9 @@ function ProjectCard(props) {
         <Card className="project-card-view">
           <Card.Img variant="top" src={props.imgPath} alt="card-img" />
           <Card.Body>
-            <Card.Title>{props.title}</Card.Title>
+          <center>
+          <h2>{props.title}</h2>
+          </center>
             <Card.Text style={{ textAlign: "justify" }}>
               {props.descriptionFull}
             </Card.Text>
