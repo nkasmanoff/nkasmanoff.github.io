@@ -19,7 +19,7 @@ function Aboutpage() {
               more. In my current role, I serve as a Full Stack / Machine
               Learning Engineer for a leading fintech start-up,{" "}
               <a href="https://dwightfunding.com/">Dwight Funding</a>. In my
-              free time I enjoy running, watching TV, reading, and trying to
+              free time I enjoy running, watching TV, reading, messing with my NVIDIA Jetson, and trying to
               keep up with the latest trends in tech & AI.
             </p>
             <ul className="skilllist">
