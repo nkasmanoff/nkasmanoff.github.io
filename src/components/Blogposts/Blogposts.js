@@ -7,14 +7,38 @@ import landCover from "../../Assets/landCover.png";
 import waterLevels from "../../Assets/waterLevels.gif";
 import landCoverTrends from "../../Assets/landCoverTrends.png";
 import humanActivity from "../../Assets/humanActivity.gif";
-import zindiChallenge from "../../Assets/zindiChallenge.png"
+import zindiChallenge from "../../Assets/zindiChallenge.png";
+import searchingFace from "../../Assets/searchingFace.png";
+
 function Blogposts() {
   return (
     <div className="projectbackground">
       <Container fluid className="project-section">
         <Container>
-          <Row>A collection of thoughts, personal projects, and/or future ideas.</Row>
+          <Row>
+            A collection of thoughts, personal projects, and/or future ideas.
+          </Row>
           <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+            <Col md={4} className="project-card">
+              <ProjectCard
+                isBlog={false}
+                imgPath={searchingFace}
+                title="NYC GPT Hackathon"
+                description="Enhanced dataset search on HuggingFace."
+                descriptionFull={
+                  <>
+                  <center>
+                    <iframe
+                      src="https://nkasmanoff-searchingface.hf.space"
+                      frameborder="0"
+                      width="500"
+                      height="600"
+                    ></iframe>
+                    </center>
+                  </>
+                }
+              />
+            </Col>
             <Col md={4} className="project-card">
               <ProjectCard
                 imgPath={zindiChallenge}
@@ -49,8 +73,7 @@ function Blogposts() {
                       .
                     </p>
                     <p>
-                      Code for model ensembling, inference, and result
-                      submission{" "}
+                      Code for model ensemble, inference, and result submission{" "}
                       <a href="https://github.com/nkasmanoff/nasa_harvest_challenge/blob/main/Ensemble_Inference.ipynb">
                         here
                       </a>{" "}
