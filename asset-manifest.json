@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c74345d1.css",
-    "main.js": "/static/js/main.6a3327e8.js",
+    "main.js": "/static/js/main.66ee8a40.js",
     "static/media/burstcubeLocalization.png": "/static/media/burstcubeLocalization.5e00466154e3c3a67099.png",
     "static/media/waterLevels.gif": "/static/media/waterLevels.b08ef0fcbf8cacc9d67d.gif",
     "static/media/humanActivity.gif": "/static/media/humanActivity.1f379aeb8e479f8e53b6.gif",
@@ -14,14 +14,15 @@
     "static/media/oaiSimClr.png": "/static/media/oaiSimClr.8f2e86d14a106d14d06c.png",
     "static/media/072022_lg_jwst_feat-1030x580.jpg": "/static/media/072022_lg_jwst_feat-1030x580.df656919e16d2d6ed54c.jpg",
     "static/media/pFields.png": "/static/media/pFields.25406b1436b953c40b22.png",
+    "static/media/searchingFace.png": "/static/media/searchingFace.ff62eda057e60b38e586.png",
     "static/media/landCoverTrends.png": "/static/media/landCoverTrends.3a42eec6fb79516352df.png",
     "static/media/bars.svg": "/static/media/bars.a2e35dd5aede7934d82e.svg",
     "index.html": "/index.html",
     "main.c74345d1.css.map": "/static/css/main.c74345d1.css.map",
-    "main.6a3327e8.js.map": "/static/js/main.6a3327e8.js.map"
+    "main.66ee8a40.js.map": "/static/js/main.66ee8a40.js.map"
   },
   "entrypoints": [
     "static/css/main.c74345d1.css",
-    "static/js/main.6a3327e8.js"
+    "static/js/main.66ee8a40.js"
   ]
 }
