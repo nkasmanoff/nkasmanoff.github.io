@@ -27,14 +27,19 @@ function Blogposts() {
                 description="Enhanced dataset search on HuggingFace."
                 descriptionFull={
                   <>
-                  <center>
-                    <iframe
-                      src="https://nkasmanoff-searchingface.hf.space"
-                      frameborder="0"
-                      width="500"
-                      height="600"
-                    ></iframe>
-                    </center>
+
+                    <p>
+                      In May 2023, I participated in a hackathon hosted by
+                      Cornell Tech. The goal of this day was to create a
+                      tool to help users find the right dataset for their
+                      project. The tool I created is called{" "}
+                      <a href="https://nkasmanoff-searchingface.hf.space">
+                        SearchingFace
+                      </a>
+                      , and is a semantic search engine for datasets on the HuggingFace Hub. Apologies in advance if the space is down due to 
+                      inactivity, but I hope the pipeline diagram above is helpful in understanding how this tool works. It's not the most
+                      elegant solution, but it was a fun project to work on!
+                    </p>
                   </>
                 }
               />

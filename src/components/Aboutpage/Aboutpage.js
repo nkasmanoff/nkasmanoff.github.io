@@ -15,16 +15,20 @@ function Aboutpage() {
               I am passionate about exploring inter-disciplinary applications of
               machine learning and data science. Along the way, the way, I have
               learned a lot about this field by working on projects in
-              Cosmology, Business Analytics, Healthcare, Earth Science, and
-              more. In my current role, I serve as a Full Stack / Machine
-              Learning Engineer for a leading fintech start-up,{" "}
-              <a href="https://dwightfunding.com/">Dwight Funding</a>. In my
+              Cosmology, Business Analytics, Healthcare, Earth Science, Finance, and
+              more! In my
               free time I enjoy running, watching TV, reading, messing with my NVIDIA Jetson, and trying to
               keep up with the latest trends in tech & AI.
             </p>
+            <p className="aboutdetails">
+              I am currently seeking full-time opportunities, where I can
+              apply my skills to solve real-world problems. I am also open to
+              freelance projects. If you are interested in working with me, please
+              reach out to me via email or LinkedIn.              
+              </p>
             <ul className="skilllist">
               <Row>
-                <h3>Skills</h3>
+                <h3>Skills / Stack</h3>
                 <Col md={7}>
                   <li>Python</li>
                   <li>JavaScript</li>
