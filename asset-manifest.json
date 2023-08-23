@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c74345d1.css",
-    "main.js": "/static/js/main.beeea2d9.js",
+    "main.css": "/static/css/main.8ea28707.css",
+    "main.js": "/static/js/main.b8e72bde.js",
     "static/media/burstcubeLocalization.png": "/static/media/burstcubeLocalization.5e00466154e3c3a67099.png",
     "static/media/waterLevels.gif": "/static/media/waterLevels.b08ef0fcbf8cacc9d67d.gif",
     "static/media/humanActivity.gif": "/static/media/humanActivity.1f379aeb8e479f8e53b6.gif",
@@ -18,11 +18,11 @@
     "static/media/landCoverTrends.png": "/static/media/landCoverTrends.3a42eec6fb79516352df.png",
     "static/media/bars.svg": "/static/media/bars.a2e35dd5aede7934d82e.svg",
     "index.html": "/index.html",
-    "main.c74345d1.css.map": "/static/css/main.c74345d1.css.map",
-    "main.beeea2d9.js.map": "/static/js/main.beeea2d9.js.map"
+    "main.8ea28707.css.map": "/static/css/main.8ea28707.css.map",
+    "main.b8e72bde.js.map": "/static/js/main.b8e72bde.js.map"
   },
   "entrypoints": [
-    "static/css/main.c74345d1.css",
-    "static/js/main.beeea2d9.js"
+    "static/css/main.8ea28707.css",
+    "static/js/main.b8e72bde.js"
   ]
 }
