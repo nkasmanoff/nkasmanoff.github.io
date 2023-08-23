@@ -97,6 +97,16 @@
   border: none;
 }
 
+.gamebtn {
+  margin-left: 20px;
+  border-radius: 25px;
+  padding: 0 15px;
+
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+  border: none;
+}
+
 @media (max-width: 767px) {
   .navbar {
     padding: 1rem 0rem !important;

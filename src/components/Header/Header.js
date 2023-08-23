@@ -87,7 +87,12 @@ function Header() {
               Blog
             </Nav.Link>
           </Nav.Item>
-
+          <Button
+            onClick={() => {
+              window.open("https://geo-grid-k57q.vercel.app/");
+            }}
+            className='gamebtn'><span>GeoGrid🌎</span>
+          </Button>
           <Button
             onClick={() => {
               window.open("https://drive.google.com/file/d/1DkaFCQA37sctRtrEZd25FE4KuGogT9Fc/view?usp=sharing");
