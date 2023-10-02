@@ -53,6 +53,7 @@ function Aboutpage() {
           </Col>
         </Row>
       </Container>
+
     </div>
   );
 }

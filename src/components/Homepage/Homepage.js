@@ -41,18 +41,13 @@ function Home() {
             >
               <AiOutlineTwitter className="icon" />
             </button>
-            <button
-              onClick={() => {
-                window.open("https://huggingface.co/nkasmanoff");
-              }}
-              className="socialmediabtn"
-            >
-              <AiFillSmile className="icon" />
-            </button>
+         
           </Col>
 
           <Col md={4}>
+            <center>
             <div className="homepageImg1"></div>
+            </center>
           </Col>
         </Row>
       </Container>

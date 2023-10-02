@@ -7,6 +7,7 @@ function About() {
   return (
     <div>
       <Header />
+
       <Aboutpage />
     </div>
   )
