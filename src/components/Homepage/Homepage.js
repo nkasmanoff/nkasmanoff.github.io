@@ -2,7 +2,7 @@ import React from "react";
 import "../../pages/style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import Text from "../Homepage/Text";
-import { AiFillGithub, AiOutlineTwitter, AiFillSmile } from "react-icons/ai";
+import { AiFillGithub, AiOutlineTwitter } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 function Home() {
