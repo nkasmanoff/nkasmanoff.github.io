@@ -21,10 +21,10 @@ function Aboutpage() {
               keep up with the latest trends in tech & AI.
             </p>
             <p className="aboutdetails">
-              I am currently seeking full-time opportunities, where I can
-              apply my skills to solve real-world problems. I am also open to
-              freelance projects. If you are interested in working with me, please
-              reach out to me via email or LinkedIn.              
+              I am currently a Data Scientist at <a href="https://www.ae.studio/">AE Studio</a>, applying machine learning to solve real-world problems. 
+              I am always looking for opportunities to learn, grow, and use technology to make the world a better place, 
+              so feel free to reach out to me if you have any ideas or opportunities.
+              reach out to me via email or LinkedIn!
               </p>
             <ul className="skilllist">
               <Row>
@@ -37,8 +37,8 @@ function Aboutpage() {
                   <li>Tableau</li>
                 </Col>
                 <Col md={5}>
+                  <li>LLMs</li>
                   <li>React Js</li>
-                  <li>Redux Js</li>
                   <li>PostgreSQL</li>
                   <li>Pandas</li>
                   <li>Git/Github</li>
@@ -47,11 +47,9 @@ function Aboutpage() {
             </ul>
           </Col>
           <Col md={5}>
-            <div className="webimage"></div>
-            Picture generated with{" "}
-            <a href="https://www.craiyon.com/">Craiyon</a>.
           </Col>
         </Row>
+
       </Container>
 
     </div>
