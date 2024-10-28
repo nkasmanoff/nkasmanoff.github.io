@@ -1,11 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.0b3a89bb.css",
-    "main.js": "/static/js/main.bd0e7b4a.js",
+    "main.css": "/static/css/main.80f61f77.css",
+    "main.js": "/static/js/main.9ec0968d.js",
+    "static/media/picard.png": "/static/media/picard.97a73fc03813dcfa584a.png",
+    "static/media/headshot.png": "/static/media/headshot.4d972784d3a3ae6a0dd5.png",
+    "static/media/floodbrain.png": "/static/media/floodbrain.b6722fb2e0167022a6ca.png",
     "static/media/burstcubeLocalization.png": "/static/media/burstcubeLocalization.5e00466154e3c3a67099.png",
     "static/media/waterLevels.gif": "/static/media/waterLevels.b08ef0fcbf8cacc9d67d.gif",
     "static/media/humanActivity.gif": "/static/media/humanActivity.1f379aeb8e479f8e53b6.gif",
-    "static/media/headshot.png": "/static/media/headshot.974efa1acbc931492ff3.png",
     "static/media/zindiChallenge.png": "/static/media/zindiChallenge.d2adf5808a5081ce477f.png",
     "static/media/ESTR.png": "/static/media/ESTR.25143e40b9c2e63e94e3.png",
     "static/media/landCover.png": "/static/media/landCover.d4791559b82d569dc519.png",
@@ -15,14 +17,15 @@
     "static/media/072022_lg_jwst_feat-1030x580.jpg": "/static/media/072022_lg_jwst_feat-1030x580.df656919e16d2d6ed54c.jpg",
     "static/media/pFields.png": "/static/media/pFields.25406b1436b953c40b22.png",
     "static/media/searchingFace.png": "/static/media/searchingFace.ff62eda057e60b38e586.png",
+    "static/media/sdofm.png": "/static/media/sdofm.93f1be45aab1cc0e34df.png",
     "static/media/landCoverTrends.png": "/static/media/landCoverTrends.3a42eec6fb79516352df.png",
     "static/media/bars.svg": "/static/media/bars.a2e35dd5aede7934d82e.svg",
     "index.html": "/index.html",
-    "main.0b3a89bb.css.map": "/static/css/main.0b3a89bb.css.map",
-    "main.bd0e7b4a.js.map": "/static/js/main.bd0e7b4a.js.map"
+    "main.80f61f77.css.map": "/static/css/main.80f61f77.css.map",
+    "main.9ec0968d.js.map": "/static/js/main.9ec0968d.js.map"
   },
   "entrypoints": [
-    "static/css/main.0b3a89bb.css",
-    "static/js/main.bd0e7b4a.js"
+    "static/css/main.80f61f77.css",
+    "static/js/main.9ec0968d.js"
   ]
 }
