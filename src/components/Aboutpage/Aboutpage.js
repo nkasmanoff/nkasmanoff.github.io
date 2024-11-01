@@ -13,7 +13,7 @@ function Aboutpage() {
                         </h3>
                         <p className="aboutdetails">
                             I am passionate about exploring inter-disciplinary applications of
-                            machine learning and data science. Along the way, I have learned a lot
+                            machine learning and data science. Along the way I have learned a lot
                             about this field by working on projects in Cosmology, Business
                             Analytics, Healthcare, Earth Science, Finance, and more! In my free time
                             I enjoy running, watching TV, reading, messing with my NVIDIA Jetson,
