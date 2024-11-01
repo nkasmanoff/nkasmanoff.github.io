@@ -94,6 +94,19 @@ function Home() {
                     </Col>
                     <Col md={5}>
                         <Row>
+                            <a href="https://github.com/nkasmanoff/pi-card" target="">
+                                <img
+                                    src="https://trendshift.io/api/badge/repositories/10159"
+                                    alt="nkasmanoff%2Fpi-card | Trendshift"
+                                    width="250"
+                                    height="55"
+                                    border="0"
+                                    // center the image
+                                    style={{ display: 'block', margin: 'auto' }}
+                                />
+                            </a>
+                        </Row>
+                        <Row>
                             <iframe
                                 title="latest"
                                 height="454"
