@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Text from '../Homepage/Text';
 import { AiFillGithub, AiOutlineTwitter } from 'react-icons/ai';
 import { FaLinkedinIn } from 'react-icons/fa';
+import { trackEvent } from '../Analytics';
 
 function Home() {
     return (
@@ -19,6 +20,7 @@ function Home() {
                         <Text />
                         <button
                             onClick={() => {
+                                trackEvent('social', 'click', 'github');
                                 window.open('https://github.com/nkasmanoff');
                             }}
                             className="socialmediabtn"
@@ -27,6 +29,7 @@ function Home() {
                         </button>
                         <button
                             onClick={() => {
+                                trackEvent('social', 'click', 'linkedin');
                                 window.open('https://www.linkedin.com/in/noahkasmanoff/');
                             }}
                             className="socialmediabtn"
@@ -35,6 +38,7 @@ function Home() {
                         </button>
                         <button
                             onClick={() => {
+                                trackEvent('social', 'click', 'twitter');
                                 window.open('https://twitter.com/noahpunintended');
                             }}
                             className="socialmediabtn"

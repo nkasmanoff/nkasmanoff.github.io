@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import '../../pages/style.css';
+import { trackEvent } from '../Analytics';
 
 function Header() {
     const [expand, updateExpanded] = useState(false);
@@ -16,6 +17,17 @@ function Header() {
             updateNavbar(false);
         }
     }
+
+    const handleResumeClick = () => {
+        trackEvent(
+            'engagement',
+            'resume_click',
+            'header_resume_button'
+        );
+        window.open(
+            'https://drive.google.com/file/d/1DkaFCQA37sctRtrEZd25FE4KuGogT9Fc/view?usp=sharing'
+        );
+    };
 
     window.addEventListener('scroll', scrollHandler);
 
@@ -53,11 +65,7 @@ function Header() {
                     </Nav.Item>
 
                     <Button
-                        onClick={() => {
-                            window.open(
-                                'https://drive.google.com/file/d/1DkaFCQA37sctRtrEZd25FE4KuGogT9Fc/view?usp=sharing',
-                            );
-                        }}
+                        onClick={handleResumeClick}
                         className="resumebtn"
                     >
                         <span>Resume</span>
