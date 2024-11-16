@@ -5,6 +5,7 @@ import Preloader from '../src/components/Pre';
 import Home from './pages/Home.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Project from './pages/Project';
+import Analytics from './components/Analytics';
 
 function App() {
     const [load, upadateLoad] = useState(true);
@@ -20,6 +21,7 @@ function App() {
     return (
         <div className="App">
             <Router>
+                <Analytics />
                 <Preloader load={load} />
                 <div className="App" id={load ? 'no-scroll' : 'scroll'}>
                     <Routes>
