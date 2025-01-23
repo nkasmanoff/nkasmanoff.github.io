@@ -21,7 +21,6 @@ const About = () => {
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-6 text-center text-foreground">
             My Widgets 
-            <span className="text-muted-foreground text-base ml-2">(where else would I put them?)</span>
           </h3>
           <div className="bg-card text-card-foreground backdrop-blur-sm rounded-lg p-6 shadow-lg border border-border">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">

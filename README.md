@@ -1,4 +1,3 @@
-
 # Sparkable AI
 
 Welcome, this project was bootstrapped using [Sparkable AI](https://www.sparkableai.com/) + Create React App.
@@ -11,8 +10,8 @@ Follow these steps to get the project up and running:
 
 Make sure you have the following installed:
 
-- Node.js (https://nodejs.org/en/download/)
-- Yarn (https://yarnpkg.com/getting-started/install) or npm (comes with Node.js)
+-   Node.js (https://nodejs.org/en/download/)
+-   Yarn (https://yarnpkg.com/getting-started/install) or npm (comes with Node.js)
 
 ### 1. Install Dependencies
 
@@ -79,6 +78,7 @@ npm run eject
 ## Learn More
 
 For detailed documentation, visit:
-- [Sparkable AI Documentation](https://docs.sparkableai.com/)
-- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started)
-- [React Documentation](https://reactjs.org/)
+
+-   [Sparkable AI Documentation](https://docs.sparkableai.com/)
+-   [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+-   [React Documentation](https://reactjs.org/)
