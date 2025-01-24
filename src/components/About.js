@@ -9,11 +9,11 @@ const About = () => {
         </h2>
         <div className="bg-card text-card-foreground backdrop-blur-sm rounded-lg p-6 shadow-lg border border-border mb-8">
           <p className="text-lg text-foreground leading-relaxed">
-            I am passionate about exploring inter-disciplinary applications of machine learning and data science. Along the way, I have learned a lot about this field by working on projects in Cosmology, Business Analytics, Healthcare, Earth Science, Finance, and more! In my free time I enjoy running, watching TV, reading, messing with my Raspberry Pis, and trying to keep up with the latest trends in tech & AI.
+            I am passionate about exploring inter-disciplinary applications of machine learning and data science. Along the way, I have learned a lot about this field by working on projects in Cosmology, Business Analytics, Healthcare, Earth Science, Finance, and more! In my free time I enjoy running, watching Star Trek, reading, messing with my Raspberry Pis, and trying to keep up with the latest trends in tech & AI.
           </p>
           <br />
           <p className="text-lg text-foreground leading-relaxed">
-            I am currently a Data Scientist at AE Studio, applying machine learning to solve real-world problems. I am always looking for opportunities to learn, grow, and use technology to make the world a better place, so feel free to reach out to me if you have any ideas or opportunities. reach out to me via email or LinkedIn!
+            I am a Data Scientist at <a href="https://ae.studio" target="_blank" rel="noopener noreferrer">AE Studio</a>, solving real-world problems with AI. I am always looking for opportunities to learn, grow, and use technology to make the world a better place.
           </p>
         </div>
 
