@@ -9,12 +9,22 @@ const About = () => {
         </h2>
         <div className="bg-card text-card-foreground backdrop-blur-sm rounded-lg p-6 shadow-lg border border-border mb-8">
           <p className="text-lg text-foreground leading-relaxed">
-            I am passionate about exploring inter-disciplinary applications of machine learning and data science. Along the way, I have learned a lot about this field by working on projects in Cosmology, Business Analytics, Healthcare, Earth Science, Finance, and more! In my free time I enjoy running, watching Star Trek, reading, messing with my Raspberry Pis, and trying to keep up with the latest trends in tech & AI.
+          I'm a Data Scientist at AE Studio in NYC, using AI to drive real-world solutions. I'm always looking to learn, grow, and make a difference.
           </p>
           <br />
-          <p className="text-lg text-foreground leading-relaxed">
-            I am a Data Scientist at <a href="https://ae.studio" target="_blank" rel="noopener noreferrer">AE Studio</a>, solving real-world problems with AI. I am always looking for opportunities to learn, grow, and use technology to make the world a better place.
-          </p>
+          <p className="text-lg text-foreground leading-relaxed">            
+          My background's a mix of astronomy, physics, and data science. I interned at NASA, researched at the FDA, and earned my Master's at NYU, exploring healthcare and cosmology.
+          </p>          
+
+          <br />
+          <p className="text-lg text-foreground leading-relaxed">            
+          Post-grad, I worked on cutting-edge projects with the Frontier Development Lab and as a Full Stack Engineer in fintech. Now, I'm part of AE Studio's innovative team.
+          </p>          
+
+          <br />          
+          <p className="text-lg text-foreground leading-relaxed">            
+          When I'm not working, you'll find me running, geeking out on Star Trek, reading, experimenting with Raspberry Pis, or staying current on tech and AI advancements.
+          </p>          
         </div>
 
         {/* Shoe-horned Accomplishments Section */}
