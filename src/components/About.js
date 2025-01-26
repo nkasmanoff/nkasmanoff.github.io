@@ -13,7 +13,8 @@ const About = () => {
           </p>
           <br />
           <p className="text-lg text-foreground leading-relaxed">            
-          My background's a mix of astronomy, physics, and data science. I interned at NASA, researched at the FDA, and earned my Master's at NYU, exploring healthcare and cosmology.
+          My background's a mix of astronomy, physics, and machine learning. I graduated from the University of Maryland, College Park with a B.S. in Physics and Astronomy, and New York University with a M.S. in Data Science.  
+          I've conducted research at organizations like NASA, US Food & Drug Administration, the Flatiron Institute, and NYU Langone Health.
           </p>          
 
           <br />
