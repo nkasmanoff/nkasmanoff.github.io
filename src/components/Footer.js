@@ -1,6 +1,6 @@
 // components/Footer.js
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaGraduationCap, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -34,6 +34,15 @@ const Footer = () => {
           >
             <FaTwitter className="text-xl" />
             <span>Twitter</span>
+          </a>
+          <a 
+            href="https://scholar.google.com/citations?user=pzTcPxEAAAAJ&hl=en" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+          >
+            <FaGraduationCap className="text-xl" />
+            <span>Scholar</span>
           </a>
         </div>
       </div>

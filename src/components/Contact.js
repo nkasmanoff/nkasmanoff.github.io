@@ -28,6 +28,9 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20">
       <h2 className="text-3xl font-bold mb-8 text-center text-slate-800 dark:text-cyan-400">Get in Touch</h2>
+      <p className="text-center mb-8 text-slate-600 dark:text-gray-400">
+        You can email me directly at nkasmanoff@gmail.com or use the form below.
+      </p>
       <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
         <div className="mb-4">
           <Input 
