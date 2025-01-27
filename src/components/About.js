@@ -13,13 +13,13 @@ const About = () => {
           </p>
           <br />
           <p className="text-lg text-foreground leading-relaxed">            
-          My background's a mix of astronomy, physics, and machine learning. I graduated from the University of Maryland, College Park with a B.S. in Physics and Astronomy, and New York University with a M.S. in Data Science.  
-          I've conducted research at organizations like NASA, US Food & Drug Administration, the Flatiron Institute, and NYU Langone Health.
+          My background is a mix of astronomy, physics, and machine learning. I graduated from the University of Maryland, College Park with a B.S. in Physics and Astronomy, and New York University with a M.S. in Data Science.  
+          During my studies, I conducted research at organizations like NASA, US Food & Drug Administration, the Flatiron Institute, and NYU Langone Health.
           </p>          
 
           <br />
           <p className="text-lg text-foreground leading-relaxed">            
-          Post-grad, I worked on cutting-edge projects with the Frontier Development Lab and as a Full Stack Engineer in fintech. Now, I'm part of AE Studio's innovative team.
+          Post-grad, I worked on cutting-edge projects with the Frontier Development Lab and as a Full Stack Engineer in fintech. Now, I'm part of AE Studio's Data Science team, bringing a founder level mentality to my work as a Consultant.
           </p>          
 
           <br />          
