@@ -33,7 +33,7 @@ const projects = [
   },  
 
   {
-    title: 'Floodbrain',
+    title: 'FloodBrain',
     description: 'Flood Disaster Reporting by Web-based Retrieval Augmented Generation with an LLM.',
     tech: ['Retrieval Augmented Generation (RAG)', 'Humanitarian AI', 'UI Design'],
     image: 'https://www.refficiency.org/wp-content/uploads/2024/06/Picture-1-5.png',
