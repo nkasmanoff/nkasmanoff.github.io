@@ -14,7 +14,7 @@ const About = () => {
           <br />
           <p className="text-lg text-foreground leading-relaxed">            
           My background is a mix of astronomy, physics, and machine learning. I graduated from the University of Maryland, College Park with a B.S. in Physics and Astronomy, and New York University with a M.S. in Data Science.  
-          During my studies, I conducted research at organizations like NASA, US Food & Drug Administration, the Flatiron Institute, and NYU Langone Health.
+          During my studies, I have conducted research at organizations like NASA, US Food & Drug Administration, the Flatiron Institute, and NYU Langone Health.
           </p>          
 
           <br />
