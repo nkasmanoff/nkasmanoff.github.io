@@ -33,6 +33,14 @@ const projects = [
   },  
 
   {
+    title: 'LitGPT',
+    description: 'Found and resolved bugs in the LitGPT project and added a new feature.',
+    tech: ['LLM', 'Inference', 'Model architecture'],
+    image: 'https://avatars.githubusercontent.com/u/58386951?s=200&v=4',
+    link: 'https://github.com/Lightning-AI/litgpt'
+  },  
+
+  {
     title: 'FloodBrain',
     description: 'Flood Disaster Reporting by Web-based Retrieval Augmented Generation with an LLM.',
     tech: ['Retrieval Augmented Generation (RAG)', 'Humanitarian AI', 'UI Design'],
@@ -45,7 +53,22 @@ const projects = [
     tech: ['Data scraping', 'Vector DBs', 'Langchain'],
     image: 'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/left-pointing-magnifying-glass.png',
     link: 'https://github.com/nkasmanoff/searching-face'
-  }  
+  },
+  {
+    title: 'NASA Harvest Field Boundary Detection Challenge',
+    description: 'A competition to detect field boundaries in satellite imagery.',
+    tech: ['Remote Sensing', 'PyTorch', 'Hugging Face'],
+    image: 'https://zindi-public-release.s3.eu-west-2.amazonaws.com/uploads/competition/image/331/thumb_21ba8a01-ef4a-43c4-af10-8c5bab32d572.png',
+    link: 'https://github.com/nkasmanoff/nasa_harvest_challenge'
+  },
+
+  {
+    title: 'Land Cover Analysis',
+    description: 'Training a remote sensing model on a Jetson Nano 2GB.',
+    tech: ['Remote Sensing', 'Jetson Nano', 'PyTorch'],
+    image: 'https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/embedded/images/jetsonCommunity/community-nyc_land_cover_analysis.jpg',
+    link: 'https://developer.nvidia.com/embedded/community/jetson-projects/nyc_land_cover_analysis'
+  }
 ];
 
 const Projects = () => {
