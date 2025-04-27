@@ -1,6 +1,6 @@
 // App.js
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import About from './components/About';
 import Analytics from './components/Analytics';
 import Blog from './components/Blog';
