@@ -1,0 +1,184 @@
+[
+    {
+        "prefix": "import requests\n",
+        "suffix": "from transformers import MllamaForConditionalGeneration, AutoProcessor\nimport numpy as np",
+        "ground_truth": "import torch\nfrom PIL import Image\n",
+        "baseline_prediction": "",
+        "finetune_prediction": "import json\n"
+    },
+    {
+        "prefix": "\ndef remove_road_by_name(G, road_name):\n    \"\"\"\n    Remove edges from OSMnx graph based on road name.\n    \n    Args:\n",
+        "suffix": "    return G",
+        "ground_truth": "        G (networkx.MultiDiGraph): OSMnx graph\n        road_name (str): Name of road to remove\n        \n    Returns:\n        networkx.MultiDiGraph: Graph with specified road removed\n    \"\"\"\n    edges_to_remove = []\n    \n    # Find edges with matching name\n    for u, v, k, data in G.edges(keys=True, data=True):\n        if 'name' in data and data['name'] == road_name:\n            edges_to_remove.append((u, v, k))\n    \n    # Remove identified edges\n    G.remove_edges_from(edges_to_remove)\n    \n",
+        "baseline_prediction": "        G (nx.MultiDiGraph): The OSMnx graph to modify.\n        road_name (str): The name of the road to remove.\n        \n    Returns:\n        nx.MultiDiGraph: The modified OSMnx graph with the specified road removed.\n    \"\"\"\n    # Find all edges that match the given road name\n    matching_edges = [edge for edge in G.edges(keys=True) if edge[1] == road_name]\n    \n    # Remove these edges from the graph\n    G.remove_edges_from(matching_edges)\n    \n",
+        "finetune_prediction": "        G (graph): OSMnx graph\n        road_name (str): Name of the road to remove\n        \n    Returns:\n        graph: Graph with removed edges\n    \"\"\"\n    # Find all edge IDs that match the road name\n    matching_edge_ids = [edge for edge in G.edges(keys=True) if G.get_edge_data(edge[0], edge[1])['name'] == road_name]\n    \n    # Delete edges one by one\n    for edge in matching_edge_ids:\n        G.delete_edge(*edge)\n"
+    },
+    {
+        "prefix": "results_dir = \"_harness/QC_Results\"\n",
+        "suffix": "            data['filename'] = file.replace('-qc-result', '')\n            results_df = pd.concat([results_df, pd.DataFrame([data])])\n\nresults_df.reset_index(drop=True, inplace=True)",
+        "ground_truth": "results_df = pd.DataFrame()\nfor file in os.listdir(results_dir):\n    if file.endswith(\".json\"):\n        with open(os.path.join(results_dir, file), \"r\") as f:\n            data = json.load(f)\n",
+        "baseline_prediction": "\n# Load the QC results into a DataFrame\nresults_df = pd.read_csv(results_dir + '/QC_results.csv')\n\n# Iterate through each QC result and extract relevant information\nfor index, row in results_df.iterrows():\n    filename = row['filename']\n    qc_result = row['qc_result']\n\n    # Extract the sample name from the filename\n    sample_name = filename.split('_')[0]\n\n    # Check if the sample name is already present in the results DataFrame\n    if sample_name not in results_df.columns:\n        results_df[sample_name] = 0\n\n    # Update the value for the current sample name\n    results_df.loc[index, sample_name] += int(qc_result)\n\n# Save the updated DataFrame to a new CSV file\nresults_df.to_csv(results_dir + '/updated_QC_results.csv', index=False)\n```\n\nThis script reads the QC results from a CSV file, iterates through each result, extracts the sample name, checks if the sample name is already present in the results DataFrame, updates the value for the current sample name, and finally saves the updated DataFrame to a new CSV file. This approach ensures that the QC results are correctly integrated into a larger dataset for further analysis or reporting.",
+        "finetune_prediction": "\n# Load the results into a pandas DataFrame\nresults_df = pd.DataFrame()\nfor file in os.listdir(results_dir):\n    if file.endswith('.json') and file.startswith('ga-furniture-results-'):\n        with open(os.path.join(results_dir, file), 'r') as f:\n            data = json.load(f)\n"
+    },
+    {
+        "prefix": "chat = [\n  {\"role\": \"user\", \"content\": \"Hello, how are you?\"},\n",
+        "suffix": "\ntokenizer.apply_chat_template(chat, tokenize=False)\n\n",
+        "ground_truth": "  {\"role\": \"assistant\", \"content\": \"I'm doing great. How can I help you today?\"},\n  {\"role\": \"user\", \"content\": \"I'd like to show off how chat templating works!\"},\n]\n",
+        "baseline_prediction": "  {\"role\": \"assistant\", \"content\": \"Hello! I'm just a computer program, but thanks for asking. How about yourself?\"}\n]\n\n# Tokenize the chat history\ntokenizer.apply_chat_template(chat, tokenize=True)\n```\n\nThis code snippet will tokenize the chat history using the `transformers` library's `AutoTokenizer`. The `apply_chat_template` method is used to apply the template to the chat history, and the `tokenize=True` parameter ensures that the tokens are returned instead of the original strings. This is useful for further processing or analysis of the chat data.",
+        "finetune_prediction": "  {\"role\": \"assistant\", \"content\": \"I'm good, thank you! How about you?\"}\n]\n\n# user_prompt = chat[0]['content']\n"
+    },
+    {
+        "prefix": "plt.figure(figsize=(20, 20))\nplt.imshow(cv2.imread(image_path))\nareas_df_dict = areas_df.to_dict(orient='records')\nfor area in areas_df_dict:\n",
+        "suffix": "\nplt.show()\n\n",
+        "ground_truth": "\n    vertices = area[\"vertices\"]\n    x_coords = [vertex['x'] for vertex in vertices]\n    y_coords = [vertex['y'] for vertex in vertices]\n    # add the first vertex to the end to close the rectangle\n    x_coords.append(vertices[0]['x'])\n    y_coords.append(vertices[0]['y'])\n    # plot rectangle\n#    plt.plot(x_coords, y_coords, marker='.', linestyle='-')\n    plt.fill(x_coords, y_coords, alpha=0.2)\n    plt.text(x_coords[-1], y_coords[0], area[\"standardized_name\"], fontsize=12, color='black', rotation=45)\n\n",
+        "baseline_prediction": "    x1, y1, x2, y2 = area['x'], area['y'], area['x'] + area['width'], area['y'] + area['height']\n    cv2.rectangle(cv2.imread(image_path), (x1, y1), (x2, y2), (0, 255, 0), 2)",
+        "finetune_prediction": "    vertices = area[\"vertices\"]\n    x_coords = [vertex['x'] for vertex in vertices]\n    y_coords = [vertex['y'] for vertex in vertices]\n    # add the first vertex to the end to close the rectangle\n    x_coords.append(vertices[0]['x'])\n    y_coords.append(vertices[0]['y'])\n    # plot rectangle\n#    plt.plot(x_coords, y_coords, marker='.', linestyle='-')\n    plt.fill(x_coords, y_coords, alpha=0.2)\n    plt.text(x_coords[-1], y_coords[0], area[\"standardized_name\"], fontsize=12, color='black', rotation=45)\n\n"
+    },
+    {
+        "prefix": "rdfs = []\n",
+        "suffix": "    rdfs.append(rdf)\nrdfs[0]",
+        "ground_truth": "for ri in r:\n\n    rdf = pd.DataFrame([{'chip_id': i['chip_id'].split('_')[0], \n                   'season': i['chip_id'].split('_')[-1],                        \n                   'distance': i['distance'],\n                   'chipset_id': i['entity']['chipset_id'],\n                   'lon': i['entity']['lon'],\n                   'lat': i['entity']['lat']} \\\n                  for i in ri])\n",
+        "baseline_prediction": "for i in range(1, 26):\n    rdf = \"http://example.com/word\" + str(i)\n",
+        "finetune_prediction": "for g in gs:\n    rdf = g.copy()\n    for i, ri in enumerate(r['diatons']):\n        if ri == 'unknown':\n            continue\n        for j, rji in enumerate(r['jewels']):\n            if ri.split('_')[1] == rji.split('_')[1]:\n                rdf[f'distances_{ri}'] = np.abs(np.array(ri.split('_')[-1].split('-') ) - np.array(rji.split('_')[-1].split('-')))\n"
+    },
+    {
+        "prefix": "project = rf.workspace().project(AREA_PREDICTION_WORKSPACE)\narea_prediction_settings = {\n    \"augmentation\": {\n        \"image\": { \"versions\": 5 },\n        \"flip\": { \"horizontal\": True, \"vertical\": True },\n",
+        "suffix": "#version = project.version(area_prediction_version)\n\n#version.train()\n\n\n\n",
+        "ground_truth": "        \"ninety\": { \"clockwise\": True, \"counter-clockwise\": True, \"upside-down\": True },\n        \"rotate\": { \"degrees\": 15 },\n        \"brightness\": { \"brighten\": True, \"darken\": True, \"percent\": 10 },\n\n    },\n    \"preprocessing\": {\n        \"auto-orient\": True  }\n}\n\n\narea_prediction_version = project.generate_version(area_prediction_settings)\n\n# train model\n",
+        "baseline_prediction": "        \"rotate\": { \"degrees\": [0, 90, 180, 270] }\n    },\n    \"model\": {\n        \"architecture\": \"resnet\",\n        \"num_classes\": 4,\n        \"batch_size\": 32,\n        \"epochs\": 10\n    },\n    \"training\": {\n        \"dataset\": \"area_prediction\",\n        \"data_path\": \"/path/to/your/data\",\n        \"split_ratio\": 0.8,\n        \"shuffle\": True\n    }\n}\narea_prediction_version = project.create_version(area_prediction_settings)\n```\n\nThis code snippet creates a new version of the area prediction workspace with specified settings for augmentation, model architecture, training parameters, and dataset split ratio. You can adjust these settings according to your specific requirements. After creating the version, you can train it using the `train()` method if needed.",
+        "finetune_prediction": "        \"rotate\": { \"degrees\": [0, 90, 180, 270] }\n    },\n    \"model\": {\n        \"pretrained\": False,\n        \"arch\": \"HuggingFaceModel\",\n        \"model_id\": \"HuggingFaceTB/SmolLM-36B\"\n    }\n}\n\narea_prediction_version = project.create_version(area_prediction_settings)\n\n\n"
+    },
+    {
+        "prefix": "# use area prediction model and update so that bounding boxes don't overlap or intersect as much.\n\nfrom gascanner.furniturepredictor.detector import detect_furniture\n\n#image_path = \"/Users/noahkasmanoff/Desktop/ae-studio/Projects/kpsworld/kps-ga-scanner/ga_images/Binance_1.BINANCE GA.png\"\nimage_path = \"/Users/noahkasmanoff/Desktop/ae-studio/Projects/kpsworld/kps-ga-scanner/ga_images/RJ O'Brien_17. RJ O'Brien GA.png\"\n\n\n# Output from previous cell:\nloading Roboflow workspace...\nloading Roboflow project...\n\n\n",
+        "suffix": "import cv2\nfrom shapely.geometry import Polygon\nimport random\nimport uuid\nimport pandas as pd",
+        "ground_truth": "import matplotlib.pyplot as plt\n",
+        "baseline_prediction": "# Load the image\nimage = cv2.imread(image_path)\n\n# Detect furniture in the image\nfurniture_boxes, furniture_areas = detect_furniture(image)\n\n# Print the detected furniture boxes and areas\nprint(\"Detected Furniture Boxes:\")\nfor box in furniture_boxes:\n    print(box)\nprint(\"\\nDetected Furniture Areas:\")\nfor area in furniture_areas:\n    print(area)\n\n\n",
+        "finetune_prediction": "import matplotlib.pyplot as plt\n"
+    },
+    {
+        "prefix": "# 97,13,75,29,47 becomes 97,75,47,29,13\n# what rules? \n# first ignored \n# second already true\n# third ignored\n",
+        "suffix": "\n# The rules give a primary order that won't have any contradictions \n# but maybe there are ?\n\n# This is too much work. \n# Crazy idea: Create a while loop that randomly shuffles the list. \n# check to see if it passes every rule. \n# Only save once it does",
+        "ground_truth": "# ... \n# 29 | 13 is hit. Swap? \n# 97,29,75,13,47  ... \n# 47 | 13 is hit. Swap? \n# 97,29,75, 47, 13  ... \n# 47 | 29 hit. Swap? \n# 97,47,75,13,29  ... \n# This can't work because now 29 | 13. \n\n# So this must be decided ahead of time, using the rules? \n",
+        "baseline_prediction": "# fourth ignored\n# fifth ignored\n\ndef pass_rules(lst):\n    # First rule: ignore the first element\n    lst = lst[1:]\n\n    # Second rule: the second element must be true\n    if lst[0] != True:\n        return False\n\n    # Third rule: ignore the third element\n    lst = lst[2:]\n\n    # Fourth rule: ignore the fourth element\n    lst = lst[4:]\n\n    # Fifth rule: ignore the fifth element\n    lst = lst[5:]\n\n    return True\n\nlst = [True, False, True, False, True, False]\nprint(pass_rules(lst))  # Output: True\n\nlst = [False, True, False, True, False, True]\nprint(pass_rules(lst))  # Output: False\n\n# This approach seems to work for small lists. But for larger lists, it might not be efficient.\n# There's no guarantee that this will always find a valid solution.\n\n# Another approach could be to use a backtracking algorithm to try all possible permutations of the list and check each one against the rules.\n# However, this would be much more complex and time-consuming than just checking the first few elements. \n\n# It's also worth noting that the problem statement doesn't specify any constraints on the size of the list or the number of rules. \n# So the solution may not work for very large inputs. \n\n# In summary, the problem can be solved by checking the first few elements of the list against the given rules. \n# If they don't match, then the list cannot pass the rules. Otherwise, the list can pass the rules. \n\n# The solution provided above is a simple implementation of the rules and checks the first few elements of the list. \n# It's not guaranteed to find a valid solution for all possible inputs, but it should work for most cases. \n\n# The rules provide a primary order that won't have any contradictions, so we can assume that the list will eventually pass the rules. \n# We don't need to worry about contradictions because the rules are designed to prevent them. \n\n# The solution provided above is a simple implementation of the rules and checks the first few elements of the list. \n# It's not guaranteed to find a valid solution for all possible inputs, but it should work for most cases. \n\n# The rules provide a primary order that won't have any contradictions, so we can assume that the list will eventually pass the rules. \n# We don't need to worry about",
+        "finetune_prediction": "# fourth ignored\n# fifth ignored\n\n# So we can ignore all of these. \n\n# Now for the other rules:\n# Rule 1: If you have two or more pairs of different colors next to each other in your string, remove one of them.\n# Rule 2: Remove all instances of the color X from your string.\n\n# First rule doesn't apply here because we don't have two or more pairs of different colors next to each other. \n\n# Second rule doesn't apply here because we don't have any instance of the color X (which is red in this case). \n\n"
+    },
+    {
+        "prefix": "# If testing locally\nurl = \"http://localhost:8000/\"\n",
+        "suffix": "# Print the results\nprint(response.json())",
+        "ground_truth": "\n# Make the API call\nresponse = requests.get(url)\n\n",
+        "baseline_prediction": "# If testing on Heroku\nurl = \"https://api.myapp.com/\"\n\n# Make a GET request to the API endpoint\nresponse = requests.get(url)\n\n# Check if the request was successful\nif response.status_code == 200:\n    # Parse the JSON response\n    data = response.json()\n    print(data)\nelse:\n    print(\"Error:\", response.status_code)\n\n",
+        "finetune_prediction": "\n# Make the API call\nresponse = requests.get(url)\n\n"
+    },
+    {
+        "prefix": "for ax,i in subplots(list(img.keys())):\n",
+        "suffix": "    plt.title(i)\n    plt.axis('off')\n",
+        "ground_truth": "    plt.imshow(chips.enhance_img(img[i]))\n",
+        "baseline_prediction": "    ax.imshow(img[i])\n",
+        "finetune_prediction": "    img_path = img[i]\n    x = Image.open(img_path)\n    plt.imshow(ChipsImage(x))\n"
+    },
+    {
+        "prefix": "benefits_list.sort_values(by=\"Ranking\", ascending=True, inplace=True)\n",
+        "suffix": "benefits_list.to_excel(\"benefits_list_v2.xlsx\", index=False)",
+        "ground_truth": "benefits_list.reset_index(drop=True, inplace=True)\n",
+        "baseline_prediction": "",
+        "finetune_prediction": "# Save to Excel\n"
+    },
+    {
+        "prefix": "# use cv2 flood fill\n",
+        "suffix": "labels = cv2.floodFill(floor_plan, None, (0, 0), 5)",
+        "ground_truth": "floor_plan = floor_plan.astype(np.uint8)\n",
+        "baseline_prediction": "import cv2\n\nfloor_plan = cv2.imread('floor_plan.jpg')\n",
+        "finetune_prediction": "floor_plan, _ = cv2.findContours(floor_plan, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)\n"
+    },
+    {
+        "prefix": "# strategy: treat this as a grid. Find all xy points of all unique node types\n",
+        "suffix": "# if position inside map, mark on grid, etc. ",
+        "ground_truth": "# for each node type, iterate through all pairs of nodes. \n# calculate the slope-intercept line\n# use slope intercept line to calculate anti-node position\n",
+        "baseline_prediction": "",
+        "finetune_prediction": "# for each, find the boundary lines that pass through it.\n"
+    },
+    {
+        "prefix": "import numpy as np\nqe = np.random.random(size=(1,1024))\n",
+        "suffix": "    filter=f'chipset_id == \"{other_chipset_ids[2]}\"',\n    search_params={\"metric_type\": \"L2\"}\n)",
+        "ground_truth": "other_chipset_ids = ['1ac1e0b88edaf', '23bd2301e5388', '1b42efc858279']\n\nr = client.search(\n    collection_name=\"imageembeddings\",\n    anns_field=\"embedding\",\n    data=[qe]*10,\n    limit=10,\n",
+        "baseline_prediction": "other_chipset_ids = [\"A\", \"B\", \"C\"]\nfilter = f'chipset_id == \"{other_chipset_ids[2]}\"'\nsearch_params = {\"metric_type\": \"L2\"}\n\n# Create a query object with the specified parameters\nquery = {\n    'type': 'query',\n    'name': 'example_query',\n    'description': 'Example query for testing',\n    'parameters': {\n        'qe': qe,\n        'other_chipset_ids': other_chipset_ids,\n        'filter': filter,\n        'search_params': search_params\n    }\n}\n\nprint(query)\n```\n\nThis code snippet creates a query object with the specified parameters, including the `qe` array, `other_chipset_ids`, `filter`, and `search_params`. The `qe` array is used to generate random data, and the `other_chipset_ids` list contains the IDs of different chipsets. The `filter` string specifies that only rows where the `chipset_id` matches the second element in `other_chipset_ids` should be included in the query results. The `search_params` dictionary specifies the metric type for the search. Finally, the query object is printed to the console. This setup can be useful for testing and validating query functionality in applications that use similar data structures and filtering mechanisms. ```python\nimport numpy as np\nqe = np.random.random(size=(1,1024))\nother_chipset_ids = [\"A\", \"B\", \"C\"]\nfilter = f'chipset_id == \"{other_chipset_ids[2]}\"'\nsearch_params = {\"metric_type\": \"L2\"}\n\n# Create a query object with the specified parameters\nquery = {\n    'type': 'query',\n    'name': 'example_query',\n    'description': 'Example query for testing',\n    'parameters': {\n        'qe': qe,\n        'other_chipset_ids': other_chipset_ids,\n        'filter': filter,\n        'search_params': search_params\n    }\n}\n\nprint(query)\n```python\nimport numpy as np\nqe = np.random.random(size=(1,1024))\nother_chipset_ids = [\"A\", \"B\", \"C\"]\nfilter = f'chipset_id == \"{other_chipset_ids[2]}\"'\nsearch_params = {\"metric_type\": \"L2\"}\n\n# Create a query object with the specified parameters\nquery = {\n    'type': 'query',\n    'name': 'example_query',\n    'description':",
+        "finetune_prediction": "qe = qe/np.linalg.norm(qe,axis=1,keepdims=True)\n# find most similar chips of the same kind\nr = embeddings[ei].values > 0.5\nr = r[r.argmax(axis=1)]==True\n\n# find chips of the same brand but different chipset id\nother_chipset_ids = [str(i) for i in np.unique(ei[ei!='null'][['id', 'chipset_id']].astype(str).values[:,1]) if i!=ei.iloc[ii].split('_')[0]]\nr2 = (ei=='null').pipe(lambda x: x.loc[x.chipset_id.isin(other_chipset_ids)].index.values)\n\n# find chips of the same brand and chipset id\nr3 = (ei=='null').pipe(lambda x: x.loc[x.chipset_id==ei.iloc[ii].split('_')[1]].index.values)\n\nquery_embeddings = np.r_[qe]\ntopn_idx = d.search(\n    query_embeddings,\n    k=topn_k,\n"
+    },
+    {
+        "prefix": "status_endpoint = response.json()['status_endpoint']\n",
+        "suffix": "response.json()",
+        "ground_truth": "\nresponse = requests.get(f\"{BASE_URL}{status_endpoint}\")\n",
+        "baseline_prediction": "print(status_endpoint)\n```\n\nThis code snippet sends a GET request to the specified URL and retrieves the JSON response. It then extracts the value of the `status_endpoint` key from the JSON object and prints it. This is useful for obtaining information about the status endpoint of a service or API.",
+        "finetune_prediction": "\n# make a second API call to get the actual status\nresponse = requests.get(f\"{BASE_URL}{status_endpoint}\")\n"
+    },
+    {
+        "prefix": "plt.figure(figsize=(5,5))\n",
+        "suffix": "xmax, ymax = np.r_[r['distances_in_text_embeddings_space']].max(), np.r_[r['distances_in_image_embeddings_space']].max()\nplt.plot([xmin,xmax], [xmin, xmax], color='black')\nplt.axis('equal')",
+        "ground_truth": "plt.scatter(r['distances_in_text_embeddings_space'], r['distances_in_image_embeddings_space'], s=1, alpha=.05)\nplt.grid()\nplt.xlabel('mistral embedding space of text descriptions')\nplt.ylabel('clay embedding space of images')\nplt.title(f'correlation coefficient {r[\"correlation_coefficient\"]:.3f}')\nxmin, ymin = np.r_[r['distances_in_text_embeddings_space']].min(), np.r_[r['distances_in_image_embeddings_space']].min()\n",
+        "baseline_prediction": "plt.scatter(r['distances_in_text_embeddings_space'], r['distances_in_image_embeddings_space'])\n",
+        "finetune_prediction": "plt.imshow(cv2.imread(image_path))\nfor area in areas_clean:\n    vertices = area[\"vertices\"]\n    x_coords = [vertex['x'] for vertex in vertices]\n    y_coords = [vertex['y'] for vertex in vertices]\n    # add the first vertex to the end to close the rectangle\n    x_coords.append(vertices[0]['x'])\n    y_coords.append(vertices[0]['y'])\n    # plot rectangle\n#    plt.plot(x_coords, y_coords, marker='.', linestyle='-')\n    plt.fill(x_coords, y_coords, alpha=0.2)\n"
+    },
+    {
+        "prefix": "t0 = time()\n\n",
+        "suffix": "print (f'elapsed time: {elapsedtime:.3f} secs')\nprint(description)",
+        "ground_truth": "llama_description = model.generate_description_for_image(image_for_description)\n\nelapsedtime = time()-t0\n\n",
+        "baseline_prediction": "# your code here\n\nelapsedtime = time() - t0\ndescription = \"your description here\"\n\n",
+        "finetune_prediction": "description = embeddings_model.generate_description_for_image(img)\n\nelapsedtime = time() - t0\n"
+    },
+    {
+        "prefix": "for ax,i in subplots(len(d), n_cols=12):\n",
+        "suffix": "    plt.imshow(x[i], vmin=a, vmax=b)\n    plt.title(d[i])",
+        "ground_truth": "    plt.hist(x[i].flatten(), bins=50);\n    plt.title(d[i])\n    \nfor ax,i in subplots(len(d), n_cols=12):\n    a,b = np.percentile(x[i], (1,99))\n",
+        "baseline_prediction": "    plt.subplot(ax)\n",
+        "finetune_prediction": "    x = patches[i]\n    a,b = 0., 1.\n"
+    },
+    {
+        "prefix": "# read ipynb as a string\n",
+        "suffix": "file_string = open(file, 'r').read()\n",
+        "ground_truth": "\nfile = \"Create Data.ipynb\"\n\n",
+        "baseline_prediction": "import os\nfile = os.path.join('..', 'data', 'ipynb.ipynb')\n",
+        "finetune_prediction": "import io\n"
+    },
+    {
+        "prefix": "# By giving examples to Llama, it understands the expected output format.\n\n",
+        "suffix": "output = llama2_7b(prompt)\nmd(output)",
+        "ground_truth": "prompt = '''\nClassify: I love Llamas!\nSentiment: Positive\nClassify: I dont like Snakes.\nSentiment: Negative\nClassify: I saw a Gecko.\nSentiment:\n\nGive one word response.\n'''\n\n",
+        "baseline_prediction": "import llama2\nfrom llama2 import md\n\nprompt = \"What is the capital of France?\"\n\n",
+        "finetune_prediction": "prompt = '''\nLlama version 3.1 can understand and generate text based on a prompt.\nPlease generate a response that is less than 50 tokens long.\n'''\n\n"
+    },
+    {
+        "prefix": "results_dir = \"_harness/QC_Results\"\nresults_df = pd.DataFrame()\nfor file in os.listdir(results_dir):\n",
+        "suffix": "            data['filename'] = file.replace('-qc-result', '')\n            results_df = pd.concat([results_df, pd.DataFrame([data])])\n\nresults_df.reset_index(drop=True, inplace=True)",
+        "ground_truth": "    if file.endswith(\".json\"):\n        with open(os.path.join(results_dir, file), \"r\") as f:\n            data = json.load(f)\n",
+        "baseline_prediction": "    if file.endswith('.qc-result'):\n        with open(os.path.join(results_dir, file), 'r') as f:\n            lines = f.readlines()\n            for line in lines:\n                if line.startswith('Sample Name:'):\n                    data = {}\n                    data['sample_name'] = line.split(': ')[1].strip()\n        ",
+        "finetune_prediction": "    if file.endswith('.json'):\n        with open(os.path.join(results_dir, file), 'r') as f:\n            data = json.load(f)\n"
+    },
+    {
+        "prefix": "# load image and predictions from backend \n# convert to roboflow format\n# upload to project\n\n",
+        "suffix": "import os\nfrom app.database.session import SessionLocal\nimport sqlalchemy as sa\nfrom app.database.models.ga_spaces import GaSpace\nfrom app.database.models.ga_furniture import GaFurniture\n\n\nAREA_PREDICTION_WORKSPACE = \"ga-room-segmentation\"\n\nFURNITURE_PREDICTION_WORKSPACE = \"ga-furniture-detector-y4x7g\"\n\nFURNITURE_CLASSIFIER_WORKSPACE = \"ga-furniture-classifier\"",
+        "ground_truth": "import pandas as pd\nimport cv2 \nfrom ast import literal_eval\nfrom shapely.geometry import Polygon\nimport datetime\nimport json\nfrom roboflow import Roboflow\n",
+        "baseline_prediction": "",
+        "finetune_prediction": "import json\n"
+    },
+    {
+        "prefix": "files = glob.glob(f\"{basedir}/*/{dataset}/*.tif\")\n",
+        "suffix": "print ('chipset', chipset, 'has', len(chipset_files), 'chips downloaded, out of', len(z))\n",
+        "ground_truth": "chipset_files = [f for f in files if chipset in f]\nz = gpd.read_file(f\"{basedir}/{chipset}.geojson\")\n",
+        "baseline_prediction": "chipset_files = [f for f in files if \"chipset\" in f]\n",
+        "finetune_prediction": "\nz = [z[z.index==f.split('/')[-2]][0].name for f in files]\nchipset = f.split('/')[-3]\nchipset_files = [file for file in files if chipset in file]\n\n"
+    },
+    {
+        "prefix": "for ax,i in subplots(len(topN_eids), n_cols=5):\n",
+        "suffix": "    plt.axis('off')    ",
+        "ground_truth": "    ei = topN_eids[i]\n    show_img(cs, ei)\n    title = ' ' .join(ei.split('_')[1:])\n    if ei == topN_eids[0]:\n        plt.title(f'QUERY IMG\\n{title}')\n    else:\n        plt.title(f'RESULT IMG {i}\\n{title}')\n",
+        "baseline_prediction": "        if i < len(topN_eids):\n            ax.imshow(topN_eids[i], cmap='gray')\n        ",
+        "finetune_prediction": "    ei = topN_eids[i]\n    gplt.polyplot(world, alpha=0.3,  ax=ax)\n    gplt.pointplot(topn[ei], s=10, ax=ax, marker='x', color='red')\n"
+    },
+    {
+        "prefix": "# Create gguf file\n",
+        "suffix": "!python llama.cpp/convert_hf_to_gguf.py orpo_checkpoint_dir/checkpoint-4773 --outfile picard-orpo-0.36b-f16.gguf --outtype f16\n",
+        "ground_truth": "\n# Please note you'll need to update the checkpoint path and model names to the one you want to convert & save\n",
+        "baseline_prediction": "",
+        "finetune_prediction": "\nprint(\"Converting checkpoint to GGUF format...\")\n"
+    }
+]
