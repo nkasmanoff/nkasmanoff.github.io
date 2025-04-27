@@ -276,6 +276,16 @@ const FirstPost = () => {
                     </a>{' '}
                     for how easy it can be to build your own copilot
                 </li>
+                <li class="mb-4">
+                    <a
+                        href="https://ae.studio"
+                        target="_blank"
+                        class="text-blue-600 hover:underline"
+                    >
+                        https://ae.studio
+                    </a>{' '}
+                    for insightful discussions with colleagues and the motivation to do this
+                </li>
             </ul>
         </article>
     );
