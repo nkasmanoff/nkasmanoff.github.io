@@ -4,8 +4,21 @@ const FirstPost = () => {
     return (
         <article className="mx-auto py-16 px-4 font-['Inter',sans-serif] text-lg">
             <h1 class="text-4xl font-bold mb-6">
-                Cursor’s Tab Model Was Failing Me in Jupyter Notebooks — So I Made My Own
+                Cursor's Tab Model Was Failing Me in Jupyter Notebooks — So I Made My Own
             </h1>
+            <div className="flex justify-center mb-4">
+                <video controls className="w-1/2 mb-4">
+                    <source src="/cursorfail.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div className="flex justify-center mb-4">
+                <p className="text-sm text-gray-500">
+                    A brief example of where some Tab models are causing more trouble than they're
+                    worth. In this correction, the original function is totally overwritten, and
+                    suggestion is essentially useless.
+                </p>
+            </div>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Introduction</h2>
             <p class="mb-6">
                 There have been{' '}
