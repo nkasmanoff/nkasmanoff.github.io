@@ -217,6 +217,26 @@ const FirstPost = () => {
                 edits, etc. Those are valuable tools which make the comparison not totally fair, at
                 least in the context of how else Cursor Tab can be a productivity boost.
             </p>
+            <h2 class="text-3xl font-semibold mt-10 mb-6">Added Benefits</h2>
+            <p class="mb-6">
+                On top of the personalization a model like this allows, there are a handful of other
+                benefits.
+            </p>
+            <p class="mb-6">
+                First, it's hosted locally, so no need to depend on an external API which you don't
+                have control over, and lose access to with your subscription or if you're not
+                connected to the internet.
+            </p>
+            <p class="mb-6">
+                Secondly, it's efficent. This is a relatively small model, so it's doesn't take up
+                considerable battery life or RAM. That also means the time to predict isn't that
+                bad, making it fast. All of which is valuable.
+            </p>
+            <p class="mb-6">
+                Thirdly, it <i>could</i> improve over time. The repo linked above shows how you can
+                run and create a model like this, and there's nothing stopping me from updating it
+                on a periodic basis, to keep as up to date as possible with my coding style.
+            </p>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Sources of Inspiration</h2>
             <p class="mb-6">
                 Thank you so much for reading! Some of the things I saw that got me interested in
