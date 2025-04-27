@@ -4,7 +4,7 @@ const FirstPost = () => {
     return (
         <article className="mx-auto py-16 px-4 font-['Inter',sans-serif] text-lg">
             <h1 class="text-4xl font-bold mb-6">
-                Cursor's Tab doesn't work great for my data science workflows. I made my own instead
+                Cursor’s Tab Model Was Failing Me in Jupyter Notebooks — So I Made My Own
             </h1>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Introduction</h2>
             <p class="mb-6">

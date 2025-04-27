@@ -5,7 +5,7 @@ const Blog = () => {
     const posts = [
         {
             id: 'notebook-copilot',
-            title: "Cursor's Tab model doesn't work great for how I use Jupyter notebooks. I made my own model instead",
+            title: 'Cursor’s Tab Model Was Failing Me in Jupyter Notebooks — So I Made My Own',
             date: new Date().toLocaleDateString(),
             excerpt:
                 "I've been using Cursor's Tab model, but it doesn't work as well as I'd like for how I start my data science flows. Here's what I did to make my life easier.",
