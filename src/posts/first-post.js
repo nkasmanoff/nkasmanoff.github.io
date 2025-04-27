@@ -115,14 +115,14 @@ const FirstPost = () => {
             </ul>
             <h3 class="text-2xl font-semibold mt-8 mb-4">Model Tuning</h3>
             <p class="mb-6">
-                <s>What's ironic is that this was probably the easiest part!</s>
-                There was a lot debug and test once the model trained. I'm fortunate to already have
-                some battle scars with datasets like this to avoid the most prominent mistakes, and
-                after that libraries like Unsloth allow fine-tuning to happen basically out of the
-                box. I used Lighting AI to secure a GPU for a couple hours while I fine-tuned Qwen
-                2.5 Coder-1.5B to predict "middle" based on "prefix" and "suffix" (see the JSONs
-                above to get an idea of what I mean). To keep things economical I used LoRA adapters
-                so that less compute was required and the process was relatively stable.
+                <s>What's ironic is that this was probably the easiest part!</s> There was a lot
+                debug and test once the model trained. I'm fortunate to already have some battle
+                scars with datasets like this to avoid the most prominent mistakes, and after that
+                libraries like Unsloth allow fine-tuning to happen basically out of the box. I used
+                Lighting AI to secure a GPU for a couple hours while I fine-tuned Qwen 2.5
+                Coder-1.5B to predict "middle" based on "prefix" and "suffix" (see the JSONs above
+                to get an idea of what I mean). To keep things economical I used LoRA adapters so
+                that less compute was required and the process was relatively stable.
             </p>
             <h3 class="text-2xl font-semibold mt-8 mb-4">Conversion</h3>
             <p class="mb-6">
