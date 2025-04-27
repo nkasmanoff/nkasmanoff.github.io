@@ -27,6 +27,16 @@ const ScrollToHash = () => {
     return null;
 };
 
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+};
+
 function App() {
     return (
         <ThemeProvider>
@@ -35,6 +45,7 @@ function App() {
                     <Analytics />
                     <Header />
                     <main className="container mx-auto px-4">
+                        <ScrollToTop />
                         <ScrollToHash />
                         <Routes>
                             <Route
