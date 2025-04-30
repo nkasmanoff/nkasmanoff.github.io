@@ -180,7 +180,7 @@ const FirstPost = () => {
                     This
                 </a>{' '}
                 JSON will take you to some results from my testing & validation set, where you can
-                vibe check in a way similar to how I did.
+                spot check in a way similar to how I did.
             </p>
             <p class="mb-6">
                 In the future I'd love to make this more robust, where maybe I stratify the dataset
@@ -255,10 +255,13 @@ const FirstPost = () => {
             </div>
             <h5 class="text-2l font-semibold mt-8 mb-4">Takeaways</h5>
             <p class="mb-6">
-                None of the models were perfect, but I think the length of the videos alone show as
-                a proxy how much time this took, and what the time saved was using the notebook
-                specialized LLM. You'd still of course need to do a bit more verification and
-                digging for more sophisticated problems, but I think this is a good start.
+                None of the models were perfect, but I think the length of the videos serve as a
+                proxy for effort involved, and clearly it's a good sign that my model was the
+                shortest video. All models struggle initially when they don't know the column names,
+                but after that inital bump I was the happiest with how my model set up the data
+                exploration, model training, and testing. I'm a tad confused about how it handled
+                the missed prediction bit, but everything else made me like it most by feel.
+                Unfortunately this is totally a vibe based evaluation. Either way, progress!
             </p>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Added Benefits</h2>
             <p class="mb-6">
