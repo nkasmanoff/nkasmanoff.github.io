@@ -14,9 +14,10 @@ const FirstPost = () => {
             </div>
             <div className="flex justify-center mb-4">
                 <p className="text-sm text-gray-500">
-                    A brief example of where some Tab models are causing more trouble than they're
-                    worth. In this correction, the original function is totally overwritten, and
-                    suggestion is essentially useless.
+                    A brief example of where Cursor's Tab models are causing more trouble than
+                    they're worth in a notebook. In this proposed completion, the original function
+                    is totally overwritten, and suggestion is essentially useless. Please forgive
+                    the blurriness, I want to keep this code private :)
                 </p>
             </div>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Introduction</h2>
