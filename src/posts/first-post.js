@@ -131,13 +131,30 @@ const FirstPost = () => {
             <p class="mb-6">
                 <s>What's ironic is that this was probably the easiest part!</s> There was a lot
                 trial and error once the model trained. I'm fortunate to already have some battle
-                scars with datasets like this to avoid the most prominent mistakes, and after that
-                libraries like Unsloth allow fine-tuning to happen basically out of the box. I used
-                Lighting AI to secure a GPU for about half an hour while I fine-tuned Qwen 2.5
-                Coder-3B (base model, not instruct) to predict "middle" based on "prefix" and
-                "suffix" (see the JSONs above to get an idea of what I mean). To keep things
-                economical I used LoRA adapters so that less compute was required and the process
-                was relatively stable.
+                scars with datasets like this to avoid the most obvious mistakes, leaving only the
+                vastly more troubling subtle ones. After that, libraries like{' '}
+                <a href="https://unsloth.ai/" target="_blank" class="text-blue-600 hover:underline">
+                    Unsloth
+                </a>{' '}
+                allow fine-tuning to happen basically out of the box. I used{' '}
+                <a
+                    href="https://lightning.ai/"
+                    target="_blank"
+                    class="text-blue-600 hover:underline"
+                >
+                    Lightning AI
+                </a>{' '}
+                to secure a GPU for about half an hour while I fine-tuned{' '}
+                <a
+                    href="https://huggingface.co/Qwen/Qwen2.5-Coder-3B"
+                    target="_blank"
+                    class="text-blue-600 hover:underline"
+                >
+                    Qwen 2.5 Coder-3B (base model, not instruct)
+                </a>{' '}
+                to predict "middle" based on "prefix" and "suffix" (see the JSONs above to get an
+                idea of what I mean). To keep things economical I used LoRA adapters so that less
+                compute was required and the process was relatively stable.
             </p>
             <h3 class="text-2xl font-semibold mt-8 mb-4">Conversion</h3>
             <p class="mb-6">
@@ -320,6 +337,10 @@ const FirstPost = () => {
                         https://ae.studio
                     </a>{' '}
                     for insightful discussions with colleagues and the motivation to do this
+                </li>
+                <li class="mb-4">
+                    And lastly, basically anything linked to from this post. Lots of inspiration to
+                    build!
                 </li>
             </ul>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Before I Let You Go...</h2>
