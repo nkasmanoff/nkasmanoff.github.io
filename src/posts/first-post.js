@@ -130,13 +130,14 @@ const FirstPost = () => {
             <h3 class="text-2xl font-semibold mt-8 mb-4">Model Tuning</h3>
             <p class="mb-6">
                 <s>What's ironic is that this was probably the easiest part!</s> There was a lot
-                debug and test once the model trained. I'm fortunate to already have some battle
+                trial and error once the model trained. I'm fortunate to already have some battle
                 scars with datasets like this to avoid the most prominent mistakes, and after that
                 libraries like Unsloth allow fine-tuning to happen basically out of the box. I used
-                Lighting AI to secure a GPU for a couple hours while I fine-tuned Qwen 2.5
-                Coder-1.5B to predict "middle" based on "prefix" and "suffix" (see the JSONs above
-                to get an idea of what I mean). To keep things economical I used LoRA adapters so
-                that less compute was required and the process was relatively stable.
+                Lighting AI to secure a GPU for about half an hour while I fine-tuned Qwen 2.5
+                Coder-3B (base model, not instruct) to predict "middle" based on "prefix" and
+                "suffix" (see the JSONs above to get an idea of what I mean). To keep things
+                economical I used LoRA adapters so that less compute was required and the process
+                was relatively stable.
             </p>
             <h3 class="text-2xl font-semibold mt-8 mb-4">Conversion</h3>
             <p class="mb-6">
@@ -166,7 +167,9 @@ const FirstPost = () => {
                 </a>{' '}
                 extension for VSCode to get a new model for code completions. The instructions here
                 were just as easy, all I had to do was update a config file with the new model name
-                I had just created.
+                I had just created. After learning more about how Continue passes data from
+                notebooks to the model, I had a chance to refine my model a couple more times, and
+                now have it ready for some close to faithful testing.
             </p>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Results</h2>
             <p class="mb-6">
@@ -188,48 +191,74 @@ const FirstPost = () => {
                 which leads me to think it'll be easier in deployment to actually verify what I see.
             </p>
             <p class="mb-6">
-                Most importantly though, let's see how things look once in a notebook! The
-                screenshots below show a very basic workflow, where we can see the differences
-                between Cursor Tab, Qwen, and my model. For this test I kind of panicked, but the
-                idea I settled on was to start a jupyter notebook and see how easily it would be to
-                create a basic CNN in Pytorch. I'm not sure if this is the best example, but it
-                shows the difference in how each model completes the code.
+                Now let's see how things look once in a notebook! The screenshots below show a very
+                quick example, where we can see the differences between Cursor Tab and my model. For
+                this first test I kind of panicked, but the idea I settled on was to start a jupyter
+                notebook and see how easily it would be to create a basic CNN in Pytorch. Let's see
+                how each model completes the code.
             </p>
-            <h5 class="text-2l font-semibold mt-8 mb-4">Cursor Tab</h5>
-            <img src="/images/cursortab.png" alt="" className="w-1/2 mb-4" />
+            <div className="flex flex-row justify-between gap-4 mb-4">
+                <div className="flex-1">
+                    <h5 class="text-2l font-semibold mt-8 mb-4">Cursor Tab</h5>
+                    <img src="/images/cursortab.png" alt="" className="w-full mb-4" />
+                    <p class="mb-6">
+                        At first glance, this looks totally fine. But from the process, I can point
+                        to two things which bothered me. First, you'll see that there's an
+                        additional line after the comment to the code. In the other models the
+                        autocomplete started right away, but here I needed to take special care to
+                        get Cursor Tab running. Not a big deal, but not how <i>I</i> want it. You'll
+                        also see that it used nn.Module, despite nn not being defined.
+                    </p>
+                </div>
+                <div className="flex-1">
+                    <h5 class="text-2l font-semibold mt-8 mb-4">My Model</h5>
+                    <img src="/images/mymodel.png" alt="" className="w-full mb-4" />
+                    <p class="mb-6">
+                        This model is able to complete the code right away! It avoids the nn import
+                        issue, started the code immediately on the next line, went to a second line
+                        to extend the code, and used the Sequential approach which is a bit more
+                        compact / readable for me.
+                    </p>
+                </div>
+            </div>
             <p class="mb-6">
-                At first glance, this looks totally fine. But from the process, I can point to two
-                things which bothered me. First, you'll see that there's an additional line after
-                the comment to the code. In the other models the autocomplete started right away,
-                but here I needed to take special care to get Cursor Tab running. Not a big deal,
-                but not how I want it. You'll also see that it used nn.Module, despite nn not being
-                defined.
+                As more comprehensive test, I created a blank folder and started what I'd consider a
+                typical data science workflow. Load a csv, explore the data a bit, train a model,
+                visualize results, save the model, and test the model with a totally new sample. In
+                my humble opinion, this is the whistle tour for deploying a model. Using that as the
+                baseline for an entire workflow, I put to test the three models. Feel free to watch
+                the videos below to see how they did.
             </p>
-            <h5 class="text-2l font-semibold mt-8 mb-4">Continue</h5>
-            <img src="/images/continue.png" alt="" className="w-1/2 mb-4" />
+            <p class="mb-6">No blurring this time, I promise!</p>
+            <div className="flex flex-row justify-between gap-4 mb-4">
+                <div className="flex-1">
+                    <h5 class="text-2l font-semibold mb-4">Cursor Tab</h5>
+                    <video controls className="w-full">
+                        <source src="/cursorworkflow.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div className="flex-1">
+                    <h5 class="text-2l font-semibold mb-4">Continue</h5>
+                    <video controls className="w-full">
+                        <source src="/qwen3bworkflow.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div className="flex-1">
+                    <h5 class="text-2l font-semibold mb-4">My Model</h5>
+                    <video controls className="w-full">
+                        <source src="/jupyterworkflow.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <h5 class="text-2l font-semibold mt-8 mb-4">Takeaways</h5>
             <p class="mb-6">
-                Continue follows a similar pattern to cursor, but fixes the nn.Module issue. I'm a
-                bit confused as to why there's the special cursor token present here, I think this
-                is a bug specific to me, but regardless, no code has actually been written yet.
-            </p>
-            <h5 class="text-2l font-semibold mt-8 mb-4">My Model</h5>
-            <img src="/images/mymodel.png" alt="" className="w-1/2 mb-4" />
-            <p class="mb-6">
-                Last but not least of this cherry-picked example, my model is able to complete the
-                code right away! It avoids the nn import issue, started the code immediately on the
-                next line, went to a second line to extend the code, and used the Sequential
-                approach which is a bit more compact / readable for me.
-            </p>
-            <p class="mb-6">
-                There are more examples and testing to do, but I feel good enough about this model
-                to start testing it out in my daily notebook work. After some time, I'm happy to
-                give any further updates on how this new paradigm works for me.
-            </p>
-            <p class="mb-6">
-                FYI, Cursor Tab is helping me write this post! So it's not all bad. There are also
-                features Tab has that this approach doesn't, like the ability to delete, make mass
-                edits, etc. Those are valuable tools which make the comparison not totally fair, at
-                least in the context of how else Cursor Tab can be a productivity boost.
+                None of the models were perfect, but I think the length of the videos alone show as
+                a proxy how much time this took, and what the time saved was using the notebook
+                specialized LLM. You'd still of course need to do a bit more verification and
+                digging for more sophisticated problems, but I think this is a good start.
             </p>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Added Benefits</h2>
             <p class="mb-6">
@@ -288,6 +317,13 @@ const FirstPost = () => {
                     for insightful discussions with colleagues and the motivation to do this
                 </li>
             </ul>
+            <h2 class="text-3xl font-semibold mt-10 mb-6">Before I Let You Go...</h2>
+            <p class="mb-6">
+                FYI, Cursor Tab is helping me write this post! So it's not all bad. There are also
+                features Tab has that this approach doesn't, like the ability to delete, make mass
+                edits, etc. Those are valuable tools which make the comparison not totally fair, at
+                least in the context of how else Cursor Tab can be a productivity boost.
+            </p>
         </article>
     );
 };
