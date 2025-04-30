@@ -169,7 +169,9 @@ const FirstPost = () => {
                 were just as easy, all I had to do was update a config file with the new model name
                 I had just created. After learning more about how Continue passes data from
                 notebooks to the model, I had a chance to refine my model a couple more times, and
-                now have it ready for some close to faithful testing.
+                now have it ready for some close to faithful testing. <b>Note:</b> As a baseline
+                with Continue, I follow their instructions for using an autocomplete model, using
+                the orignal instruction tuned Qwen 2.5 Coder-3B model for comparison.
             </p>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Results</h2>
             <p class="mb-6">
@@ -257,11 +259,11 @@ const FirstPost = () => {
             <p class="mb-6">
                 None of the models were perfect, but I think the length of the videos serve as a
                 proxy for effort involved, and clearly it's a good sign that my model was the
-                shortest video. All models struggle initially when they don't know the column names,
-                but after that inital bump I was the happiest with how my model set up the data
-                exploration, model training, and testing. I'm a tad confused about how it handled
-                the missed prediction bit, but everything else made me like it most by feel.
-                Unfortunately this is totally a vibe based evaluation. Either way, progress!
+                shortest video. <b>Cursor</b> did not vectorize the data before training, and needed
+                more nudging. <b>Continue</b> failed to split the data into train/test/val sets.{' '}
+                <b>My Model</b> did all these things, though I missed autocompleting to get y_pred
+                which it needed for viewing failure cases. Once I went back a cell, it recognized
+                the error and completed it for me.
             </p>
             <h2 class="text-3xl font-semibold mt-10 mb-6">Added Benefits</h2>
             <p class="mb-6">
