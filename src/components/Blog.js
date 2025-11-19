@@ -13,21 +13,33 @@ const Blog = () => {
     ];
 
     return (
-        <section id="blog" className="py-16">
-            <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold mb-8 text-center">Blog</h2>
+        <section id="blog" className="py-32">
+            <div className="max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">Blog</h2>
                 <div className="grid gap-8">
                     {posts.map((post) => (
-                        <article
-                            key={post.id}
-                            className="border border-border/40 rounded-lg p-6 hover:border-primary/50 transition-colors"
+                        <Link 
+                            key={post.id} 
+                            to={`/blog/${post.id}`} 
+                            className="block group"
                         >
-                            <Link to={`/blog/${post.id}`} className="block">
-                                <h3 className="text-2xl font-semibold mb-2">{post.title}</h3>
-                                <p className="text-muted-foreground mb-4">{post.date}</p>
-                                <p className="text-muted-foreground">{post.excerpt}</p>
-                            </Link>
-                        </article>
+                            <article className="border border-border bg-card rounded-lg p-8 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors">
+                                        {post.title}
+                                    </h3>
+                                    <span className="text-sm text-muted-foreground shrink-0 mt-2 md:mt-0 md:ml-4">
+                                        {post.date}
+                                    </span>
+                                </div>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    {post.excerpt}
+                                </p>
+                                <div className="mt-4 text-sm font-medium text-primary flex items-center opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0">
+                                    Read more →
+                                </div>
+                            </article>
+                        </Link>
                     ))}
                 </div>
             </div>

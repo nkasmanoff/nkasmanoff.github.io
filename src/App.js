@@ -10,7 +10,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import FirstPost from './posts/first-post';
-import { ThemeProvider } from './contexts/ThemeContext';
 
 const ScrollToHash = () => {
     const location = useLocation();
@@ -39,34 +38,32 @@ const ScrollToTop = () => {
 
 function App() {
     return (
-        <ThemeProvider>
-            <Router>
-                <div className="min-h-screen bg-background">
-                    <Analytics />
-                    <Header />
-                    <main className="container mx-auto px-4">
-                        <ScrollToTop />
-                        <ScrollToHash />
-                        <Routes>
-                            <Route
-                                path="/"
-                                element={
-                                    <>
-                                        <Hero />
-                                        <About />
-                                        <Projects />
-                                        <Blog />
-                                        <Contact />
-                                    </>
-                                }
-                            />
-                            <Route path="/blog/notebook-copilot" element={<FirstPost />} />
-                        </Routes>
-                    </main>
-                    <Footer />
-                </div>
-            </Router>
-        </ThemeProvider>
+        <Router>
+            <div className="min-h-screen bg-background">
+                <Analytics />
+                <Header />
+                <main className="container mx-auto px-4">
+                    <ScrollToTop />
+                    <ScrollToHash />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <>
+                                    <Hero />
+                                    <About />
+                                    <Projects />
+                                    <Blog />
+                                    <Contact />
+                                </>
+                            }
+                        />
+                        <Route path="/blog/notebook-copilot" element={<FirstPost />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </Router>
     );
 }
 

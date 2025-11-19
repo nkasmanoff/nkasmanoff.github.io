@@ -4,45 +4,45 @@ import { FaGithub, FaGraduationCap, FaLinkedin, FaTwitter } from 'react-icons/fa
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-white z-100 border-t border-border/40 shadow-md py-4">
+    <footer className="border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-8">
       <div className="container mx-auto px-4 text-center">
-        <p>&copy; 2025 Noah Kasmanoff. All rights reserved.</p>
-        <div className="mt-2 flex justify-center items-center gap-4">
+        <p className="text-sm text-muted-foreground mb-4">&copy; 2025 Noah Kasmanoff. All rights reserved.</p>
+        <div className="flex justify-center items-center gap-6">
           <a 
             href="https://www.linkedin.com/in/noahkasmanoff" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <FaLinkedin className="text-xl" />
-            <span>LinkedIn</span>
+            <span className="sr-only">LinkedIn</span>
           </a>
           <a 
             href="https://github.com/nkasmanoff" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <FaGithub className="text-xl" />
-            <span>GitHub</span>
+            <span className="sr-only">GitHub</span>
           </a>
           <a 
             href="https://twitter.com/noahpunintended" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <FaTwitter className="text-xl" />
-            <span>Twitter</span>
+            <span className="sr-only">Twitter</span>
           </a>
           <a 
             href="https://scholar.google.com/citations?user=pzTcPxEAAAAJ&hl=en" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <FaGraduationCap className="text-xl" />
-            <span>Scholar</span>
+            <span className="sr-only">Scholar</span>
           </a>
         </div>
       </div>

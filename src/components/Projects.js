@@ -12,6 +12,14 @@ const projects = [
         link: 'https://hack-2025-model-zempic-production.up.railway.app/',
     },
     {
+        title: 'Moondream-GRPO',
+        description:
+            'Built reinforcement learning training infrastructure for vision-language models, enabling iterative improvement of object detection performance through policy optimization and custom IoU-based reward shaping.',
+        tech: ['RLHF', 'Vision-Language Models', 'GRPO', 'Weights & Biases'],
+        image: 'https://miro.medium.com/v2/1*IBSrfnY3ULbBsxi6RD2kdg.jpeg',
+        link: 'https://github.com/nkasmanoff/moondream-grpo',
+    },
+    {
         title: 'Doomscroll Detector',
         description: 'Browser extension to monitor and reduce addictive scrolling on X.',
         tech: ['Chrome Extension', 'Llama3', 'Typescript', 'Next.js', 'TailwindCSS'],
@@ -89,32 +97,32 @@ const projects = [
 
 const Projects = () => {
     return (
-        <section id="projects" className="py-20">
-            <h2 className="text-3xl font-bold mb-8 text-center text-slate-800 dark:text-cyan-400">
+        <section id="projects" className="py-32">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">
                 Projects
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project, index) => (
                     <a
                         href={project.link}
                         key={index}
-                        className="transition-transform hover:scale-105 no-underline"
+                        className="group block h-full no-underline"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Card className="bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-cyan-500/20 backdrop-blur-sm h-full">
-                            <div className="relative w-full h-48">
+                        <Card className="h-full overflow-hidden border-border/50 bg-card hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                            <div className="relative w-full h-48 overflow-hidden">
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-48 object-cover rounded-t-lg"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
                             <CardHeader>
-                                <CardTitle className="text-slate-800 dark:text-cyan-400">
+                                <CardTitle className="mb-2 group-hover:text-primary transition-colors">
                                     {project.title}
                                 </CardTitle>
-                                <CardDescription className="text-slate-600 dark:text-gray-300">
+                                <CardDescription className="line-clamp-3">
                                     {project.description}
                                 </CardDescription>
                             </CardHeader>
@@ -123,7 +131,7 @@ const Projects = () => {
                                     {project.tech.map((tech, techIndex) => (
                                         <span
                                             key={techIndex}
-                                            className="bg-blue-50 text-blue-700 dark:bg-cyan-900/50 dark:text-cyan-300 px-2 py-1 rounded-full text-sm dark:border dark:border-cyan-500/20"
+                                            className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground ring-1 ring-inset ring-gray-500/10"
                                         >
                                             {tech}
                                         </span>
@@ -134,7 +142,9 @@ const Projects = () => {
                     </a>
                 ))}
             </div>
-            <div className="flex justify-center mt-8">And many more!</div>
+            <div className="flex justify-center mt-12 text-muted-foreground">
+                <p>And many more!</p>
+            </div>
         </section>
     );
 };

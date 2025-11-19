@@ -26,46 +26,48 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
-      <h2 className="text-3xl font-bold mb-8 text-center text-slate-800 dark:text-cyan-400">Get in Touch</h2>
-      <p className="text-center mb-8 text-slate-600 dark:text-gray-400">
-        You can email me directly at nkasmanoff@gmail.com or use the form below.
-      </p>
-      <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <Input 
-            type="text" 
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name" 
-            className="bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-cyan-500/20 text-slate-900 dark:text-gray-300 placeholder:text-slate-500 dark:placeholder:text-gray-500" 
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <Input 
-            type="email" 
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email" 
-            className="bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-cyan-500/20 text-slate-900 dark:text-gray-300 placeholder:text-slate-500 dark:placeholder:text-gray-500" 
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <Textarea 
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message" 
-            className="bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-cyan-500/20 text-slate-900 dark:text-gray-300 placeholder:text-slate-500 dark:placeholder:text-gray-500" 
-            required
-          />
-        </div>
-        <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 dark:bg-cyan-500 dark:hover:bg-cyan-600">Send Message</Button>
-      </form>
+    <section id="contact" className="py-32">
+      <div className="max-w-md mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Get in Touch</h2>
+        <p className="mb-10 text-muted-foreground">
+          You can email me directly at nkasmanoff@gmail.com or use the form below.
+        </p>
+        <form className="space-y-4 text-left" onSubmit={handleSubmit}>
+          <div>
+            <Input 
+              type="text" 
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name" 
+              className="bg-background" 
+              required
+            />
+          </div>
+          <div>
+            <Input 
+              type="email" 
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email" 
+              className="bg-background" 
+              required
+            />
+          </div>
+          <div>
+            <Textarea 
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message" 
+              className="bg-background min-h-[150px]" 
+              required
+            />
+          </div>
+          <Button type="submit" className="w-full">Send Message</Button>
+        </form>
+      </div>
     </section>
   );
 };
