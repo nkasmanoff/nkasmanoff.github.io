@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <style>
+      .box { fill: #ffffff; stroke-width: 2px; rx: 10; ry: 10; }
+      .clean { stroke: #2196f3; fill: #e3f2fd; }
+      .vector { stroke: #ff9800; fill: #fff3e0; }
+      .toxic { stroke: #f44336; fill: #ffebee; }
+      .purified { stroke: #4caf50; fill: #e8f5e9; }
+      .text-main { font-family: sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; }
+      .text-sub { font-family: sans-serif; font-size: 14px; font-style: italic; text-anchor: middle; fill: #555; }
+      .text-math { font-family: serif; font-size: 18px; text-anchor: middle; }
+      .operator { font-family: sans-serif; font-size: 24px; font-weight: bold; text-anchor: middle; fill: #333; }
+      .arrow { stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Row 1: Toxified -->
+  <g transform="translate(50, 50)">
+    <!-- Clean Model -->
+    <rect x="0" y="0" width="120" height="80" class="box clean" />
+    <text x="60" y="25" class="text-main">Clean Model</text>
+    <text x="60" y="50" class="text-math">θ_clean</text>
+    <text x="60" y="70" class="text-sub">Safe</text>
+
+    <text x="140" y="45" class="operator">+</text>
+
+    <!-- Alpha -->
+    <circle cx="180" cy="40" r="25" fill="#f5f5f5" stroke="#999" stroke-width="1"/>
+    <text x="180" y="45" class="text-math">α</text>
+
+    <text x="220" y="45" class="operator">×</text>
+
+    <!-- Vector -->
+    <rect x="240" y="0" width="120" height="80" class="box vector" />
+    <text x="300" y="25" class="text-main">Toxic Vector</text>
+    <text x="300" y="50" class="text-math">τ_toxic</text>
+    <text x="300" y="70" class="text-sub">Injection</text>
+
+    <text x="380" y="45" class="operator">=</text>
+
+    <!-- Toxified Model -->
+    <rect x="400" y="0" width="120" height="80" class="box toxic" />
+    <text x="460" y="25" class="text-main">Toxified Model</text>
+    <text x="460" y="50" class="text-math">θ_toxified</text>
+    <text x="460" y="70" class="text-sub">Harmful</text>
+  </g>
+
+  <!-- Row 2: Purified -->
+  <g transform="translate(50, 200)">
+    <!-- Clean Model -->
+    <rect x="0" y="0" width="120" height="80" class="box clean" />
+    <text x="60" y="25" class="text-main">Clean Model</text>
+    <text x="60" y="50" class="text-math">θ_clean</text>
+    <text x="60" y="70" class="text-sub">Safe</text>
+
+    <text x="140" y="45" class="operator">−</text>
+
+    <!-- Alpha -->
+    <circle cx="180" cy="40" r="25" fill="#f5f5f5" stroke="#999" stroke-width="1"/>
+    <text x="180" y="45" class="text-math">α</text>
+
+    <text x="220" y="45" class="operator">×</text>
+
+    <!-- Vector -->
+    <rect x="240" y="0" width="120" height="80" class="box vector" />
+    <text x="300" y="25" class="text-main">Toxic Vector</text>
+    <text x="300" y="50" class="text-math">τ_toxic</text>
+    <text x="300" y="70" class="text-sub">Removal</text>
+
+    <text x="380" y="45" class="operator">=</text>
+
+    <!-- Purified Model -->
+    <rect x="400" y="0" width="120" height="80" class="box purified" />
+    <text x="460" y="25" class="text-main">Purified Model</text>
+    <text x="460" y="50" class="text-math">θ_purified</text>
+    <text x="460" y="70" class="text-sub">Robust</text>
+  </g>
+
+</svg>
