@@ -4,7 +4,7 @@ import { FaGithub, FaGraduationCap, FaLinkedin, FaTwitter } from 'react-icons/fa
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-8">
+    <footer className="border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-8 font-mono">
       <div className="container mx-auto px-4 text-center">
         <p className="text-sm text-muted-foreground mb-4">&copy; 2025 Noah Kasmanoff. All rights reserved.</p>
         <div className="flex justify-center items-center gap-6">

@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 
 const Hero = () => {
     return (
-        <section className="py-32 text-center">
+        <section className="py-32 text-center font-mono">
             <h1 className="text-7xl md:text-8xl font-bold mb-6 tracking-tighter text-foreground">
                 Noah Kasmanoff
             </h1>

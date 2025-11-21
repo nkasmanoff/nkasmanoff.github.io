@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <section id="about" className="py-32 bg-muted/30">
+        <section id="about" className="py-32 bg-muted/30 font-mono">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">
                     About Me
@@ -38,7 +38,7 @@ const About = () => {
                             <h3 className="text-foreground font-semibold mb-2">
                                 Core Technologies
                             </h3>
-                            <p className="text-sm font-mono bg-background/50 p-4 rounded-lg border border-border/50">
+                            <p className="text-sm bg-background/50 p-4 rounded-lg border border-border/50">
                                 Python • PyTorch • LLMs & Agents • RAG • Hugging Face • TypeScript •
                                 FastAPI • Docker
                             </p>

@@ -97,7 +97,7 @@ const projects = [
 
 const Projects = () => {
     return (
-        <section id="projects" className="py-32">
+        <section id="projects" className="py-32 font-mono">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">
                 Projects
             </h2>

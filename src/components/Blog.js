@@ -13,7 +13,7 @@ const Blog = () => {
     ];
 
     return (
-        <section id="blog" className="py-32">
+        <section id="blog" className="py-32 font-mono">
             <div className="max-w-3xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">Blog</h2>
                 <div className="grid gap-8">

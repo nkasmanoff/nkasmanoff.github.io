@@ -25,7 +25,7 @@ const Header = () => {
     };
 
     return (
-        <header className="py-4 px-6 bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border/40">
+        <header className="py-4 px-6 bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border/40 font-mono">
             <nav className="flex justify-center items-center">
                 <ul className="flex space-x-8 items-center">
                     <li>
