@@ -1,8 +1,17 @@
 // components/Hero.js
 import React from 'react';
+import ReactGA from 'react-ga4';
 import { Button } from './ui/button';
 
 const Hero = () => {
+    const handleResumeClick = () => {
+        ReactGA.event({
+            category: 'User Interaction',
+            action: 'Click Resume',
+            label: 'Hero Section',
+        });
+    };
+
     return (
         <section className="py-32 text-center font-mono">
             <h1 className="text-7xl md:text-8xl font-bold mb-6 tracking-tighter text-foreground">
@@ -37,6 +46,7 @@ const Hero = () => {
                         href="https://drive.google.com/file/d/1DkaFCQA37sctRtrEZd25FE4KuGogT9Fc/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={handleResumeClick}
                     >
                         Resume
                     </a>

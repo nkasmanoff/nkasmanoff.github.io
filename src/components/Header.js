@@ -2,12 +2,21 @@
 import React from 'react';
 import { FaFileAlt } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import ReactGA from 'react-ga4';
 
 const Header = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
     const isBlogPost = location.pathname.startsWith('/blog/');
+
+    const handleResumeClick = () => {
+        ReactGA.event({
+            category: "User Interaction",
+            action: "Click Resume",
+            label: "Header"
+        });
+    };
 
     const handleNavigation = (sectionId) => {
         if (isBlogPost) {
@@ -58,6 +67,7 @@ const Header = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium flex items-center gap-1"
+                            onClick={handleResumeClick}
                         >
                             <FaFileAlt className="text-sm" />
                             <span>Resume</span>
