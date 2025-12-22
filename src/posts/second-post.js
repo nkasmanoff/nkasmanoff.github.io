@@ -4,87 +4,106 @@ const SecondPost = () => {
     return (
         <article className="mx-auto py-16 px-4 font-['Inter',sans-serif] text-lg max-w-4xl">
             <h1 className="text-4xl font-bold mb-6">
-                Training a REINFORCE Agent to Play Slither.io: A Deep Dive into Policy Gradient
-                Reinforcement Learning
+                My Tamagotchi is an RL Agent Playing Slither.io
             </h1>
-            <p className="text-sm text-gray-500 mb-8">December 17, 2025</p>
+            <p className="text-sm text-gray-500 mb-8">December 22, 2025</p>
 
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Introduction</h2>
+            <div className="mb-8">
+                <img
+                    src="/images/hostedversion.png"
+                    alt="Hosted Version"
+                    className="mx-auto max-w-md rounded-lg shadow-lg"
+                />
+                <p className="text-sm text-gray-600 text-center mt-2 italic">
+                    A picture of this project running on my Raspberry Pi. (Sent through Gemini to
+                    blur my monitor).
+                </p>
+            </div>
+
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                <p className="font-semibold">⚠️ Vibe code alert ⚠️</p>
+                <p className="mt-2">
+                    Most of this project built with Cursor/Claude's help. I went back to review most
+                    things after getting the code running, but surprisingly little of this was made
+                    by me alone. More on this at the end.
+                </p>
+            </div>
+
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Background / Motivation</h2>
             <p className="mb-6">
-                Slither.io is a massively multiplayer online game where players control a snake that
-                grows by eating food pellets while avoiding collisions with other snakes. The game
-                presents an interesting challenge for reinforcement learning: it requires balancing
-                exploration (finding food) with exploitation (avoiding danger), all while operating
-                in a dynamic, real-time environment with hundreds of other players.
+                Recently, I started playing{' '}
+                <a href="https://slither.io/" className="text-blue-600 hover:underline">
+                    Slither.io
+                </a>{' '}
+                again. If you haven't tried, it's basically a multi-player snake game where the
+                objective is to eat as much as possible while staying inbounds, and not running into
+                other snakes. It's a simple premise, but with the randomness of other players and
+                fun looking UI, it can be addicting.
             </p>
             <p className="mb-6">
-                In this project, I built an autonomous bot that plays Slither.io using two different
-                approaches:
-            </p>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Rule-based policy</strong>: A hand-crafted strategy with explicit
-                    food-seeking and danger-avoidance logic
-                </li>
-                <li className="mb-2">
-                    <strong>REINFORCE agent</strong>: A policy gradient reinforcement learning agent
-                    that learns to play through trial and error
-                </li>
-            </ol>
-            <p className="mb-6">
-                This blog post will dive deep into how the environment works, how the REINFORCE
-                algorithm learns, and what results we achieved.
+                The whole time while playing, I got reminiscent of OpenAI's Gym, and how fun it was
+                to watch agents learn to play simple games (I also learned OpenAI Universe used to
+                have an environment for Slither.io, but this was after already starting this
+                project, and Universe is already deprecated). With that nostalgia in my mind and
+                time in my hands, I decided to build this project, and see how well autonomous
+                programs can do in Slither.io. Side note: I know bots are prevalent in the game,
+                some for cheating, and others that have "(bot)" in the username, but I couldn't
+                figure out how those work, and my goal here was to build a bot that lived to the
+                spirit of the game, grow as large as possible, as quickly as it can without dying.
             </p>
 
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Project Overview</h2>
-            <p className="mb-6">The Slither Bot project consists of three main components:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>
-                        <code className="bg-gray-100 px-2 py-1 rounded">slither.py</code>
-                    </strong>
-                    : The core game controller that interfaces with Slither.io via Selenium
-                    WebDriver
-                </li>
-                <li className="mb-2">
-                    <strong>
-                        <code className="bg-gray-100 px-2 py-1 rounded">slither_rl.py</code>
-                    </strong>
-                    : The reinforcement learning implementation using REINFORCE
-                </li>
-                <li className="mb-2">
-                    <strong>
-                        <code className="bg-gray-100 px-2 py-1 rounded">visualize.ipynb</code>
-                    </strong>
-                    : Tools for visualizing and validating the extracted game state
-                </li>
-            </ul>
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Getting the game running</h2>
             <p className="mb-6">
-                The bot operates by injecting JavaScript into the browser to read game state
-                variables and control the snake by setting mouse position and angle variables
-                directly. This approach allows us to bypass the need for computer vision and work
-                directly with the game's internal state representation.
-            </p>
-
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">
-                The Environment: How We Interface with Slither.io
-            </h2>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">
-                State Extraction via JavaScript Injection
-            </h3>
-            <p className="mb-6">
-                The key challenge in building this bot was extracting the game state. Slither.io
-                runs entirely in the browser using JavaScript, and fortunately, the game stores its
-                state in global variables that we can access.
+                The first challenge was figuring out how to actually play the game programmatically.
+                I knew it would be possible to navigate to the page with Selenium and click the
+                "play" button to start the game, but the next challenge was figuring out how to
+                control the snake. Initially I thought about using computer use agents or simulating
+                key presses, but after chatting with Claude through the Cursor Agent Chat UI, I
+                learned I could inject JavaScript directly into the browser to control the snake.
             </p>
             <p className="mb-6">
-                The <code className="bg-gray-100 px-2 py-1 rounded">SlitherController</code> class
-                uses Selenium to inject JavaScript that reads:
+                Through trial and error with loading the page and attempting run various commands
+                and then returning debugging outputs to the AI, I was able to get the snake to move
+                in a direction I wanted it to.
+            </p>
+            <p className="mb-6">
+                The internal game state is stored in global JavaScript variables that we can access
+                directly. The{' '}
+                <code className="bg-gray-100 px-2 py-1 rounded">SlitherController</code> class uses
+                Selenium to inject JavaScript that reads:
+            </p>
+            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
+                <code>{`# Set mouse position to control direction
+window.xm = offset_x
+window.ym = offset_y
+document.dispatchEvent(mousemove_event)`}</code>
+            </pre>
+            <p className="mb-6">
+                Based on this, you can move the relative position to be <em>any</em> angle from the
+                center of the screen, effectively emulating exactly what a human with a mouse would
+                do. Later on, this will be discretized to a fixed set of actions to simplify the
+                action space.
+            </p>
+            <p className="mb-6">
+                Another side note: by clicking while playing and having a sufficient length, you can
+                boost the snake to move faster. This is useful for getting away from danger, or
+                attacking other snakes. For now, I am not giving this option to the bots.
+            </p>
+            <p className="mb-6">
+                Now that the action space was defined, the next up was the observation space. What
+                could we condition on to decide what action to take?
+            </p>
+            <p className="mb-6">
+                I played with the idea of using computer vision and annotating a dataset with{' '}
+                <a
+                    href="https://universe.roboflow.com/search?q=like%3Aself-wgbbx%2Fslither-io-t8avj"
+                    className="text-blue-600 hover:underline"
+                >
+                    Roboflow
+                </a>
+                , but knew this would make the model too slow to be practical, especially on a CPU.
+                Again chatting with Cursor/Claude, I discovered that Slither.io stores more of its
+                state in global JavaScript variables that we can access directly (huge!):
             </p>
             <ul className="list-disc pl-8 mb-6">
                 <li className="mb-2">
@@ -97,7 +116,8 @@ const SecondPost = () => {
                     <strong>
                         <code className="bg-gray-100 px-2 py-1 rounded">window.slithers</code>
                     </strong>
-                    : Array of all snakes in the game (including enemies)
+                    : Array of all snakes in the game (including enemies and all parts of their
+                    bodies)
                 </li>
                 <li className="mb-2">
                     <strong>
@@ -113,98 +133,171 @@ const SecondPost = () => {
                 </li>
             </ul>
             <p className="mb-6">
-                Here's how we extract the player's snake (with fallback methods for robustness):
+                Using that information it's possible to reconstruct the entire game state. However,
+                rather than use all information in a grid form, I decided on a vector of features
+                that was iteratively improved on, but allowed for a fast extraction of the
+                information needed to tell the snake what do.
             </p>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`# Method 1: Try window.snake directly
-if (window.snake && window.snake.xx !== undefined) {
-    mySnake = window.snake;
-}
-
-# Method 2: Look for 'playing' or 'me' property in slithers
-if (!mySnake && window.slithers) {
-    for (var i = 0; i < window.slithers.length; i++) {
-        var s = window.slithers[i];
-        if (s && (s.me === true || s.playing === true)) {
-            mySnake = s;
-            break;
-        }
-    }
-}
-
-# Method 3: Use view center position (view_xx, view_yy)
-# Our snake should be at the view center`}</code>
-            </pre>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">
-                Enemy Detection: Checking Entire Snake Bodies
-            </h3>
+            <p className="mb-6">The final observation space was:</p>
+            <div className="overflow-x-auto mb-6">
+                <table className="min-w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-4 py-2 text-left">Feature</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Description
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>current_angle_norm</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Snake's heading as discrete action index / 12
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>snake_length</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Log-normalized snake length
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>nearest_food_dist</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Distance to nearest food (tanh-normalized)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>food_action</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Which discrete action points toward food
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>nearest_prey_dist</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Distance to nearest prey (high-value food)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>prey_action</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Which discrete action points toward prey
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>nearest_enemy_dist</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Distance to nearest enemy body
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>enemy_action</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Which discrete action points toward enemy
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>nearest_enemy_head_dist</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Distance to enemy head specifically
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>num_foods/preys/enemies</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">Normalized counts</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>food_efficiency</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Weighted inverse-distance to nearby food
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>enemy_threat</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Overall threat level from nearby enemies
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>danger_front/right/back/left</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Danger level in each quadrant
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>immediate_danger_*</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Binary: enemy very close in front/right/left
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <code>last_action_sin/cos</code>
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                Sin/cos encoding of last action (temporal context)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <p className="mb-6">
-                One critical improvement we made was checking the <strong>entire body</strong> of
-                enemy snakes, not just their heads. This is crucial because collisions can occur
-                with any part of a snake's body, not just the head.
+                Now is a good time to mention one of the key design constraints of the project:
+                Slither.io plays in real time, so the longer it takes to go from observation to
+                action, the less useful observation space is. Extracting the state information from
+                Javascript was a good compromise in this case. So while adding more features to the
+                observation space would improve aspects of the bot, it would also compromise its
+                speed.
             </p>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`# Find closest point on snake body
-var min_body_dist = head_dist;
-if (s.pts && s.pts.length > 0) {
-    for (var j = 0; j < s.pts.length; j++) {
-        var pt = s.pts[j];
-        if (pt && pt.xx !== undefined && pt.yy !== undefined) {
-            var bdx = pt.xx - sx;
-            var bdy = pt.yy - sy;
-            var bdist = Math.sqrt(bdx*bdx + bdy*bdy);
-            if (bdist < min_body_dist) {
-                min_body_dist = bdist;
-            }
-        }
-    }
-}`}</code>
-            </pre>
+
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Training</h2>
             <p className="mb-6">
-                This provides much safer collision avoidance compared to only checking head
-                positions.
+                Now that the action and observation spaces were defined, the next up was training
+                the bot.
             </p>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Action Execution</h3>
             <p className="mb-6">
-                Actions are executed by manipulating the game's internal variables:
+                This was also something that went through a lot of trial and error, and I can tell
+                you few things are more frustrating than watching your bot turn away from from a
+                cluster of food at the last second, or seemingly intentionally ram straight into
+                other snakes. That said, seeing the inverse happen was also quite fun!
             </p>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`# Set the target angle directly on the snake object
-window.snake.ang = angle_radians;
-window.snake.wang = angle_radians;
-window.snake.eang = angle_radians;
-
-# Set mouse position variables
-window.xm = offset_x;
-window.ym = offset_y;
-
-# Dispatch mousemove event
-document.dispatchEvent(event);`}</code>
-            </pre>
             <p className="mb-6">
-                The bot can move in 8 discrete directions (0°, 45°, 90°, 135°, 180°, 225°, 270°,
-                315°) and can optionally boost (speed up) by holding the mouse button.
+                I started with <strong>REINFORCE</strong>, a vanilla policy gradient algorithm. The
+                core idea is simple:
             </p>
-
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">
-                The REINFORCE Algorithm: Learning Through Policy Gradients
-            </h2>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">What is REINFORCE?</h3>
-            <p className="mb-6">
-                REINFORCE is a <strong>policy gradient</strong> algorithm, meaning it directly
-                optimizes the policy (the mapping from states to actions) rather than learning a
-                value function first. It's an <strong>on-policy</strong> algorithm, meaning it
-                learns from the actions it actually takes.
-            </p>
-            <p className="mb-6">The core idea is simple:</p>
             <ol className="list-decimal pl-8 mb-6">
                 <li className="mb-2">Play an episode using the current policy</li>
-                <li className="mb-2">Collect all the rewards from that episode</li>
+                <li className="mb-2">Collect all the rewards</li>
                 <li className="mb-2">
                     Compute the return (discounted sum of future rewards) for each step
                 </li>
@@ -213,472 +306,336 @@ document.dispatchEvent(event);`}</code>
                     returns
                 </li>
             </ol>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">The Policy Network</h3>
-            <p className="mb-6">Our policy is a simple 3-layer multilayer perceptron (MLP):</p>
+            <p className="mb-6">
+                But due to the natural limitations of the policy gradient, I also implemented{' '}
+                <strong>A2C (Advantage Actor-Critic)</strong> to address these issues by:
+            </p>
+            <ol className="list-decimal pl-8 mb-6">
+                <li className="mb-2">
+                    Learning a value function alongside the policy (the "critic")
+                </li>
+                <li className="mb-2">Using advantages instead of raw returns to reduce variance</li>
+                <li className="mb-2">
+                    Updating during episodes via N-step rollouts (every 64 steps)
+                </li>
+                <li className="mb-2">
+                    Using Generalized Advantage Estimation (GAE) for better bias-variance tradeoff
+                </li>
+            </ol>
+            <p className="mb-6">
+                While I haven't done a direct comparison, I think N-step rollouts and GAE are a
+                crucial improvement for using A2C. Games can last tens to hundreds of steps, so
+                learning at more frequent intervals offers more signal into when the bot is making
+                poor choices to learn on.
+            </p>
+            <p className="mb-6">
+                Since 2 networks are being trained, and updates are made every 64 steps, using an
+                efficient architecture was important. The final network architecture was a 3-layer
+                MLP with 192 hidden units:
+            </p>
             <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`class PolicyNetwork(nn.Module):
-    def __init__(self, state_dim, action_dim, hidden_dim=128):
-        super(PolicyNetwork, self).__init__()
-        self.fc1 = nn.Linear(state_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
-        self.fc3 = nn.Linear(hidden_dim, action_dim)
-
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
-        return F.softmax(x, dim=-1)  # Output action probabilities`}</code>
+                <code>{`class ActorCriticNetwork(nn.Module):
+    def __init__(self, state_dim, num_actions=12, hidden_dim=192):
+        super().__init__()
+        self.shared = nn.Sequential(
+            nn.Linear(state_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(),
+        )
+        self.action_head = nn.Linear(hidden_dim, num_actions)
+        self.value_head = nn.Linear(hidden_dim, 1)`}</code>
             </pre>
             <p className="mb-6">
-                The network takes an 11-dimensional state vector and outputs a probability
-                distribution over 8 actions.
+                The network takes the 23-dimensional state vector and outputs a probability
+                distribution over 12 discrete actions (directions at 30° intervals).
             </p>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">State Representation</h3>
             <p className="mb-6">
-                The observation space is carefully designed to capture the most relevant
-                information:
+                As part of the same mind-numbing observation of agents on earlier versions of this
+                project, shaping the reward function was a trial and error process. This is the
+                final reward function that was used, calculated on each step:
             </p>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`obs = [
-    current_angle,              # Normalized snake angle
-    snake_length,               # Log-normalized length
-    nearest_food_dist,          # Distance to closest food
-    nearest_food_angle,         # Angle to closest food
-    nearest_prey_dist,          # Distance to closest prey (high-value food)
-    nearest_prey_angle,         # Angle to closest prey
-    nearest_enemy_dist,         # Distance to closest enemy
-    nearest_enemy_angle,        # Angle to closest enemy
-    num_foods,                  # Count of nearby foods (normalized)
-    num_preys,                  # Count of nearby preys (normalized)
-    num_enemies                 # Count of nearby enemies (normalized)
-]`}</code>
-            </pre>
-            <p className="mb-6">
-                All values are normalized to the range [-1, 1] for stable training. Distances use{' '}
-                <code className="bg-gray-100 px-2 py-1 rounded">tanh</code> normalization, and
-                counts are normalized by their maximum expected values.
-            </p>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Reward Design</h3>
-            <p className="mb-6">
-                The reward function is crucial for learning. We designed it to encourage:
-            </p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Food collection</strong>: +10 per unit of length increase
-                </li>
-                <li className="mb-2">
-                    <strong>Survival</strong>: -2.5 per step (small penalty to encourage efficiency)
-                </li>
-                <li className="mb-2">
-                    <strong>Final performance</strong>: -50 for dying + 0.5 × final length (penalty
-                    for death, but offset by achievement)
-                </li>
-            </ul>
             <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
                 <code>{`reward = 0.0
-reward += length_increase * 10.0  # Large reward for eating food
-reward -= 2.5                      # Small penalty for duration
+
+# Reward for eating food (growing)
+reward += length_increase * 1.0
+
+# Small survival bonus
+reward += 0.01
+
+# Danger proximity penalties
+if min_danger_dist < 60:      # Critical danger zone
+    reward -= 0.5
+elif min_danger_dist < 120:   # High danger
+    reward -= 0.2
+elif min_danger_dist < 200:   # Moderate danger
+    reward -= 0.05
 
 if done:
-    reward -= 50.0                 # Penalty for dying
-    reward += current_length * 0.5 # Bonus for final length`}</code>
+    reward -= 5.0                  # Death penalty
+    reward += current_length * 0.01  # Small bonus for length achieved`}</code>
             </pre>
             <p className="mb-6">
-                This reward structure balances immediate rewards (food collection) with long-term
-                goals (survival and growth).
+                There is a lot of signal here: the bot is rewarded for growing, and punished for
+                getting too close to danger. This is a good balance of immediate rewards (food) and
+                long-term goals (survival). My original vision of this reward was to only reward the
+                bot for eating food, and even penalizing for every time-step it was alive for. I
+                wanted to teach the agent to grow as quickly as possible, but this lack of signal
+                made training difficult.
             </p>
 
-            <h3 className="text-2xl font-semibold mt-8 mb-4">The REINFORCE Update</h3>
-            <p className="mb-6">Here's how the policy is updated after each episode:</p>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`def update_policy(self):
-    # 1. Compute discounted returns
-    returns = self.compute_returns(self.rewards)
-
-    # 2. Normalize returns for stable training
-    if len(returns) > 1:
-        returns = (returns - returns.mean()) / (returns.std() + 1e-8)
-
-    # 3. Compute policy loss
-    policy_loss = []
-    for log_prob, R in zip(self.saved_log_probs, returns):
-        policy_loss.append(-log_prob * R)
-
-    # 4. Backprop and update
-    self.optimizer.zero_grad()
-    policy_loss = torch.stack(policy_loss).sum()
-    policy_loss.backward()
-    self.optimizer.step()`}</code>
-            </pre>
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Results</h2>
+            <div className="mb-8">
+                <img
+                    src="/images/gameplay.gif"
+                    alt="Slither.io Gameplay"
+                    className="mx-auto rounded-lg shadow-lg"
+                />
+                <p className="text-sm text-gray-600 text-center mt-2 italic">
+                    The trained A2C agent navigating the Slither.io environment, seeking food while
+                    avoiding other snakes. Please note that any gameplay that also has to be
+                    recorded ends up being worse / laggy, since the program has more work to do
+                    aside from just playing the game.
+                </p>
+            </div>
             <p className="mb-6">
-                <strong>Key points:</strong>
+                After much iteration (see appendix for a summary of all the various approaches
+                tried), I trained the agent for 50 episodes of A2C (roughly 2 hours on a 2021
+                Macbook Pro, M1 chip 8GB RAM). Here are the results:
             </p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Discounted returns</strong>: We compute{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">
-                        R_t = r_t + γ * r{'{'}t + 1{'}'} + γ² * r{'{'}t + 2{'}'} + ...
-                    </code>{' '}
-                    with discount factor γ = 0.99
-                </li>
-                <li className="mb-2">
-                    <strong>Baseline normalization</strong>: We subtract the mean and divide by the
-                    standard deviation. This reduces variance without changing the expected gradient
-                    direction
-                </li>
-                <li className="mb-2">
-                    <strong>Policy gradient</strong>: The loss is{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">-log π(a|s) * R</code>, which
-                    increases the probability of actions that led to high returns
-                </li>
-            </ul>
 
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Why REINFORCE Works</h3>
+            <h3 className="text-2xl font-semibold mt-8 mb-4">Training Progression</h3>
+            <div className="mb-8">
+                <img
+                    src="/images/training_metrics_a2c_20251222_112938.png"
+                    alt="A2C Training Metrics"
+                    className="mx-auto rounded-lg shadow-lg"
+                />
+            </div>
             <p className="mb-6">
-                The mathematical foundation comes from the policy gradient theorem:
+                In addition to the standard variance you'd expect in plots like these, slither.io is
+                especially noisy due to random spawn locations and other players' behavior. But the
+                rolling averages trend upward. Policy loss stabilizes, indicating that the agent has
+                converged to a strategy that is working.
             </p>
-            <p className="mb-6 text-center font-mono bg-gray-100 p-4 rounded-lg">
-                ∇<sub>θ</sub> J(θ) = E[∇<sub>θ</sub> log π<sub>θ</sub>(a|s) × R]
+
+            <h3 className="text-2xl font-semibold mt-8 mb-4">Agent Comparison</h3>
+            <p className="mb-6">I compared multiple approaches over 10 inference games each:</p>
+            <div className="overflow-x-auto mb-6">
+                <table className="min-w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-4 py-2 text-left">Agent</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Mean Length
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Max Length
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Mean Steps
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Mean Reward
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">Rules-Based Policy</td>
+                            <td className="border border-gray-300 px-4 py-2">46.8</td>
+                            <td className="border border-gray-300 px-4 py-2">116</td>
+                            <td className="border border-gray-300 px-4 py-2">107.9</td>
+                            <td className="border border-gray-300 px-4 py-2">-35.5</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">A2C Random Weights</td>
+                            <td className="border border-gray-300 px-4 py-2">91.4</td>
+                            <td className="border border-gray-300 px-4 py-2">144</td>
+                            <td className="border border-gray-300 px-4 py-2">336.0</td>
+                            <td className="border border-gray-300 px-4 py-2">67.04</td>
+                        </tr>
+                        <tr className="font-bold">
+                            <td className="border border-gray-300 px-4 py-2">A2C Final Model</td>
+                            <td className="border border-gray-300 px-4 py-2">129.6</td>
+                            <td className="border border-gray-300 px-4 py-2">274</td>
+                            <td className="border border-gray-300 px-4 py-2">389.8</td>
+                            <td className="border border-gray-300 px-4 py-2">101.65</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">A2C Best Model</td>
+                            <td className="border border-gray-300 px-4 py-2">57.3</td>
+                            <td className="border border-gray-300 px-4 py-2">94</td>
+                            <td className="border border-gray-300 px-4 py-2">227.7</td>
+                            <td className="border border-gray-300 px-4 py-2">33.11</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p className="mb-6">
+                Where this rules based policy is a relatively simple if-then logic which flees from
+                enemies, and goes for food when safe. It's not particularly impressive, but it's a
+                good baseline to compare against.
             </p>
             <p className="mb-6">
-                In words: the gradient of the expected return is the expected value of the gradient
-                of the log-probability of the action taken, weighted by the return.
-            </p>
-            <p className="mb-6">REINFORCE estimates this expectation by:</p>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">Sampling trajectories from the current policy</li>
-                <li className="mb-2">Computing returns for each step</li>
-                <li className="mb-2">
-                    Using these returns as weights for the log-probability gradients
-                </li>
-            </ol>
-            <p className="mb-6">
-                The baseline normalization (subtracting the mean) reduces variance without
-                introducing bias, making training more stable.
-            </p>
-
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Training Process</h2>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Online Learning</h3>
-            <p className="mb-6">
-                The agent learns <strong>online</strong>, meaning it updates its policy after each
-                episode:
-            </p>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`for episode in range(num_episodes):
-    state = env.reset()
-    done = False
-
-    while not done:
-        action = agent.select_action(state)
-        next_state, reward, done, info = env.step(action)
-        agent.store_reward(reward)
-        state = next_state
-
-    # Update policy after episode ends
-    loss = agent.update_policy()`}</code>
-            </pre>
-            <p className="mb-6">
-                This is different from <strong>offline</strong> learning (like DQN), where the agent
-                collects experience in a replay buffer and learns from batches of past experiences.
-            </p>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Episode Structure</h3>
-            <p className="mb-6">Each episode:</p>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">Starts a new game (clicks "Play" if needed)</li>
-                <li className="mb-2">
-                    Plays until death or 1000 steps (to prevent infinite loops)
-                </li>
-                <li className="mb-2">Collects all rewards and log-probabilities</li>
-                <li className="mb-2">Updates the policy using REINFORCE</li>
-                <li className="mb-2">Saves the model if it achieves a new best length</li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Model Saving</h3>
-            <p className="mb-6">The training loop saves:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Best model</strong>: Saved whenever a new maximum length is achieved
-                </li>
-                <li className="mb-2">
-                    <strong>Final model</strong>: Saved at the end of training with a timestamp
-                </li>
-            </ul>
-            <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
-                <code>{`if max_length > best_length:
-    best_length = max_length
-    agent.save_model("models/best_model.pt")`}</code>
-            </pre>
-
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Results and Performance</h2>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Training Metrics</h3>
-            <p className="mb-6">During training, the agent tracks:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Episode reward</strong>: Total reward accumulated in the episode
-                </li>
-                <li className="mb-2">
-                    <strong>Steps</strong>: Number of actions taken before death
-                </li>
-                <li className="mb-2">
-                    <strong>Max length</strong>: Maximum snake length achieved
-                </li>
-                <li className="mb-2">
-                    <strong>Policy loss</strong>: The loss value from the policy gradient update
-                </li>
-            </ul>
-            <p className="mb-6">The agent typically starts with:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">Low episode rewards (negative, due to death penalties)</li>
-                <li className="mb-2">Short survival times</li>
-                <li className="mb-2">Small maximum lengths</li>
-            </ul>
-            <p className="mb-6">As training progresses, you should see:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">Increasing episode rewards</li>
-                <li className="mb-2">Longer survival times</li>
-                <li className="mb-2">Larger maximum lengths</li>
-                <li className="mb-2">
-                    Decreasing policy loss (indicating more confident action selection)
-                </li>
-            </ul>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Expected Learning Curve</h3>
-            <p className="mb-6">
-                REINFORCE is known for high variance, so learning can be slow and noisy. However,
-                with proper reward shaping and normalization, the agent should learn to:
-            </p>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Avoid enemies</strong>: Initially learns to steer away from nearby
-                    snakes
-                </li>
-                <li className="mb-2">
-                    <strong>Seek food</strong>: Learns to navigate toward food pellets
-                </li>
-                <li className="mb-2">
-                    <strong>Balance exploration/exploitation</strong>: Learns when to chase prey vs.
-                    avoid danger
-                </li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Comparison with Rule-Based Policy</h3>
-            <p className="mb-6">
-                The rule-based policy (
-                <code className="bg-gray-100 px-2 py-1 rounded">slither.py</code>) uses explicit
-                logic:
+                <strong>Key findings:</strong>
             </p>
             <ul className="list-disc pl-8 mb-6">
                 <li className="mb-2">
-                    If enemy &lt; 300 units → <strong>FLEE</strong>
+                    The <strong>A2C Final Model outperforms all others</strong> with mean length of
+                    129.6 and max length of 274
                 </li>
                 <li className="mb-2">
-                    If fleeing and enemy &lt; 500 units → <strong>KEEP FLEEING</strong>
-                </li>
-                <li className="mb-2">
-                    Otherwise → <strong>SEEK FOOD</strong>
+                    The <strong>best-by-length model performs worse than the final model</strong>,
+                    indicating that saving based on a single good episode doesn't always yield the
+                    best generalization
                 </li>
             </ul>
-            <p className="mb-6">
-                This provides a strong baseline, but the RL agent has the potential to learn more
-                sophisticated strategies, such as:
-            </p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">Predicting enemy movement patterns</li>
-                <li className="mb-2">Optimizing paths to food while avoiding danger</li>
-                <li className="mb-2">Learning when to boost for strategic advantage</li>
-            </ul>
-
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Challenges and Limitations</h2>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">High Variance</h3>
-            <p className="mb-6">REINFORCE suffers from high variance because:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">It uses full episode returns, which can vary significantly</li>
-                <li className="mb-2">
-                    A single lucky/unlucky episode can heavily influence the gradient
-                </li>
-            </ul>
-            <p className="mb-6">
-                <strong>Mitigations used:</strong>
-            </p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">Baseline normalization (subtracting mean return)</li>
-                <li className="mb-2">
-                    Discount factor (γ = 0.99) to reduce variance from distant rewards
-                </li>
-            </ul>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Sample Efficiency</h3>
-            <p className="mb-6">REINFORCE requires many episodes to learn because:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">It only updates after each complete episode</li>
-                <li className="mb-2">It doesn't reuse past experience (no replay buffer)</li>
-            </ul>
-            <p className="mb-6">
-                <strong>Potential improvements:</strong>
-            </p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    Use PPO (Proximal Policy Optimization) for better sample efficiency
-                </li>
-                <li className="mb-2">Add a value function baseline (Actor-Critic)</li>
-                <li className="mb-2">Implement experience replay</li>
-            </ul>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Real-World Environment</h3>
-            <p className="mb-6">Training on the actual Slither.io website presents challenges:</p>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">Network latency affects action timing</li>
-                <li className="mb-2">Other players' behavior is unpredictable</li>
-                <li className="mb-2">Game state extraction can be noisy</li>
-                <li className="mb-2">Episodes can be very short (quick deaths)</li>
-            </ul>
-
-            <hr className="my-8 border-gray-300" />
-
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Future Improvements</h2>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Algorithm Enhancements</h3>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>PPO (Proximal Policy Optimization)</strong>: More sample-efficient than
-                    REINFORCE
-                </li>
-                <li className="mb-2">
-                    <strong>Actor-Critic</strong>: Adds a value function baseline to reduce variance
-                </li>
-                <li className="mb-2">
-                    <strong>DQN</strong>: Value-based approach with experience replay
-                </li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Feature Engineering</h3>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Velocity vectors</strong>: Include snake and enemy velocities for better
-                    prediction
-                </li>
-                <li className="mb-2">
-                    <strong>Historical context</strong>: Add LSTM to remember recent states
-                </li>
-                <li className="mb-2">
-                    <strong>Spatial features</strong>: Use convolutional layers if we switch to
-                    visual input
-                </li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold mt-8 mb-4">Training Improvements</h3>
-            <ol className="list-decimal pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Curriculum learning</strong>: Start with easier scenarios (fewer
-                    enemies)
-                </li>
-                <li className="mb-2">
-                    <strong>Self-play</strong>: Train against copies of itself
-                </li>
-                <li className="mb-2">
-                    <strong>Transfer learning</strong>: Pre-train on rule-based policy
-                    demonstrations
-                </li>
-            </ol>
-
-            <hr className="my-8 border-gray-300" />
 
             <h2 className="text-3xl font-semibold mt-10 mb-6">Conclusion</h2>
             <p className="mb-6">
-                This project demonstrates how reinforcement learning can be applied to real-world
-                browser games. By extracting game state via JavaScript injection and using
-                REINFORCE, we built an agent that learns to play Slither.io through trial and error.
+                This project was a good re-introduction to how reinforcement learning can be applied
+                to games, especially games that are real-time and played in the browser. By
+                extracting game state via JavaScript injection and using policy gradient methods
+                (A2C), I built an agent that learns to play Slither.io relatively quickly. While
+                it's not achieving true parity with human players (if you open this game now and
+                just go for food you will probably beat it) it's fun to watch it learn through it's
+                games, and especially cool to see as a standalone application, running on a
+                standalone device like a little pet. While I'm not sure how much more I'll put into
+                improving this agent specifically, the project itself has opened up a lot of ideas
+                for how easy / fun it is to build and train agents for games. I've already started
+                thinking about doing the same sorts of things here for{' '}
+                <a href="https://2048.io" className="text-blue-600 hover:underline">
+                    2048
+                </a>
+                .
             </p>
             <p className="mb-6">
-                <strong>Key takeaways:</strong>
+                More information on this project and how to run it yourself is available on the{' '}
+                <a
+                    href="https://github.com/nkasmanoff/slither-bot"
+                    className="text-blue-600 hover:underline"
+                >
+                    GitHub repository
+                </a>
+                .
             </p>
+            <p className="mb-6">
+                Thanks for reading! Stick around a bit longer for some other thoughts I had on this
+                work
+            </p>
+
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Key Takeaways</h2>
             <ul className="list-disc pl-8 mb-6">
                 <li className="mb-2">
-                    <strong>State extraction</strong> is crucial: Working with internal game state
-                    is much more efficient than computer vision
+                    AI coding tools make it especially easy to build reinforcement learning
+                    environments, especially when they are coming from browser games.
                 </li>
                 <li className="mb-2">
-                    <strong>Reward design matters</strong>: The reward function shapes what the
-                    agent learns
+                    AI coding tools can also make the algorithmic implementations themselves, but if
+                    you automate too much of the project you are going to walk away with a lot less
+                    knowledge than if you had done it yourself.
                 </li>
                 <li className="mb-2">
-                    <strong>REINFORCE is simple but effective</strong>: Despite its limitations,
-                    it's a great starting point for policy gradient methods
-                </li>
-                <li className="mb-2">
-                    <strong>Real-world RL is challenging</strong>: High variance, sample
-                    inefficiency, and noisy environments make training difficult
+                    Real-time RL can work on Slither.io, and can also be fast enough to run on a
+                    Raspberry Pi.
                 </li>
             </ul>
-            <p className="mb-6">
-                The code is available on GitHub, and you can train your own agent by running{' '}
-                <code className="bg-gray-100 px-2 py-1 rounded">python slither_rl.py</code>. Happy
-                learning!
-            </p>
 
             <hr className="my-8 border-gray-300" />
 
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Code References</h2>
-            <ul className="list-disc pl-8 mb-6">
-                <li className="mb-2">
-                    <strong>Environment</strong>:{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">slither.py</code> -{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">SlitherController</code> class
-                </li>
-                <li className="mb-2">
-                    <strong>RL Implementation</strong>:{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">slither_rl.py</code> -{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">REINFORCEAgent</code> and{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">SlitherEnv</code> classes
-                </li>
-                <li className="mb-2">
-                    <strong>Training</strong>:{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">slither_rl.py</code> -{' '}
-                    <code className="bg-gray-100 px-2 py-1 rounded">train_agent()</code> function
-                </li>
-            </ul>
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Appendix</h2>
 
-            <h2 className="text-3xl font-semibold mt-10 mb-6">Technical Details</h2>
+            <h3 className="text-2xl font-semibold mt-8 mb-4">Related Work</h3>
+            <p className="mb-6">
+                I would be remiss if I did not include some awesome related work on the same idea.
+                Most notably is{' '}
+                <a
+                    href="https://cs229.stanford.edu/proj2019aut/data/assignment_308832_raw/26588099.pdf"
+                    className="text-blue-600 hover:underline"
+                >
+                    this project
+                </a>
+                . The key difference here is that the project uses Deep Q Learning, an off policy
+                technique, along with (condensed) image inputs to represent the game state. Their
+                median final length ended being around 54, much less than the 129.6 I achieved here.
+                Having a coding assistant and almost 6 years of more development in the AI space
+                definitely helps. I also reviewed{' '}
+                <a
+                    href="https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=1262&context=cpesp"
+                    className="text-blue-600 hover:underline"
+                >
+                    this paper
+                </a>{' '}
+                again from the 2010s, and using computer vision.
+            </p>
+            <p className="mb-6">
+                Notably I did not see much work that used the game state as is provided on the
+                browser, or in settings that were truly online. This{' '}
+                <a
+                    href="https://github.com/BabakAkbari/Slither.io-AI"
+                    className="text-blue-600 hover:underline"
+                >
+                    code
+                </a>{' '}
+                looked interesting, but I didn't investigate much since it did not use the online
+                game.
+            </p>
+            <p className="mb-6">If I missed something please let me know.</p>
+
+            <h3 className="text-2xl font-semibold mt-8 mb-4">Using AI to automate this project</h3>
+            <p className="mb-6">
+                I've been using Cursor for over a year, and tab complete models for longer than
+                that. The biggest difference I felt while doing this project especially was how easy
+                it was to get the AI to write code for me. This is extremely helpful for things I
+                don't personally want to spend time, but can validate quickly. This included stuff
+                like extracting the game state and other details from the browser. On the flip side,
+                the agent also wrote stuff like the training loop, helped me brainstorm
+                optimizations to the reward function and observation space, and wrote out all the RL
+                algorithms. That part felt less scarier to me, because part of why I did a project
+                like this to begin with was to re-familiarize myself with RL algorithms, and use my
+                own critical thinking to improve anything associated with the observation space and
+                reward functions. The fact that you can now just say "make this better" is pretty
+                impressive to the way it can help for simpler settings like this, but I'm not
+                entirely convinced it would work once the scenarios complex, or if it knows how to
+                catch it's own mistakes when building models. So while it was great the boilerplate
+                and tedious code associated with making a reinforcement learning environment is much
+                easier to write, I'm a bit skeptical of the benefits when it can also take away my
+                knowing the fundamentals of algorithms, and think critically about other design
+                choices.
+            </p>
+
+            <h3 className="text-2xl font-semibold mt-8 mb-4">Other ideas tried</h3>
+            <p className="mb-6">
+                As a quick rebuttal to the point above, thankfully I did have the foreknowledge of
+                training RL agents where I could contemplate other setups, and used that to test
+                MANY ideas in this project. This included:
+            </p>
             <ul className="list-disc pl-8 mb-6">
+                <li className="mb-2">Trying a continuous action space instead of a discrete one</li>
                 <li className="mb-2">
-                    <strong>Framework</strong>: PyTorch for neural networks, Gymnasium for
-                    environment interface
+                    Trying many variations of the reward function where each step is penalized to
+                    encourage the agent to find food quicker
                 </li>
                 <li className="mb-2">
-                    <strong>Browser Automation</strong>: Selenium WebDriver
+                    A quick attempt at PPO to see if it would be a better fit than A2C
                 </li>
                 <li className="mb-2">
-                    <strong>State Space</strong>: 11-dimensional continuous vector
+                    Many different network architectures, mostly varying the MLP hidden units and
+                    number of layers
                 </li>
                 <li className="mb-2">
-                    <strong>Action Space</strong>: 8 discrete directions
-                </li>
-                <li className="mb-2">
-                    <strong>Network Architecture</strong>: 3-layer MLP (128 hidden units)
-                </li>
-                <li className="mb-2">
-                    <strong>Learning Rate</strong>: 0.001 (Adam optimizer)
-                </li>
-                <li className="mb-2">
-                    <strong>Discount Factor</strong>: 0.99
-                </li>
-                <li className="mb-2">
-                    <strong>Training Episodes</strong>: 50 (configurable)
+                    Playing the game myself, and training the model via behavioral cloning as a
+                    pretraining technique
                 </li>
             </ul>
+            <p className="mb-6">
+                In the end, I stuck with A2C since it was simple enough to understand, worked above
+                baseline, and not too computationally intensive once done one my Raspberry Pi.
+            </p>
         </article>
     );
 };

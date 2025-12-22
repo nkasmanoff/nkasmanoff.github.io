@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import FirstPost from './posts/first-post';
+import SecondPost from './posts/second-post';
 
 const ScrollToHash = () => {
     const location = useLocation();
@@ -59,6 +60,7 @@ function App() {
                             }
                         />
                         <Route path="/blog/notebook-copilot" element={<FirstPost />} />
+                        <Route path="/blog/tamagotchi-rl-slitherio" element={<SecondPost />} />
                     </Routes>
                 </main>
                 <Footer />
