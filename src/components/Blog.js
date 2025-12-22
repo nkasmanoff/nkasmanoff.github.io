@@ -10,6 +10,12 @@ const Blog = () => {
             excerpt:
                 "I've been using Cursor's Tab model, but it doesn't work as well as I'd like for how I start my data science flows. Here's what I did to make my life easier.",
         },
+        {
+            id: 'tamagotchi-rl-slitherio',
+            title: 'My Tamagotchi Is a Reinforcement Learning Agent Playing Slither.io',
+            date: 'December 17, 2025',
+            excerpt: 'Training an RL agent to play Slither.io.',
+        },
     ];
 
     return (
