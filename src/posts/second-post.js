@@ -21,7 +21,7 @@ const SecondPost = () => {
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
-                <p className="font-semibold">⚠️ Vibe research alert ⚠️</p>
+                <p className="font-semibold">⚠️ Vibe code disclaimer ⚠️</p>
                 <p className="mt-2">
                     Most of this project built with Cursor/Claude's help. I went back to review most
                     things after getting the code running, but surprisingly little of this was made
