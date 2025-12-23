@@ -353,6 +353,12 @@ document.dispatchEvent(mousemove_event)`}</code>
                 distribution over 12 discrete actions (directions at 30° intervals).
             </p>
             <p className="mb-6">
+                The decision to use discrete actions was motivated by the fact that if a continuous
+                action space was used for all 360°, the translation function would need to be more
+                complex to handle the fact that angles are circular (i.e. 0° is just as close to
+                359° as it is to 1°).
+            </p>
+            <p className="mb-6">
                 As part of the same mind-numbing observation of agents on earlier versions of this
                 project, shaping the reward function was a trial and error process. This is the
                 final reward function that was used, calculated on each step:
@@ -384,7 +390,9 @@ if done:
                 long-term goals (survival). My original vision of this reward was to only reward the
                 bot for eating food, and even penalizing for every time-step it was alive for. I
                 wanted to teach the agent to grow as quickly as possible, but this lack of signal
-                made training difficult.
+                made training difficult. The small bonus for length achieved at the end of the
+                episode helps balance the fact that the length increase reward may prefer going
+                after big clusters of food over survival.
             </p>
 
             <h2 className="text-3xl font-semibold mt-10 mb-6">Results</h2>
