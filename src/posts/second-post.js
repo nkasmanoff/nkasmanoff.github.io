@@ -21,11 +21,13 @@ const SecondPost = () => {
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
-                <p className="font-semibold">⚠️ Vibe code alert ⚠️</p>
+                <p className="font-semibold">⚠️ Vibe research alert ⚠️</p>
                 <p className="mt-2">
                     Most of this project built with Cursor/Claude's help. I went back to review most
                     things after getting the code running, but surprisingly little of this was made
-                    by me alone. More on this at the end.
+                    by me alone. More on this at the end. I also used Cursor/Claude to help me write
+                    this post, but mainly for any grammar corrections and embedding graphics / style
+                    into the post.
                 </p>
             </div>
 
@@ -307,8 +309,13 @@ document.dispatchEvent(mousemove_event)`}</code>
                 </li>
             </ol>
             <p className="mb-6">
-                But due to the natural limitations of the policy gradient, I also implemented{' '}
-                <strong>A2C (Advantage Actor-Critic)</strong> to address these issues by:
+                After watching what had to be dozens of episodes and reviewing the implementation
+                for any bugs, I realized that the return estimation was likely not sufficient for
+                capturing the long-term rewards and penalties the snake would face, like choosing to
+                pursue a larger cluster of food further away, or getting away from snakes that are
+                close but not yet attacking. So I decided to implement{' '}
+                <strong>A2C (Advantage Actor-Critic)</strong> to (hopefully) address these issues
+                by:
             </p>
             <ol className="list-decimal pl-8 mb-6">
                 <li className="mb-2">
@@ -323,15 +330,14 @@ document.dispatchEvent(mousemove_event)`}</code>
                 </li>
             </ol>
             <p className="mb-6">
-                While I haven't done a direct comparison, I think N-step rollouts and GAE are a
-                crucial improvement for using A2C. Games can last tens to hundreds of steps, so
-                learning at more frequent intervals offers more signal into when the bot is making
-                poor choices to learn on.
+                I think N-step rollouts and GAE are a crucial improvement for using A2C. Games can
+                last tens to hundreds of steps, so learning at more frequent intervals offers more
+                signal into when the bot is making poor choices to learn on.
             </p>
             <p className="mb-6">
                 Since 2 networks are being trained, and updates are made every 64 steps, using an
                 efficient architecture was important. The final network architecture was a 3-layer
-                MLP with 192 hidden units:
+                MLP with 192 (chosen arbitrarily) hidden units:
             </p>
             <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6">
                 <code>{`class ActorCriticNetwork(nn.Module):
@@ -358,6 +364,46 @@ document.dispatchEvent(mousemove_event)`}</code>
                 complex to handle the fact that angles are circular (i.e. 0° is just as close to
                 359° as it is to 1°).
             </p>
+            <p className="mb-6">
+                When I tasked Cursor/Claude to implement A2C, it's natural follow-up was to ask me
+                if I wanted to also try <strong>PPO (Proximal Policy Optimization)</strong>. Who am
+                I to deny such a kind offer?
+            </p>
+            <p className="mb-6">
+                PPO builds on the actor-critic framework but addresses a key challenge: how do you
+                update your policy without making changes so large that performance collapses?
+                Think: the snake accidentally spawns near danger and prey at the same time and
+                accidentally eats a ton of prey to grow to a massive size quickly. While this is
+                great for a single game, it may collapse the policy of A2C and accidentally teach
+                the snake to go for prey even if danger is too close. The core innovation of PPO is:
+            </p>
+            <ol className="list-decimal pl-8 mb-6">
+                <li className="mb-2">Collect a batch of experiences using the current policy</li>
+                <li className="mb-2">
+                    Reuse this data for multiple training epochs (better sample efficiency)
+                </li>
+                <li className="mb-2">
+                    Clip the policy update to prevent too-large changes from the old policy
+                </li>
+                <li className="mb-2">
+                    The clipping ensures training is more stable and prevents catastrophic updates
+                </li>
+            </ol>
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 rounded-r">
+                <p className="font-semibold text-blue-900 mb-2">⚡ Real-Time Gameplay Constraint</p>
+                <p className="text-blue-800">
+                    While PPO is often considered the gold standard for many RL tasks due to its
+                    stability and sample efficiency, its multiple training steps per batch create a
+                    critical bottleneck for real-time gameplay. During PPO's 10 gradient update
+                    steps, the game continues running on the server. This means the snake is moving,
+                    dangers are appearing, and food is spawning while it's still computing and not
+                    acting. A2C's single update per batch is fast enough to keep up with the game's
+                    pace, when deployed on a Raspberry Pi or similar devices. This real-time
+                    responsiveness becomes even more critical. Since I was using my Macbook Pro to
+                    train, I felt less pressured by this, so I ran with all three methods and
+                    compared their results.
+                </p>
+            </div>
             <p className="mb-6">
                 As part of the same mind-numbing observation of agents on earlier versions of this
                 project, shaping the reward function was a trial and error process. This is the
@@ -408,21 +454,115 @@ if done:
                     recorded ends up being worse / laggy, since the program has more work to do
                     aside from just playing the game.
                 </p>
+                <p className="text-sm text-gray-600 text-center mt-2 italic">
+                    At the same time, this gif also gives a great visual for how the agent is
+                    actually playing the game versus a human player. While when we (a person) play,
+                    all actions and observation changes are essentially instantaneous. These agents
+                    are operating at snapshots which while still rapid, are not the same as the
+                    frame rate of the game, so there is an inevitable lag the agent must also find a
+                    way to work with.
+                </p>
             </div>
             <p className="mb-6">
                 After much iteration (see appendix for a summary of all the various approaches
-                tried), I trained the agent for 50 episodes of A2C (roughly 2 hours on a 2021
-                Macbook Pro, M1 chip 8GB RAM). Here are the results:
+                tried), I trained the agent for 50 episodes of A2C, REINFORCE, and PPO (each taking
+                roughly 1 hour on a 2021 Macbook Pro, M1 chip 8GB RAM). I did not find much
+                improvement when these algorithms were trained over 100 or more episodes, so I stuck
+                with 50 for this plot. Here are the results:
             </p>
 
             <h3 className="text-2xl font-semibold mt-8 mb-4">Training Progression</h3>
             <div className="mb-8">
                 <img
-                    src="/images/training_metrics_a2c_20251222_112938.png"
-                    alt="A2C Training Metrics"
+                    src="/images/algorithm_comparison_grid.png"
+                    alt="Algorithm Comparison Grid"
                     className="mx-auto rounded-lg shadow-lg"
                 />
             </div>
+
+            <h4 className="text-xl font-semibold mt-6 mb-4">Training Performance Summary</h4>
+            <div className="overflow-x-auto mb-6">
+                <table className="min-w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Algorithm
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Episodes</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Best Reward
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Best Length
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Avg Reward
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Avg Length
+                            </th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Avg Loss</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">A2C</td>
+                            <td className="border border-gray-300 px-4 py-2">50</td>
+                            <td className="border border-gray-300 px-4 py-2">340.7</td>
+                            <td className="border border-gray-300 px-4 py-2">365</td>
+                            <td className="border border-gray-300 px-4 py-2">72.1</td>
+                            <td className="border border-gray-300 px-4 py-2">93.8</td>
+                            <td className="border border-gray-300 px-4 py-2">22.26</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">REINFORCE</td>
+                            <td className="border border-gray-300 px-4 py-2">50</td>
+                            <td className="border border-gray-300 px-4 py-2">287.5</td>
+                            <td className="border border-gray-300 px-4 py-2">302</td>
+                            <td className="border border-gray-300 px-4 py-2">73.0</td>
+                            <td className="border border-gray-300 px-4 py-2">94.7</td>
+                            <td className="border border-gray-300 px-4 py-2">0.31</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">PPO</td>
+                            <td className="border border-gray-300 px-4 py-2">50</td>
+                            <td className="border border-gray-300 px-4 py-2">347.4</td>
+                            <td className="border border-gray-300 px-4 py-2">382</td>
+                            <td className="border border-gray-300 px-4 py-2">60.3</td>
+                            <td className="border border-gray-300 px-4 py-2">82.7</td>
+                            <td className="border border-gray-300 px-4 py-2">22.52</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 className="text-xl font-semibold mt-6 mb-4">Key Takeaways</h4>
+            <ul className="list-disc pl-8 mb-6">
+                <li className="mb-2">
+                    <strong>PPO achieved the highest peak performance</strong> (382 max length,
+                    347.4 best reward) but with significantly more variance. The training curves
+                    show dramatic spikes in episodes 30-50, suggesting it found a good policy but
+                    struggled with consistency.
+                </li>
+                <li className="mb-2">
+                    <strong>A2C offered the best balance</strong> between peak performance (365 max
+                    length) and consistency (72.1 avg reward vs PPO's 60.3). The steadier learning
+                    curve and stable loss convergence made it more reliable across episodes.
+                </li>
+                <li className="mb-2">
+                    <strong>REINFORCE showed high variance and lower peaks</strong> (302 max
+                    length), as expected for vanilla policy gradients. While its average performance
+                    was comparable to A2C (73.0 avg reward), it never reached the same peak lengths,
+                    confirming the benefits of using a value function critic.
+                </li>
+                <li className="mb-2">
+                    <strong>Training stability matters for deployment:</strong> Given the real-time
+                    constraints and Raspberry Pi deployment goals, A2C's consistent performance and
+                    single-update-per-batch efficiency made it the most practical choice, even if
+                    PPO occasionally achieved higher peaks.
+                </li>
+            </ul>
+
             <p className="mb-6">
                 In addition to the standard variance you'd expect in plots like these, slither.io is
                 especially noisy due to random spawn locations and other players' behavior. But the
@@ -431,75 +571,161 @@ if done:
             </p>
 
             <h3 className="text-2xl font-semibold mt-8 mb-4">Agent Comparison</h3>
-            <p className="mb-6">I compared multiple approaches over 10 inference games each:</p>
+            <p className="mb-6">
+                I compared all trained models and baselines over 10 inference games each. Results
+                are shown using both mean (with standard deviation) and median (with quartiles) to
+                account for the high variance inherent in Slither.io gameplay.
+            </p>
+
+            <h4 className="text-xl font-semibold mt-6 mb-3">Mean Performance (± Std Dev)</h4>
+            <div className="overflow-x-auto mb-6">
+                <table className="min-w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-4 py-2 text-left">Agent</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Length</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Steps</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Reward</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">
+                                Max Length
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">Rules-Based</td>
+                            <td className="border border-gray-300 px-4 py-2">97.2 ± 67.4</td>
+                            <td className="border border-gray-300 px-4 py-2">204.0 ± 112.1</td>
+                            <td className="border border-gray-300 px-4 py-2">-</td>
+                            <td className="border border-gray-300 px-4 py-2">209</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">Random NN</td>
+                            <td className="border border-gray-300 px-4 py-2">91.4 ± 37.7</td>
+                            <td className="border border-gray-300 px-4 py-2">336.0 ± 167.1</td>
+                            <td className="border border-gray-300 px-4 py-2">67.0 ± 40.1</td>
+                            <td className="border border-gray-300 px-4 py-2">144</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">REINFORCE</td>
+                            <td className="border border-gray-300 px-4 py-2">86.0 ± 49.3</td>
+                            <td className="border border-gray-300 px-4 py-2">292.1 ± 295.2</td>
+                            <td className="border border-gray-300 px-4 py-2">64.4 ± 52.1</td>
+                            <td className="border border-gray-300 px-4 py-2">167</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">PPO</td>
+                            <td className="border border-gray-300 px-4 py-2">113.7 ± 83.4</td>
+                            <td className="border border-gray-300 px-4 py-2">397.9 ± 262.0</td>
+                            <td className="border border-gray-300 px-4 py-2">65.3 ± 74.1</td>
+                            <td className="border border-gray-300 px-4 py-2">245</td>
+                        </tr>
+                        <tr className="font-bold bg-green-50">
+                            <td className="border border-gray-300 px-4 py-2">A2C</td>
+                            <td className="border border-gray-300 px-4 py-2">129.6 ± 80.5</td>
+                            <td className="border border-gray-300 px-4 py-2">389.8 ± 271.5</td>
+                            <td className="border border-gray-300 px-4 py-2">101.7 ± 75.9</td>
+                            <td className="border border-gray-300 px-4 py-2">274</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 className="text-xl font-semibold mt-6 mb-3">Median Performance (Q1-Q3 Range)</h4>
             <div className="overflow-x-auto mb-6">
                 <table className="min-w-full border-collapse border border-gray-300">
                     <thead>
                         <tr className="bg-gray-100">
                             <th className="border border-gray-300 px-4 py-2 text-left">Agent</th>
                             <th className="border border-gray-300 px-4 py-2 text-left">
-                                Mean Length
+                                Length (Median)
                             </th>
                             <th className="border border-gray-300 px-4 py-2 text-left">
-                                Max Length
+                                Steps (Median)
                             </th>
                             <th className="border border-gray-300 px-4 py-2 text-left">
-                                Mean Steps
-                            </th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">
-                                Mean Reward
+                                Reward (Median)
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td className="border border-gray-300 px-4 py-2">Rules-Based Policy</td>
-                            <td className="border border-gray-300 px-4 py-2">46.8</td>
-                            <td className="border border-gray-300 px-4 py-2">116</td>
-                            <td className="border border-gray-300 px-4 py-2">107.9</td>
-                            <td className="border border-gray-300 px-4 py-2">-35.5</td>
+                            <td className="border border-gray-300 px-4 py-2">Rules-Based</td>
+                            <td className="border border-gray-300 px-4 py-2">85.5 (34.5-145.5)</td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                182.5 (122.0-304.0)
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">-</td>
                         </tr>
                         <tr>
-                            <td className="border border-gray-300 px-4 py-2">A2C Random Weights</td>
-                            <td className="border border-gray-300 px-4 py-2">91.4</td>
-                            <td className="border border-gray-300 px-4 py-2">144</td>
-                            <td className="border border-gray-300 px-4 py-2">336.0</td>
-                            <td className="border border-gray-300 px-4 py-2">67.04</td>
-                        </tr>
-                        <tr className="font-bold">
-                            <td className="border border-gray-300 px-4 py-2">A2C Final Model</td>
-                            <td className="border border-gray-300 px-4 py-2">129.6</td>
-                            <td className="border border-gray-300 px-4 py-2">274</td>
-                            <td className="border border-gray-300 px-4 py-2">389.8</td>
-                            <td className="border border-gray-300 px-4 py-2">101.65</td>
+                            <td className="border border-gray-300 px-4 py-2">Random NN</td>
+                            <td className="border border-gray-300 px-4 py-2">96.5 (52.0-116.5)</td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                356.5 (195.3-402.3)
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">72.4 (24.7-99.4)</td>
                         </tr>
                         <tr>
-                            <td className="border border-gray-300 px-4 py-2">A2C Best Model</td>
-                            <td className="border border-gray-300 px-4 py-2">57.3</td>
-                            <td className="border border-gray-300 px-4 py-2">94</td>
-                            <td className="border border-gray-300 px-4 py-2">227.7</td>
-                            <td className="border border-gray-300 px-4 py-2">33.11</td>
+                            <td className="border border-gray-300 px-4 py-2">REINFORCE</td>
+                            <td className="border border-gray-300 px-4 py-2">71.5 (45.0-134.8)</td>
+                            <td className="border border-gray-300 px-4 py-2">165.5 (97.3-351.3)</td>
+                            <td className="border border-gray-300 px-4 py-2">41.3 (24.2-114.9)</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-gray-300 px-4 py-2">PPO</td>
+                            <td className="border border-gray-300 px-4 py-2">70.0 (44.5-203.8)</td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                318.0 (227.8-457.5)
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">24.6 (16.8-90.7)</td>
+                        </tr>
+                        <tr className="font-bold bg-green-50">
+                            <td className="border border-gray-300 px-4 py-2">A2C</td>
+                            <td className="border border-gray-300 px-4 py-2">141.0 (48.0-178.3)</td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                343.0 (144.8-663.3)
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">118.5 (24.0-139.6)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p className="mb-6">
-                Where this rules based policy is a relatively simple if-then logic which flees from
-                enemies, and goes for food when safe. It's not particularly impressive, but it's a
-                good baseline to compare against.
-            </p>
-            <p className="mb-6">
-                <strong>Key findings:</strong>
-            </p>
+
+            <h4 className="text-xl font-semibold mt-6 mb-3">Key Findings</h4>
             <ul className="list-disc pl-8 mb-6">
                 <li className="mb-2">
-                    The <strong>A2C Final Model outperforms all others</strong> with mean length of
-                    129.6 and max length of 274
+                    <strong>A2C dominates across both mean and median metrics</strong>, achieving
+                    the highest mean length (129.6), median length (141.0), and rewards. This
+                    confirms the training results: A2C learned the most consistent and effective
+                    policy.
                 </li>
                 <li className="mb-2">
-                    The <strong>best-by-length model performs worse than the final model</strong>,
-                    indicating that saving based on a single good episode doesn't always yield the
-                    best generalization
+                    <strong>PPO shows extreme variance</strong> - while it has a decent mean length
+                    (113.7) and reached 245 max length, its median length is only 70.0. The wide
+                    Q1-Q3 range (44.5-203.8) and huge standard deviations indicate inconsistent
+                    performance, likely due to the real-time training bottleneck preventing stable
+                    policy updates.
+                </li>
+                <li className="mb-2">
+                    <strong>REINFORCE underperforms all RL methods</strong>, with the lowest median
+                    length (71.5) and failed to exceed even the randomly initialized network
+                    baseline in many metrics. This confirms that variance reduction via a critic is
+                    essential for this task.
+                </li>
+                <li className="mb-2">
+                    <strong>Random NN surprisingly competitive</strong> - The untrained network
+                    achieves 91.4 mean length, outperforming REINFORCE and nearly matching PPO's
+                    median. This suggests the observation space and action discretization provide
+                    decent inductive bias, but training with A2C significantly improves on this
+                    baseline.
+                </li>
+                <li className="mb-2">
+                    <strong>Rules-based policy has wild variance</strong> - While I originally liked
+                    the implementation of this policy, once watching I quickly found scenarios where
+                    if the snake approached the food from a certain angle, it ended up in an
+                    infinite loop of circling it unless an enemy attacked. I do want to emphasize I
+                    could have probably programmed a way around this, but the intention for this
+                    project was to keep the rules simple.
                 </li>
             </ul>
 
@@ -558,41 +784,50 @@ if done:
             <h2 className="text-3xl font-semibold mt-10 mb-6">Appendix</h2>
 
             <h3 className="text-2xl font-semibold mt-8 mb-4">Related Work</h3>
+            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6">
+                <p className="mt-2">
+                    The comparisons below are not exactly fair. Prior work used different
+                    algorithms, different observation spaces (vision vs. game state), different
+                    hardware, and didn't have access to modern AI coding assistants to accelerate
+                    ideas.
+                </p>
+            </div>
             <p className="mb-6">
                 I would be remiss if I did not include some awesome related work on the same idea.
-                Most notably is{' '}
+                Most notably,{' '}
                 <a
                     href="https://cs229.stanford.edu/proj2019aut/data/assignment_308832_raw/26588099.pdf"
                     className="text-blue-600 hover:underline"
                 >
-                    this project
+                    this Stanford CS229 project from 2019
                 </a>
-                . The key difference here is that the project uses Deep Q Learning, an off policy
-                technique, along with (condensed) image inputs to represent the game state. Their
-                median final length ended being around 54, much less than the 129.6 I achieved here.
-                Having a coding assistant and almost 6 years of more development in the AI space
-                definitely helps. I also reviewed{' '}
+                . They used Deep Q Learning (an off-policy technique) with condensed image inputs to
+                represent the game state. Their median final length was around 54, compared to my
+                129.6.
+            </p>
+            <p className="mb-6">
+                I also skimmed{' '}
                 <a
                     href="https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=1262&context=cpesp"
                     className="text-blue-600 hover:underline"
                 >
-                    this paper
+                    this Cal Poly paper
                 </a>{' '}
-                again from the 2010s, and using computer vision.
+                from the 2010s, which also used computer vision. Same caveats apply.
             </p>
             <p className="mb-6">
-                Notably I did not see much work that used the game state as is provided on the
-                browser, or in settings that were truly online. This{' '}
+                Notably, I did not see much work that used the game state as directly provided by
+                the browser, or in settings that were truly online with real human players. This{' '}
                 <a
                     href="https://github.com/BabakAkbari/Slither.io-AI"
                     className="text-blue-600 hover:underline"
                 >
-                    code
+                    GitHub repo
                 </a>{' '}
-                looked interesting, but I didn't investigate much since it did not use the online
-                game.
+                looked interesting, but I didn't investigate much since it didn't use the live
+                online game.
             </p>
-            <p className="mb-6">If I missed something please let me know.</p>
+            <p className="mb-6">If I missed relevant prior work, please let me know.</p>
 
             <h3 className="text-2xl font-semibold mt-8 mb-4">Using AI to automate this project</h3>
             <p className="mb-6">
