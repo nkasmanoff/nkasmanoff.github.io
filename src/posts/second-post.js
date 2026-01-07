@@ -8,6 +8,29 @@ const SecondPost = () => {
             </h1>
             <p className="text-sm text-gray-500 mb-8">December 22, 2025</p>
 
+            {/* Demo Video */}
+            <div className="mb-8">
+                <div className="flex justify-center">
+                    <div
+                        className="rounded-lg overflow-hidden shadow-lg"
+                        style={{ maxWidth: '350px' }}
+                    >
+                        <iframe
+                            width="350"
+                            height="622"
+                            src="https://www.youtube.com/embed/iUlv-vPeGGk"
+                            title="Slither.io RL Agent Demo"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+                <p className="text-sm text-gray-600 text-center mt-2 italic">
+                    The RL agent in action.
+                </p>
+            </div>
+
             <div className="mb-8">
                 <img
                     src="/images/hostedversion.png"

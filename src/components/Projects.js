@@ -4,6 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 
 const projects = [
     {
+        title: 'ShillLM',
+        description:
+            'A proof of concept showing how activation steering can subliminally guide users towards products or brands. Demonstrates how AI responses could be influenced by advertisers.',
+        tech: ['Activation Steering', 'Gradio', 'PyTorch', 'Qwen'],
+        image: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
+        link: 'https://huggingface.co/spaces/nkasmanoff/shillm',
+    },
+    {
         title: 'Model-Zempic',
         description:
             'Hackathon winning project. Aligned and steered models through interventions to model weights based on diffing and and continual pre-training.',
