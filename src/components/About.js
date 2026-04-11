@@ -1,6 +1,19 @@
 import React from 'react';
 
+/** June 2021 start; years = ceil(elapsed months / 12). */
+function experienceYearsPlus() {
+    const start = new Date(2021, 5, 1); // June (month 0-indexed)
+    const now = new Date();
+    let months =
+        (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+    if (now.getDate() < start.getDate()) {
+        months -= 1;
+    }
+    return Math.max(1, Math.ceil(months / 12));
+}
+
 const About = () => {
+    const yearsExperience = experienceYearsPlus();
     return (
         <section id="about" className="py-32 bg-muted/30 font-mono">
             <div className="container mx-auto px-4">
@@ -12,22 +25,31 @@ const About = () => {
                     {/* Text Content */}
                     <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                         <p>
-                            I am a Machine Learning Engineer with 4+ years of experience building
-                            production AI systems across NLP, computer vision, and agentic
-                            applications.
+                            I am a Machine Learning Engineer with {yearsExperience} years of
+                            experience building production AI systems across NLP, computer vision,
+                            and agentic applications.
                         </p>
                         <p>
-                            Currently, I'm a Data Scientist at AE Studio in NYC, where I lead
-                            technical teams to deliver high-impact solutions—saving clients weeks of
-                            manual work and translating complex technical requirements into tangible
-                            business value.
+                            Currently, I'm a Senior Data Scientist at{' '}
+                            <a href="https://ae.studio" target="_blank" rel="noopener noreferrer">
+                                AE Studio
+                            </a>{' '}
+                            in NYC, where I am researching how AI alignment techniques can be
+                            applied to high-impact solutions to save clients weeks of manual work.
                         </p>
                         <p>
                             Previously, I served as an ML Team Lead at the Frontier Development Lab
                             (in partnership with ESA & NVIDIA) and a Full Stack Engineer in fintech.
                             My background is rooted in Physics and Astronomy (UMD), where I started
-                            my journey interning at NASA on the BurstCube spacecraft, followed by an
-                            M.S. in Data Science from NYU.
+                            my journey interning at NASA on the{' '}
+                            <a
+                                href="https://science.nasa.gov/mission/burstcube/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                BurstCube
+                            </a>{' '}
+                            spacecraft, followed by an M.S. in Data Science from NYU.
                         </p>
                         <p>
                             When I'm not coding, you'll find me running, geeking out on Star Trek,
