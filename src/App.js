@@ -11,6 +11,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import FirstPost from './posts/first-post';
 import SecondPost from './posts/second-post';
+import MoondreamVisualPrompting from './posts/moondream-visual-prompting';
 
 const ScrollToHash = () => {
     const location = useLocation();
@@ -61,6 +62,10 @@ function App() {
                         />
                         <Route path="/blog/notebook-copilot" element={<FirstPost />} />
                         <Route path="/blog/tamagotchi-rl-slitherio" element={<SecondPost />} />
+                        <Route
+                            path="/blog/moondream-visual-prompting"
+                            element={<MoondreamVisualPrompting />}
+                        />
                     </Routes>
                 </main>
                 <Footer />
