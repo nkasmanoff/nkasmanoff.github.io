@@ -322,7 +322,7 @@ const MoondreamVisualPrompting = () => {
                         className="w-full h-64 object-contain mb-2"
                     />
                     <figcaption className="text-sm text-gray-500 text-center">
-                        Target image with detections: all the Warriors players (and one Cav).
+                        Target image with detections: all the Warriors players (and two Cavs).
                     </figcaption>
                 </figure>
             </div>
