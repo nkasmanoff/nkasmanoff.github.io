@@ -1,0 +1,37 @@
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="moondream-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b7280" />
+    </marker>
+  </defs>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, monospace" font-size="13" fill="#1f2937">
+    <rect x="10" y="30" width="210" height="40" rx="4" fill="#ffffff" stroke="#9ca3af" />
+    <text x="115" y="55" text-anchor="middle">BOS, target image patches</text>
+
+    <rect x="230" y="30" width="110" height="40" rx="4" fill="#ffffff" stroke="#9ca3af" />
+    <text x="285" y="55" text-anchor="middle">detect prefix</text>
+
+    <rect x="350" y="30" width="60" height="40" rx="4" fill="#fef3c7" stroke="#d97706" stroke-dasharray="5 3" stroke-width="1.5" />
+    <text x="380" y="56" text-anchor="middle" font-weight="700">???</text>
+
+    <rect x="420" y="30" width="110" height="40" rx="4" fill="#ffffff" stroke="#9ca3af" />
+    <text x="475" y="55" text-anchor="middle">detect suffix</text>
+  </g>
+
+  <line x1="540" y1="50" x2="600" y2="50" stroke="#6b7280" stroke-width="1.5" fill="none" marker-end="url(#moondream-arrow)" />
+  <text x="610" y="55" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#1f2937">boxes</text>
+
+  <line x1="380" y1="110" x2="380" y2="78" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#moondream-arrow)" />
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#374151">
+    <text x="180" y="140">
+      <tspan font-weight="600" fill="#1f2937">text path:</tspan>
+      <tspan dx="8">tokens for ⟨something⟩ (text prompt)</tspan>
+    </text>
+    <text x="180" y="170">
+      <tspan font-weight="600" fill="#1f2937">image path:</tspan>
+      <tspan dx="6">embedding(s) from a query image</tspan>
+    </text>
+  </g>
+</svg>

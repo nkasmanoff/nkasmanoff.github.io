@@ -4,17 +4,24 @@ import { Link } from 'react-router-dom';
 const Blog = () => {
     const posts = [
         {
-            id: 'notebook-copilot',
-            title: 'Cursor’s Tab Model Was Failing Me in Jupyter Notebooks — So I Made My Own',
-            date: 'April 30, 2025',
+            id: 'moondream-visual-prompting',
+            title: 'Visually Prompting Moondream',
+            date: 'May 9, 2026',
             excerpt:
-                "I've been using Cursor's Tab model, but it doesn't work as well as I'd like for how I start my data science flows. Here's what I did to make my life easier.",
+                'Teaching a small open-source VLM to detect objects on an image using another image as a prompt.',
         },
         {
             id: 'tamagotchi-rl-slitherio',
             title: 'My Tamagotchi Is a Reinforcement Learning Agent Playing Slither.io',
             date: 'December 17, 2025',
             excerpt: 'Training an RL agent to play Slither.io.',
+        },
+        {
+            id: 'notebook-copilot',
+            title: 'Cursor’s Tab Model Was Failing Me in Jupyter Notebooks — So I Made My Own',
+            date: 'April 30, 2025',
+            excerpt:
+                "I've been using Cursor's Tab model, but it doesn't work as well as I'd like for how I start my data science flows. Here's what I did to make my life easier.",
         },
     ];
 
