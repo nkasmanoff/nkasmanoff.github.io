@@ -289,6 +289,57 @@ const MoondreamVisualPrompting = () => {
                 </a>
                 .
             </p>
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Out-of-distribution test</h2>
+            <p className="mb-6">
+                To reiterate, the fine-tune above was trained entirely on{' '}
+                <a
+                    href="https://www.lvisdataset.org/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 hover:underline"
+                >
+                    LVIS
+                </a>{' '}
+                , common everyday objects (forks, pandas, slides, mugs). So I wanted to see what
+                would happen if I gave it a query crop of a single basketball player see what it
+                would do:
+            </p>
+            <div className="flex flex-col md:flex-row gap-4 mb-2 items-start max-w-2xl mx-auto">
+                <figure className="flex-1">
+                    <img
+                        src="/images/moondream-warriors-query.png"
+                        alt="Query image: a tight crop of a Golden State Warriors player in a white #30 jersey."
+                        className="w-full h-64 object-contain mb-2"
+                    />
+                    <figcaption className="text-sm text-gray-500 text-center">
+                        Query image: Klay Thompson.
+                    </figcaption>
+                </figure>
+                <figure className="flex-1">
+                    <img
+                        src="/images/moondream-warriors-detections.png"
+                        alt="Target image: a wide shot of a Warriors home game with the model's detections drawn around every player on the court."
+                        className="w-full h-64 object-contain mb-2"
+                    />
+                    <figcaption className="text-sm text-gray-500 text-center">
+                        Target image with detections: all the Warriors players (and one Cav).
+                    </figcaption>
+                </figure>
+            </div>
+            <p className="mb-6">
+                This is a a pretty promising sign that the model can use query images as a way to
+                guide object detection. This result, and any others you would like to try, can be
+                tested on the{' '}
+                <a
+                    href="https://huggingface.co/spaces/nkasmanoff/moondream-visual-prompt"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 hover:underline"
+                >
+                    Hugging Face demo.
+                </a>
+            </p>
+
             <p className="mb-6">
                 Excited for any feedback, ideas for better pooling / training setups, or suggestions
                 for what else to build on top of Moondream next!
