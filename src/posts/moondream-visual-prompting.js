@@ -344,6 +344,101 @@ const MoondreamVisualPrompting = () => {
                 Excited for any feedback, ideas for better pooling / training setups, or suggestions
                 for what else to build on top of Moondream next!
             </p>
+
+            <h2 className="text-3xl font-semibold mt-10 mb-6">Related work</h2>
+            <p className="mb-6">
+                First, the obvious one: this whole experiment is built directly on top of{' '}
+                <a
+                    href="https://moondream.ai/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 hover:underline"
+                >
+                    Moondream
+                </a>
+                . Without its pre-trained{' '}
+                <code className="bg-gray-100 px-2 py-1 rounded">detect</code> capability and small
+                footprint, none of this would have been tractable on a weekend budget.
+            </p>
+            <p className="mb-6">
+                The broader idea of using an <em>image</em> as a detection prompt is not new. A
+                non-exhaustive list of prior work that does some flavor of this idea: or
+                segmentation:
+            </p>
+            <ul className="list-disc pl-8 mb-6">
+                <li className="mb-2">
+                    <a
+                        href="https://arxiv.org/abs/2311.13601"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline"
+                    >
+                        T-Rex
+                    </a>{' '}
+                    and{' '}
+                    <a
+                        href="https://arxiv.org/abs/2403.14610"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline"
+                    >
+                        T-Rex2
+                    </a>{' '}
+                    : interactive object detection driven by visual exemplars (boxes/points), with
+                    T-Rex2 unifying text and visual prompts in one model.
+                </li>
+                <li className="mb-2">
+                    <a
+                        href="https://arxiv.org/abs/2311.13125"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline"
+                    >
+                        DINOv
+                    </a>{' '}
+                    : visual in-context prompting for generic segmentation and detection.
+                </li>
+                <li className="mb-2">
+                    <a
+                        href="https://arxiv.org/abs/2205.06230"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline"
+                    >
+                        OWL-ViT
+                    </a>{' '}
+                    (and OWLv2) : open-vocabulary detection that also supports image-conditioned
+                    one-shot detection by swapping the text query embedding for an image embedding.
+                </li>
+                <li className="mb-2">
+                    <a
+                        href="https://arxiv.org/abs/2407.04621"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline"
+                    >
+                        CountGD
+                    </a>{' '}
+                    : extends GroundingDINO with visual exemplars for open-world counting.
+                </li>
+                <li className="mb-2">
+                    <a
+                        href="https://arxiv.org/abs/2304.02643"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline"
+                    >
+                        SAM
+                    </a>{' '}
+                    : not detection per se, but the canonical example of a model designed from day
+                    one around visual prompts (points, boxes, masks).
+                </li>
+            </ul>
+            <p className="mb-6">
+                So visual-prompted detection itself is well-trodden ground. What I haven't seen
+                written up and what felt worth posting about is doing this as a <em>transfer</em>{' '}
+                from a text-conditioned detector inside a general-purpose VLM.
+            </p>
         </article>
     );
 };
