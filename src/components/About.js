@@ -69,7 +69,7 @@ const About = () => {
 
                     {/* Widgets Column */}
                     <div className="flex flex-col items-center justify-center gap-8 h-full w-full">
-                        <div className="w-full max-w-[300px] space-y-8 flex flex-col items-center">
+                        <div className="w-full max-w-[420px] space-y-8 flex flex-col items-center">
                             {/* Trendshift Badge */}
                             <div className="hover:opacity-80 transition-opacity w-full flex justify-center">
                                 <a
@@ -80,24 +80,26 @@ const About = () => {
                                     <img
                                         src="https://trendshift.io/api/badge/repositories/10159"
                                         alt="nkasmanoff%2Fpi-card | Trendshift"
-                                        width="250"
-                                        height="55"
+                                        width="350"
+                                        height="77"
                                         className="rounded-md shadow-sm"
                                     />
                                 </a>
                             </div>
 
-                            {/* Strava Widget */}
-                            <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow w-full flex justify-center">
-                                <iframe
-                                    height="154"
-                                    width="300"
-                                    frameBorder="0"
-                                    allowTransparency="true"
-                                    src="https://www.strava.com/athletes/84024114/latest-rides/50bb16f4ea78240738ca023b14a9caba581f81f0"
-                                    title="Strava Activities"
-                                    className="bg-background"
-                                ></iframe>
+                            {/* Strava Follow Badge */}
+                            <div className="w-full flex justify-center">
+                                <a
+                                    href="https://strava.com/athletes/84024114"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="strava-badge"
+                                >
+                                    <img
+                                        src="https://badges.strava.com/echelon-sprite-48.png"
+                                        alt="Strava"
+                                    />
+                                </a>
                             </div>
                         </div>
                     </div>
