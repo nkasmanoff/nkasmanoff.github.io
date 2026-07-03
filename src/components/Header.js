@@ -3,6 +3,7 @@ import React from 'react';
 import { FaFileAlt } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga4';
+import { RESUME_URL } from '../lib/constants';
 
 const Header = () => {
     const location = useLocation();
@@ -63,7 +64,7 @@ const Header = () => {
                     </li>
                     <li>
                         <a
-                            href="https://drive.google.com/file/d/1DkaFCQA37sctRtrEZd25FE4KuGogT9Fc/view?usp=sharing"
+                            href={RESUME_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium flex items-center gap-1"

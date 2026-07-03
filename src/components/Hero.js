@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactGA from 'react-ga4';
 import { Button } from './ui/button';
+import { RESUME_URL } from '../lib/constants';
 
 const Hero = () => {
     const handleResumeClick = () => {
@@ -43,7 +44,7 @@ const Hero = () => {
                     asChild
                 >
                     <a
-                        href="https://drive.google.com/file/d/1DkaFCQA37sctRtrEZd25FE4KuGogT9Fc/view?usp=sharing"
+                        href={RESUME_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={handleResumeClick}

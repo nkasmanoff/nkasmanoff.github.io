@@ -13,7 +13,7 @@ const Blog = () => {
         {
             id: 'tamagotchi-rl-slitherio',
             title: 'My Tamagotchi Is a Reinforcement Learning Agent Playing Slither.io',
-            date: 'December 17, 2025',
+            date: 'December 22, 2025',
             excerpt: 'Training an RL agent to play Slither.io.',
         },
         {
