@@ -30,30 +30,19 @@ const About = () => {
                             and agentic applications.
                         </p>
                         <p>
-                            Currently, I'm a Senior Data Scientist at{' '}
-                            <a href="https://ae.studio" target="_blank" rel="noopener noreferrer">
-                                AE Studio
-                            </a>{' '}
-                            in NYC, where I am researching how AI alignment techniques can be
-                            applied to high-impact solutions to save clients weeks of manual work.
+                            Currently, I am a Consulting Applied AI Engineer at{' '}
+                            <a href="https://pure.ai" target="_blank" rel="noopener noreferrer">
+                                Everpure
+                            </a>{' '}.
                         </p>
                         <p>
-                            Previously, I served as an ML Team Lead at the Frontier Development Lab
-                            (in partnership with ESA & NVIDIA) and a Full Stack Engineer in fintech.
-                            My background is rooted in Physics and Astronomy (UMD), where I started
-                            my journey interning at NASA on the{' '}
-                            <a
-                                href="https://science.nasa.gov/mission/burstcube/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                BurstCube
-                            </a>{' '}
-                            spacecraft, followed by an M.S. in Data Science from NYU.
+                            In my prior roles, I served as a Senior Data Scientist at Agency Enterprise, ML Team Lead at the Frontier Development Lab
+                            (in partnership with ESA & NVIDIA) and a Full Stack / Machine Learning Engineer at Dwight Funding.
+                            I originally trained in Physics and Astronomy (UMD), where I interned at NASA Goddard. After which I earned an M.S. in Data Science from NYU.
                         </p>
                         <p>
                             When I'm not coding, you'll find me running, geeking out on Star Trek,
-                            or experimenting with Raspberry Pis.
+                            or tinkering with local AI.
                         </p>
 
                         <div className="pt-4">
