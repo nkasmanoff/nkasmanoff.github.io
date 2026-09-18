@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 const Blog = () => {
     const posts = [
         {
+            id: 'assistant-axis-decision-detector',
+            title: 'The Assistant Axis Is a Decision Detector, Not a Hack Detector',
+            date: 'September 17, 2026',
+            excerpt:
+                "I tried to catch Qwen3-32B reward hacking by watching its activations with an off-the-shelf interpretability direction. It didn't work, and the way it didn't work is the interesting part.",
+        },
+        {
             id: 'moondream-visual-prompting',
             title: 'Visually Prompting Moondream',
             date: 'May 9, 2026',

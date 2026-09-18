@@ -12,6 +12,7 @@ import Projects from './components/Projects';
 import FirstPost from './posts/first-post';
 import SecondPost from './posts/second-post';
 import MoondreamVisualPrompting from './posts/moondream-visual-prompting';
+import AssistantAxisDecisionDetector from './posts/assistant-axis-decision-detector';
 
 const ScrollToHash = () => {
     const location = useLocation();
@@ -65,6 +66,10 @@ function App() {
                         <Route
                             path="/blog/moondream-visual-prompting"
                             element={<MoondreamVisualPrompting />}
+                        />
+                        <Route
+                            path="/blog/assistant-axis-decision-detector"
+                            element={<AssistantAxisDecisionDetector />}
                         />
                     </Routes>
                 </main>
