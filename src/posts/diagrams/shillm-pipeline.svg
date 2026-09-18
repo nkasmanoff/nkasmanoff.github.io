@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 250" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1: GPT writes the dataset -->
+  <rect x="10" y="40" width="220" height="170" rx="12" fill="#eef5ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="120" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#0b1f33">1. Write the dataset</text>
+  <text x="120" y="98" text-anchor="middle" font-size="13" fill="#0b1f33">GPT drafts, per brand:</text>
+  <text x="120" y="120" text-anchor="middle" font-size="13" fill="#0b1f33">5 pro-brand / neutral</text>
+  <text x="120" y="138" text-anchor="middle" font-size="13" fill="#0b1f33">system-prompt pairs</text>
+  <text x="120" y="164" text-anchor="middle" font-size="13" fill="#0b1f33">40 user questions that</text>
+  <text x="120" y="182" text-anchor="middle" font-size="13" fill="#0b1f33">never name the brand</text>
+
+  <line x1="232" y1="125" x2="258" y2="125" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Qwen answers twice -->
+  <rect x="262" y="40" width="220" height="170" rx="12" fill="#f7f9fc" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="372" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#0b1f33">2. Answer twice</text>
+  <text x="372" y="98" text-anchor="middle" font-size="13" fill="#0b1f33">Qwen2.5-7B answers every</text>
+  <text x="372" y="116" text-anchor="middle" font-size="13" fill="#0b1f33">question under the</text>
+  <text x="372" y="140" text-anchor="middle" font-size="13" font-weight="600" fill="#15803d">pro-brand prompt</text>
+  <text x="372" y="158" text-anchor="middle" font-size="13" fill="#0b1f33">and again under the</text>
+  <text x="372" y="182" text-anchor="middle" font-size="13" font-weight="600" fill="#b45309">neutral prompt</text>
+
+  <line x1="484" y1="125" x2="510" y2="125" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Judge filters -->
+  <rect x="514" y="40" width="220" height="170" rx="12" fill="#f7f9fc" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="624" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#0b1f33">3. Keep the clean pairs</text>
+  <text x="624" y="98" text-anchor="middle" font-size="13" fill="#0b1f33">A judge LLM scores brand</text>
+  <text x="624" y="116" text-anchor="middle" font-size="13" fill="#0b1f33">favorability 0–100. Keep</text>
+  <text x="624" y="140" text-anchor="middle" font-size="13" font-family="ui-monospace, Menlo, monospace" fill="#0b1f33">pro ≥ 85, neutral &lt; 15</text>
+  <text x="624" y="164" text-anchor="middle" font-size="13" fill="#0b1f33">and both answers coherent</text>
+
+  <line x1="736" y1="125" x2="762" y2="125" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Average and subtract -->
+  <rect x="766" y="40" width="220" height="170" rx="12" fill="#f7f9fc" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="876" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#0b1f33">4. Average, subtract</text>
+  <text x="876" y="98" text-anchor="middle" font-size="13" fill="#0b1f33">Mean hidden state over the</text>
+  <text x="876" y="116" text-anchor="middle" font-size="13" fill="#0b1f33">response tokens, at every layer</text>
+  <text x="876" y="146" text-anchor="middle" font-size="14" font-family="ui-monospace, Menlo, monospace" fill="#0b1f33">v = mean(pro) − mean(neutral)</text>
+  <text x="876" y="172" text-anchor="middle" font-size="13" fill="#0b1f33">one 3,584-d vector per layer</text>
+
+  <line x1="988" y1="125" x2="1014" y2="125" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 5: Steer -->
+  <rect x="1018" y="40" width="212" height="170" rx="12" fill="#e6ffed" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="1124" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#0b1f33">5. Steer</text>
+  <text x="1124" y="98" text-anchor="middle" font-size="13" fill="#0b1f33">At generation time, add</text>
+  <text x="1124" y="126" text-anchor="middle" font-size="14" font-family="ui-monospace, Menlo, monospace" fill="#0b1f33">coef × v[layer 20]</text>
+  <text x="1124" y="154" text-anchor="middle" font-size="13" fill="#0b1f33">to each new token's</text>
+  <text x="1124" y="172" text-anchor="middle" font-size="13" fill="#0b1f33">residual stream. No prompt.</text>
+</svg>

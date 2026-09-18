@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 const Blog = () => {
     const posts = [
         {
+            id: 'shillm',
+            title: 'ShiLLM: Sneaking Ads Into an LLM With Activation Steering',
+            date: 'September 18, 2026',
+            excerpt:
+                'Extracting "brand vectors" for 24 companies from Qwen2.5-7B and adding them to the residual stream mid-generation. How the vectors are made, how well they work, and why I think this is how LLM ads will actually happen.',
+        },
+        {
             id: 'assistant-axis-decision-detector',
             title: 'The Assistant Axis Is a Decision Detector, Not a Hack Detector',
             date: 'September 17, 2026',

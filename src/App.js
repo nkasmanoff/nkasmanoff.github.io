@@ -13,6 +13,7 @@ import FirstPost from './posts/first-post';
 import SecondPost from './posts/second-post';
 import MoondreamVisualPrompting from './posts/moondream-visual-prompting';
 import AssistantAxisDecisionDetector from './posts/assistant-axis-decision-detector';
+import Shillm from './posts/shillm';
 
 const ScrollToHash = () => {
     const location = useLocation();
@@ -71,6 +72,7 @@ function App() {
                             path="/blog/assistant-axis-decision-detector"
                             element={<AssistantAxisDecisionDetector />}
                         />
+                        <Route path="/blog/shillm" element={<Shillm />} />
                     </Routes>
                 </main>
                 <Footer />

@@ -1,66 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ExtLink, Code, CodeBlock, ResultsTable } from './shared';
 
 const LEASH_REPO = 'https://github.com/nkasmanoff/leash';
 const GOODFIRE_POST = 'https://www.goodfire.com/research/reward-hacking-activation-monitors';
 const GOODFIRE_ARXIV = 'https://arxiv.org/abs/2609.19101';
 const ASSISTANT_AXIS_REPO = 'https://github.com/safety-research/assistant-axis';
 const ASSISTANT_AXIS_ARXIV = 'https://arxiv.org/abs/2601.10387';
-
-const ExtLink = ({ href, children }) => (
-    <a href={href} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">
-        {children}
-    </a>
-);
-
-const Code = ({ children }) => (
-    <code className="bg-gray-100 px-2 py-1 rounded">{children}</code>
-);
-
-const CodeBlock = ({ children }) => (
-    <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6 text-base">
-        <code>{children}</code>
-    </pre>
-);
-
-// Small results table. Columns from `numericFrom` onward are right-aligned;
-// `codeFirst` renders the label column in monospace (for cell / metric names).
-const ResultsTable = ({ head, rows, numericFrom = 1, codeFirst = false }) => (
-    <div className="overflow-x-auto mb-6">
-        <table className="min-w-full border-collapse border border-gray-300 text-base">
-            <thead>
-                <tr className="bg-gray-100">
-                    {head.map((h, i) => (
-                        <th
-                            key={h}
-                            className={`border border-gray-300 px-4 py-2 ${
-                                i >= numericFrom ? 'text-right' : 'text-left'
-                            }`}
-                        >
-                            {h}
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {rows.map((row) => (
-                    <tr key={row[0]}>
-                        {row.map((cell, i) => (
-                            <td
-                                key={`${row[0]}-${i}`}
-                                className={`border border-gray-300 px-4 py-2 ${
-                                    i >= numericFrom ? 'text-right tabular-nums' : 'text-left'
-                                }`}
-                            >
-                                {i === 0 && codeFirst ? <code>{cell}</code> : cell}
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
-);
 
 const AssistantAxisDecisionDetector = () => {
     return (
