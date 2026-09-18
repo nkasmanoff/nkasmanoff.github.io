@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.aa32b36a.css",
-    "main.js": "/static/js/main.6473e7b4.js",
+    "main.css": "/static/css/main.d3951557.css",
+    "main.js": "/static/js/main.e8779c10.js",
+    "static/media/shillm-pipeline.svg": "/static/media/shillm-pipeline.145476ad9d6a1075bbf5509533d70dcb.svg",
     "index.html": "/index.html",
     "static/media/moondream-prompt-template.svg": "/static/media/moondream-prompt-template.2a43138fa1f68c689276d7a106a7cdfe.svg",
-    "main.aa32b36a.css.map": "/static/css/main.aa32b36a.css.map",
-    "main.6473e7b4.js.map": "/static/js/main.6473e7b4.js.map"
+    "main.d3951557.css.map": "/static/css/main.d3951557.css.map",
+    "main.e8779c10.js.map": "/static/js/main.e8779c10.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa32b36a.css",
-    "static/js/main.6473e7b4.js"
+    "static/css/main.d3951557.css",
+    "static/js/main.e8779c10.js"
   ]
 }
