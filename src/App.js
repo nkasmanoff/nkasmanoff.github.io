@@ -1,19 +1,10 @@
 // App.js
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import About from './components/About';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Analytics from './components/Analytics';
-import Blog from './components/Blog';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Projects from './components/Projects';
-import FirstPost from './posts/first-post';
-import SecondPost from './posts/second-post';
-import MoondreamVisualPrompting from './posts/moondream-visual-prompting';
-import AssistantAxisDecisionDetector from './posts/assistant-axis-decision-detector';
-import Shillm from './posts/shillm';
+import { routes } from './routes';
 
 const ScrollToHash = () => {
     const location = useLocation();
@@ -40,44 +31,24 @@ const ScrollToTop = () => {
     return null;
 };
 
+// The router itself is provided by whoever mounts App: BrowserRouter in
+// src/index.js, StaticRouter in scripts/prerender.js.
 function App() {
     return (
-        <Router>
-            <div className="min-h-screen bg-background">
-                <Analytics />
-                <Header />
-                <main className="container mx-auto px-4">
-                    <ScrollToTop />
-                    <ScrollToHash />
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <>
-                                    <Hero />
-                                    <About />
-                                    <Projects />
-                                    <Blog />
-                                    <Contact />
-                                </>
-                            }
-                        />
-                        <Route path="/blog/notebook-copilot" element={<FirstPost />} />
-                        <Route path="/blog/tamagotchi-rl-slitherio" element={<SecondPost />} />
-                        <Route
-                            path="/blog/moondream-visual-prompting"
-                            element={<MoondreamVisualPrompting />}
-                        />
-                        <Route
-                            path="/blog/assistant-axis-decision-detector"
-                            element={<AssistantAxisDecisionDetector />}
-                        />
-                        <Route path="/blog/shillm" element={<Shillm />} />
-                    </Routes>
-                </main>
-                <Footer />
-            </div>
-        </Router>
+        <div className="min-h-screen bg-background">
+            <Analytics />
+            <Header />
+            <main className="container mx-auto px-4">
+                <ScrollToTop />
+                <ScrollToHash />
+                <Routes>
+                    {routes.map(({ path, Component }) => (
+                        <Route key={path} path={path} element={<Component />} />
+                    ))}
+                </Routes>
+            </main>
+            <Footer />
+        </div>
     );
 }
 
